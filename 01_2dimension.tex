@@ -1,0 +1,315 @@
+
+\chapter{二次の理論}
+
+\section{連立一次方程式と逆行列}
+
+$2$つの未知数からなる連立一次方程式
+$$
+\begin{cases}
+x+y = 8, \\
+2 x+4 y = 26 \\
+\end{cases}
+$$
+を考えよう。
+この問題は鶴と亀が合わせて$8$匹いて脚の数が合計して$26$本であるという、鶴亀算の典型的な例題として小学校で紹介され、いったん$8$匹すべてが鶴としてから徐々に亀に変えていって脚の数の帳尻を合わせるなどという解法を学習する。
+その後、中学校で連立一次方程式を習うと鶴の数を$x$匹で亀の数を$y$匹とすることで上記の方程式に帰着され、加減法あるいは代入法などの解法を適用できることを学ぶ。
+大学の教科書である本テキストではこの連立一次方程式を行列の理論、特に逆行列を使う解法を紹介する。
+
+係数を一般化して連立一次方程式
+$$
+\begin{cases}
+a x+b y = e, \\
+c x+d y = f \\
+\end{cases}
+$$
+を考える。
+これを行列に結びつける第一歩は次のように書くことである。
+$$
+\begin{pmatrix}a x+b y \\ c x+d y\end{pmatrix} = \begin{pmatrix}e \\ f\end{pmatrix}.
+$$
+ここで両辺に現れる、$2$つの数を縦に並べて括弧でくくったものを（$2$次の）（縦）\emph{ベクトル}という。
+二つのベクトル$\begin{pmatrix}p \\ q\end{pmatrix}$と$\begin{pmatrix}u \\ v\end{pmatrix}$が等しいとは$p = u$かつ$q = v$が成り立つとすることで上記の変形が可能となる。
+さらに左辺を次のように変形できたとしよう。
+$$
+\begin{pmatrix}a x+b y \\ c x+d y\end{pmatrix} = \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ y\end{pmatrix}.
+$$
+この時の右辺に現れる$4$つの数$a, b, c, d$を$2\times 2$に並べたものを（$2\times 2$型のあるいは$2$次正方）\emph{行列}といい、上記の式は行列とベクトルの積を定義する。
+以上によって最初の連立一次方程式は行列とベクトルを使って
+$$
+\begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x \\ y\end{pmatrix} = \begin{pmatrix}e \\ f\end{pmatrix}
+$$
+と表すことができる。
+この時の行列を\emph{係数行列}といい、左辺のベクトルを\emph{未知数ベクトル}、右辺のベクトルを\emph{定数ベクトル}という。
+係数行列、未知数ベクトル、定数ベクトルをそれぞれ$A$, $\vb*{x}$, $\vb*{b}$とおくと連立一次方程式は
+$$
+A \vb*{x} = \vb*{b}
+$$
+とあたかも未知数が$1$つの場合の一次方程式であるかのように書くことができる（現時点では書くことができるだけだが）。
+
+以下では行列やベクトルでない実数や複素数などの数単体のことを\emph{スカラー}と呼ぶ。
+スカラーの一次方程式は係数で両辺を割ればすぐに解けるのであった。
+しかしながら今回の場合では行列で割るというのはどういうことだろうか。
+それに答えるには、$0$でない実数や複素数には逆数があるように、行列に対して逆行列なるものを導入できればよいことに気がつく。
+$2$次正方行列に対しては逆行列は以下のようにして得られる。
+
+\begin{definition}[$2$次の逆行列]
+$2$次正方行列$A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$が$a d-b c \ne 0$を満たすとき定義される次の行列
+$$
+A^{-1} = \frac{1}{a d-b c}\begin{pmatrix}d & -b \\ -c & a\end{pmatrix}
+$$
+を$A$の\emph{逆行列}という。
+また、$a d-b c$のことを$2$次正方行列の\emph{行列式}といい、逆行列を持つ正方行列は\emph{可逆行列}または\emph{正則行列}と呼ばれる。
+\end{definition}
+
+この逆行列は次の性質を満たす。
+ただし、二つの$2$次正方行列の\emph{積}を
+$$
+\begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}e & f \\ g & h\end{pmatrix}
+= \begin{pmatrix}a e+b g & a f+b h \\ c e+d g & c f+d h\end{pmatrix}
+$$
+として定め、次の特殊な行列
+$$
+I = I_2 = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}
+$$
+を（$2$次の）\emph{単位行列}という。
+任意の$2$次正方行列$A$に対して、
+$$
+A I = I A = A
+$$
+が成り立つことに注意する。
+
+\begin{proposition}[逆行列]
+逆行列$A^{-1}$を持つ$2$次正方行列$A$に対して、
+$$
+A A^{-1} = A^{-1} A = I
+$$
+が成り立つ。
+\end{proposition}
+
+\begin{proof}
+計算すると
+$$
+A A^{-1}
+= \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}\frac{d}{a d-b c} & \frac{-b}{a d-b c} \\ \frac{-c}{a d-b c} & \frac{a}{a d-b c}\end{pmatrix}
+= \begin{pmatrix}\frac{a d-b c}{a d-b c} & \frac{-a b+b a}{a d-b c} \\ \frac{c d-d c}{a d-b c} & \frac{-c b+d a}{a d-b c}\end{pmatrix}
+= I,
+$$
+$$
+A^{-1} A
+= \frac{1}{a d-b c}\begin{pmatrix}d & -b \\ -c & a\end{pmatrix}\begin{pmatrix}a & b \\ c & d\end{pmatrix}
+= \frac{1}{a d-b c}\begin{pmatrix}d a-b c & d b-b d \\ -c a+a c & -c b+a d\end{pmatrix}
+= I.
+$$
+\end{proof}
+
+これにより連立一次方程式$A \vb*{x} = \vb*{b}$の両辺に係数行列$A$の逆行列$A^{-1}$を（左から）かけることで
+$$
+A^{-1} A \vb*{x} = \vb*{x} = A^{-1} \vb*{b}
+$$
+となり、$2$つの未知数からなる連立一次方程式は逆行列を作って定数ベクトルにかけることで解くことができる。
+
+\begin{example}
+鶴亀算の方程式
+$$
+\begin{cases}
+x+y = 8, \\
+2 x+4 y = 26 \\
+\end{cases}
+$$
+は
+$$
+\begin{pmatrix}1 & 1 \\ 2 & 4\end{pmatrix}\begin{pmatrix}x \\ y\end{pmatrix}
+= \begin{pmatrix}8 \\ 26\end{pmatrix}
+$$
+と表示でき、係数行列の逆行列は
+$$
+\begin{pmatrix}1 & 1 \\ 2 & 4\end{pmatrix}^{-1}
+= \frac{1}{1\cdot 4-1\cdot 2}\begin{pmatrix}4 & -1 \\ -2 & 1\end{pmatrix}
+= \frac{1}{2}\begin{pmatrix}4 & -1 \\ -2 & 1\end{pmatrix}
+$$
+なので、解は
+$$
+\begin{pmatrix}x \\ y\end{pmatrix}
+= \frac{1}{2}\begin{pmatrix}4 & -1 \\ -2 & 1\end{pmatrix}\begin{pmatrix}8 \\ 26\end{pmatrix}
+= \frac{1}{2}\begin{pmatrix}4\cdot 8+(-1)\cdot 26 \\ (-2)\cdot 8+1\cdot 26\end{pmatrix}
+= \begin{pmatrix}3 \\ 5\end{pmatrix}
+$$
+と求まる。
+\end{example}
+
+\section{線形漸化式と対角化}
+
+$n = 0, 1, 2, 3, \cdots$として、$2$つの数列$x_n$と$y_n$が二項間斉次線形漸化式
+$$
+\begin{cases}
+x_{n+1} = a x_n+b y_n, & x_0 = e, \\
+y_{n+1} = c x_n+d y_n, & y_0 = f \\
+\end{cases}
+$$
+を満たす状況を考える。
+例えば、$1$リットルと$2$リットルの液体が入った二つの容器があるとして、
+一回の操作でそれぞれの容器から$4$割の液体を取り出しもう片方の容器に移すことを考える。
+$n$回目の操作が終わった段階での容器の中の液体の量を$x_n$リットルと$y_n$リットルとすると、
+$$
+\begin{cases}
+x_{n+1} = 0.6 x_n+0.4 y_n, & x_0 = 1, \\
+y_{n+1} = 0.4 x_n+0.6 y_n, & y_0 = 2 \\
+\end{cases}
+$$
+が成り立つ。
+一般論に戻ると前節同様これは行列とベクトルを用いて
+$$
+\begin{pmatrix}x_{n+1} \\ y_{n+1}\end{pmatrix}
+= \begin{pmatrix}a & b \\ c & d\end{pmatrix}\begin{pmatrix}x_n \\ y_n\end{pmatrix},
+\quad \begin{pmatrix}x_0 \\ y_0\end{pmatrix} = \begin{pmatrix}e \\ f\end{pmatrix}
+$$
+と表される。
+数列ベクトル、係数行列、初項ベクトルをそれぞれ$\vb*{x}_n$, $A$, $\vb*{b}$とおくと漸化式は
+$$
+\vb*{x}_{n+1} = A \vb*{x}_n, \quad \vb*{x}_0 = \vb*{b}
+$$
+と表現できる。
+これは$n$を一つ増やすごとに$A$を左からかけているので、$2$次正方行列$A$の$n$乗$A^n$を単位行列$I$に$A$を$n$回かけたものとして定義することで、
+$$
+\vb*{x}_n = A^n \vb*{b}
+$$
+となる。
+つまり二項間（斉次線形）漸化式を解くことは$A^n$を計算することに帰着される。
+
+この行列の$n$乗などの計算をする際に重要になるのが対角化と呼ばれる手法である。
+ここで対角とは（$2$次）正方行列$A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$の左上から右下にかけての対角線上に位置する成分のことで、
+対角成分以外の成分が全て$0$である正方行列を\emph{対角行列}という。
+\emph{対角化}とは（$2$次）正方行列$A$を対角行列$D = \begin{pmatrix}s & 0 \\ 0 & t\end{pmatrix}$と可逆行列$P$を使って
+$$
+A = P D P^{-1} = P\begin{pmatrix}s & 0 \\ 0 & t\end{pmatrix}P^{-1}
+$$
+と変形することである。
+もし対角化ができたとしたら$n$乗は
+$$
+A^n = (P D P^{-1})^n = P D^n P^{-1} = P\begin{pmatrix}s^n & 0 \\ 0 & t^n\end{pmatrix}P^{-1}
+$$
+と容易に計算することができる。
+
+\begin{example}
+先述の液体の移し替えの漸化式
+$$
+\begin{cases}
+x_{n+1} = 0.6 x_n+0.4 y_n, & x_0 = 1, \\
+y_{n+1} = 0.4 x_n+0.6 y_n, & y_0 = 2 \\
+\end{cases}
+$$
+は
+$$
+\begin{pmatrix}x_{n+1} \\ y_{n+1}\end{pmatrix}
+= \begin{pmatrix}0.6 & 0.4 \\ 0.4 & 0.6\end{pmatrix}\begin{pmatrix}x_n \\ y_n\end{pmatrix},
+\quad \begin{pmatrix}x_0 \\ y_0\end{pmatrix} = \begin{pmatrix}1 \\ 2\end{pmatrix}
+$$
+と表示でき、
+詳細は省略するが係数行列は
+$$
+\begin{pmatrix}0.6 & 0.4 \\ 0.4 & 0.6\end{pmatrix}
+= \begin{pmatrix}1 & 1 \\ 1 & -1\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & 0.2\end{pmatrix}\begin{pmatrix}1 & 1 \\ 1 & -1\end{pmatrix}^{-1}
+$$
+と対角化される。
+よって、この数列の一般項は
+$$
+\begin{pmatrix}x_{n+1} \\ y_{n+1}\end{pmatrix}
+= \begin{pmatrix}0.6 & 0.4 \\ 0.4 & 0.6\end{pmatrix}^n\begin{pmatrix}1 \\ 2\end{pmatrix}
+= \begin{pmatrix}1 & 1 \\ 1 & -1\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & 0.2^n\end{pmatrix}\begin{pmatrix}1 & 1 \\ 1 & -1\end{pmatrix}^{-1}\begin{pmatrix}1 \\ 2\end{pmatrix}
+= \frac{1}{2}\begin{pmatrix}3-0.2^n \\ 3+0.2^n\end{pmatrix}
+$$
+と計算できる。
+\end{example}
+
+なお、対角化のための重要な過程が固有値と固有ベクトルを計算することであり、その際には行列式が重要な役割を果たす。
+
+また、三項間斉次線形漸化式
+$$
+x_{n+2} = a x_{n+1}+b x_n
+$$
+は$y_n = x_{n+1}$を導入すると$y_{n+1} = a y_n+b x_n$より、
+$$
+\begin{pmatrix}x_{n+1} \\ y_{n+1}\end{pmatrix}
+= \begin{pmatrix}0 & 1 \\ b & a\end{pmatrix}\begin{pmatrix}x_n \\ y_n\end{pmatrix},
+$$
+を得る。
+これにより行列での二項間線形漸化式は幅広い問題に対応できることがわかる。
+
+\section{回転行列}
+
+$2$次正方行列の中でも$\theta$を実数として
+$$
+R(\theta) = \begin{pmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix}
+$$
+と表される行列を$\theta$回転の\emph{回転行列}という。
+この行列が回転行列と呼ばれるのは座標平面上の点$(a, b)$に対して、回転行列をかけるつまり
+$$
+\begin{pmatrix}x \\ y\end{pmatrix}
+= R(\theta)\begin{pmatrix}a \\ b\end{pmatrix}
+$$
+として得られる点$(x, y)$は点$(a, b)$を原点中心に$\theta$回転させた点に一致するためである。
+
+この回転行列は上記のように回転にまつわる問題で登場するほか、積の計算が楽である。
+
+\begin{proposition}[回転行列の積]
+$\alpha$, $\beta$を実数とする時、
+$$
+R(\alpha)R(\beta) = R(\alpha+\beta)
+$$
+が成り立つ。
+\end{proposition}
+
+\begin{proof}
+計算すると
+$$
+R(\alpha)R(\beta)
+= \begin{pmatrix}\cos\alpha & -\sin\alpha \\ \sin\alpha & \cos\alpha\end{pmatrix}\begin{pmatrix}\cos\beta & -\sin\beta \\ \sin\beta & \cos\beta\end{pmatrix}
+= \begin{pmatrix}\cos\alpha\cos\beta-\sin\alpha\sin\beta & -\cos\alpha\sin\beta-\sin\alpha\cos\beta \\ \sin\alpha\cos\beta+\cos\alpha\sin\beta & -\sin\alpha\sin\beta+\cos\alpha\cos\beta\end{pmatrix}.
+$$
+よって加法定理により
+$$
+R(\alpha)R(\beta)
+= \begin{pmatrix}\cos(\alpha+\beta) & -\sin(\alpha+\beta) \\ \sin(\alpha+\beta) & \cos(\alpha+\beta)\end{pmatrix}
+= R(\alpha+\beta)
+$$
+である。
+\end{proof}
+
+特に
+$$
+R(\theta)R(-\theta) = R(0) = I
+$$
+なので、$\theta$回転の回転行列の逆行列は反対向きに$\theta$回転の回転行列である、つまり
+$$
+R(\theta)^{-1} = R(-\theta) = \begin{pmatrix}\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta\end{pmatrix}
+$$
+が成り立つ。
+また、
+$$
+R(\theta)^n = R(n\theta)
+$$
+も成り立つ。
+
+\begin{example}
+連立一次方程式
+$$
+\begin{cases}
+x-\sqrt{3}y = 1, \\
+\sqrt{3}x+y = 0 \\
+\end{cases}
+$$
+を考える。
+係数行列は
+$$
+\begin{pmatrix}1 & -\sqrt{3} \\ \sqrt{3} & 1\end{pmatrix}
+= 2\begin{pmatrix}\frac{1}{2} & -\frac{\sqrt{3}}{2} \\ \frac{\sqrt{3}}{2} & \frac{1}{2}\end{pmatrix}
+= 2 R(\frac{\pi}{3})
+$$
+なので、逆行列は$\frac{1}{2}R(-\frac{\pi}{3})$であり、解は
+$$
+\begin{pmatrix}x \\ y\end{pmatrix}
+= \frac{1}{2}\begin{pmatrix}\frac{1}{2} & \frac{\sqrt{3}}{2} \\ -\frac{\sqrt{3}}{2} & \frac{1}{2}\end{pmatrix}\begin{pmatrix}1 \\ 0\end{pmatrix}
+= \begin{pmatrix}\frac{1}{4} \\ -\frac{\sqrt{3}}{4}\end{pmatrix}
+$$
+と計算できる。
+\end{example}

@@ -1,0 +1,250 @@
+
+\chapter{固有値問題}
+
+\section{固有値と固有ベクトル}
+
+いよいよこの章から体$K$上の$N$次正方行列$A$の$n = 0, 1, 2, 3, \cdots$乗を計算するのに役に立つ理論を学ぶ。
+例えば$A$が$N$次正則行列$P$を使って次のように変形されたとする。
+$$
+A = P\mqty(\dmat{c_1, \ddots, c_N})P^{-1}.
+$$
+一般に$N$次正方行列$A$を$N$次正則行列$P$を使って$B = P^{-1} A P$と変形することを\emph{相似変換}といい、このように相似変換して対角行列にすることを\emph{対角化}という。
+このとき、$P = \mqty(\vb*{v}_1 & \cdots & \vb*{v}_N)$とすると
+$$
+A\mqty(\vb*{v}_1 & \cdots & \vb*{v}_N) = \mqty(c_1\vb*{v}_1 & \cdots & c_N\vb*{v}_N)
+$$
+なので、
+\begin{equation}
+\label{e:eigen}
+A\vb*{v} = x\vb*{v}
+\end{equation}
+を満たす$(x, \vb*{v}) = (c_1, \vb*{v}_1), \cdots, (c_N, \vb*{v}_N)$であって$\vb*{v}_1, \cdots, \vb*{v}_N$が線形独立であるものを見つけてくれば対角化できることになる。
+この時の$x$を$A$の\emph{固有値}、$\vb*{v}$を$A$の\emph{固有ベクトル}といい関係式\eqref{e:eigen}を\emph{固有値問題}という。
+
+それではどうやって固有値・固有ベクトルを見つけてくればよいのだろうか。
+\eqref{e:eigen}を変形すると$\vb*{v}$は斉次連立一次方程式
+$$
+(x I-A)\vb*{v} = \vb*{0}
+$$
+の解であり、$\vb*{v} \ne \vb*{0}$でないと線形独立にならない。
+よって、$N$次正方行列$x I-A$は逆行列を持たないので、
+\begin{equation}
+\label{e:eigeneq}
+\det(x I-A) = 0
+\end{equation}
+が成立する。
+これを$x$についての方程式とみて$A$の\emph{固有方程式}という。
+なお、左辺は$x$についての$K$係数の$N$次の多項式になっていて、$A$の\emph{固有多項式}という。
+固有方程式の解つまり固有多項式の零点が固有値であり、$x \in K$に対して$K^N$の線形部分空間
+$$
+W(x) = \Ker(x I-A) = \lrset{ \vb*{v} \in K^N \mid (x I-A)\vb*{v} = \vb*{0} }
+$$
+を定め、固有値$x = c$に対して$W(c)$を$A$の固有値$c$に対する\emph{固有空間}という。
+このとき$\dim W(c) \ge 1$に注意する。
+
+\section{固有空間の線形独立性}
+
+\begin{lemma}[固有空間の線形独立性]
+$T$を$K$上の線形空間$V$上の線形変換として、$c, d \in K$を異なる固有値とする。
+このとき固有空間について$W(c)\cap W(d) = O_V$が成り立つ。
+\end{lemma}
+
+\begin{proof}
+$\vb*{v} \in W(c)\cap W(d)$とすると、
+$$
+A\vb*{v} = c\vb*{v} = d\vb*{v}.
+$$
+よって、$c \ne d$より$\vb*{v} = \vb*{0}_V$を得る。
+\end{proof}
+
+\begin{theorem}[対角化の十分条件]
+$A$を$K$上の$N$次元正方行列として、$c_1, \cdots, c_L \in K$を相異なる固有値とする。
+ここで固有空間が$W(c_1)\oplus\cdots\oplus W(c_L) = K^N$、つまり$\dim W(c_1)+\cdots+\dim W(c_L) = N$を満たすとき、$A$は対角化可能である。
+
+特に$K$上の$N$次元正方行列$A$が相異なる$N$個の固有値を持つならば、$A$は対角化可能である。
+\end{theorem}
+
+\begin{example}
+第1章で紹介した液体の入れ替えの問題をもとに片方の容器から$p \in [0, 1]$の割合をもう片方の容器から$q \in [0, 1]$の割合の液体を入れ替える問題を考えると、係数行列は
+$$
+A = \mqty(1-p & q \\ p & 1-q)
+$$
+となりこれを対角化することを考える。
+$A$の固有多項式は
+$$
+\det(x I_2-A)
+= \mqty|x-1+p & -q \\ -p & x-1+q|
+= (x-1+p)(x-1+q)-p q
+= x^2-(2-p-q)x+1-p-q
+= (x-1)(x-1+p+q).
+$$
+よって固有値は$x = 1, 1-p-q$である。
+ここで$p+q = 0$の時この固有値は$1$が$2$重になるが、$p = q = 0$なので$A = \mqty(1 & 0 \\ 0 & 1)$と最初から対角化されている。
+$p+q \ne 0$の場合は$2$つの異なる固有値を持つので$A$は対角化可能である。
+この時、固有値$x = 1$に対しては
+$$
+x I_2-A = \mqty(p & -q \\ -p & q)
+$$
+より固有ベクトルとして$(q, p)$が取れて、
+固有値$x = 1-p-q$に対しては
+$$
+x I_2-A = \mqty(-q & -q \\ -p & -p)
+$$
+より固有ベクトルとして$(1, -1)$が取れる。
+よって、$A$は
+$$
+A
+= \mqty(1-p & q \\ p & 1-q)
+= \mqty(q & 1 \\ p & -1)\mqty(1 & 0 \\ 0 & 1-p-q)\mqty(q & 1 \\ p & -1)^{-1}
+$$
+と対角化でき、
+$$
+A^n
+= \mqty(q & 1 \\ p & -1)\mqty(1 & 0 \\ 0 & (1-p-q)^n)\mqty(q & 1 \\ p & -1)^{-1}
+$$
+と計算できる。
+\end{example}
+
+\section{三角化可能性}
+
+対角化を緩和して、$N$次正方行列$A$を$N$次正則行列$P$を使って
+\begin{equation}
+\label{e:tri}
+A = P\mqty(c_1 & \cdots & * \\ & \ddots & \vdots \\ & & c_N)P^{-1}
+\end{equation}
+と変形することを\emph{三角化}という。
+本節の見出しは三角化「可能性」となっているが、後で見るように三角化なら（固有方程式が解ければ）常にできることが重要である。
+
+まず、三角化できるならば固有多項式が因数分解されることを紹介する。
+
+\begin{proposition}
+\label{t:eigenfactor}
+$N$次正方行列$A$が\eqref{e:tri}と三角化されたとすると固有多項式は
+\begin{equation}
+\label{e:eigenfactor}
+\det(x I-A) = (x-c_1)\cdots(x-c_N)
+\end{equation}
+と因数分解される。
+\end{proposition}
+
+\begin{proof}
+$x I-A$を書き直すと
+$$
+x I-A = P\mqty(x-c_1 & \cdots & * \\ & \ddots & \vdots \\ & & x-c_N)P^{-1}.
+$$
+この行列式を取ると、
+$$
+\det(x I-A)
+= \det P\det\mqty(x-c_1 & \cdots & * \\ & \ddots & \vdots \\ & & x-c_N)\det P^{-1}
+= (x-c_1)\cdots(x-c_N)
+$$
+である。
+\end{proof}
+
+逆に固有多項式が因数分解されるならば三角化できる。
+
+\begin{theorem}[一般の三角化]
+\label{t:tri}
+$N$次正方行列$A$に対して、固有多項式が\eqref{e:eigenfactor}と因数分解されたとすると、$A$は\eqref{e:tri}と三角化される。
+\end{theorem}
+
+\begin{proof}
+$N$に関する数学的帰納法で証明する。
+$N = 1$の時は$A$はスカラーなので三角化されている。
+$N-1$次までで三角化されたとする。
+$c_1$は固有方程式の解で固有値なので、
+$$
+A\vb*{v}_1 = c_1\vb*{v}_1
+$$
+となるベクトル$\vb*{v}_1 \ne \vb*{0}$が存在する。
+ここで基底の延長を行い、$K^N$の基底$\vb*{v}_1, \vb*{v}_2, \cdots, \vb*{v}_N$を構成して正則行列$P_0 = \mqty(\vb*{v}_1 & \vb*{v}_2 & \cdots & \vb*{v}_N)$とおくと、
+$$
+A P_0
+= P_0\mqty(c_1 & * & \cdots & * \\ 0 & * & \cdots & * \\ \vdots & \vdots & \ddots & \vdots \\ 0 & * & \cdots & *)
+= P_0\mqty(c_1 & \vb*{*} \\ \vb*{0} & A_1)
+$$
+となる。
+前の命題の証明同様に行列式を考えると、
+$$
+\det(x I_{N-1}-A_1) = (x-c_2)\cdots(x-c_N)
+$$
+となるので、数学的帰納法の仮定より
+$$
+A_1 = \tilde{P}_1\mqty(c_2 & \cdots & * \\ & \ddots & \vdots \\ & & c_N)\tilde{P}_1^{-1}
+$$
+と三角化される。
+ここで、
+$$
+P_1 = \mqty(1 & \vb*{0} \\ \vb*{0} & \tilde{P}_1),
+\quad P = P_0 P_1
+$$
+とおくと、$P$は$N$次正則行列で
+$$
+A P
+= P_0\mqty(c_1 & \vb*{*} \\ \vb*{0} & A_1)\mqty(1 & \vb*{0} \\ \vb*{0} & \tilde{P}_1)
+= P_0\mqty(c_1 & \vb*{*} \\ \vb*{0} & A_1\tilde{P}_1)
+= P\mqty(c_1 & \cdots & * \\ & \ddots & \vdots \\ & & c_N)
+$$
+となる。
+以上より$A$は三角化される。
+\end{proof}
+
+\section{代数的閉体}
+
+命題\ref{t:eigenfactor}でわかるように、行列が三角化されるためには固有多項式が因数分解されることが必要であるが、
+因数分解できることを保証する$K$の条件が代数的閉体であることである。
+
+\begin{definition}[代数的閉体]
+$K$上の$1$次以上の任意の多項式$f(x) \in K[x]$に対して零点、つまり$f(c) = 0$となる$c \in K$が存在する時、
+$K$は\emph{代数的閉体}であるという。
+\end{definition}
+
+\begin{proposition}[因数分解]
+$K$を代数的閉体として、$f(x)$をその上の$N = 1, 2, 3, \cdots$次の多項式であって$x^N$の係数が$1$であるものとする。
+このとき、$c_1, \cdots, c_N \in K$を使って
+$$
+f(x) = (x-c_1)\cdots(x-c_N)
+$$
+と因数分解される。
+\end{proposition}
+
+\begin{example}
+代数的閉体の重要な例は複素数体$\mathbb{C}$である。
+これは代数学の基本定理と呼ばれる定理からわかるが、その証明には$\mathbb{C}$あるいは$\mathbb{R}^2$上の微分積分学の知識が必要である。
+なお、実数体$\mathbb{R}$や有理数体$\mathbb{Q}$などは代数的閉体ではない。
+\end{example}
+
+\begin{example}
+複素数の中でも有理数$\mathbb{Q}$上の$1$次以上の多項式$f(x) \in \mathbb{Q}[x]$の零点となる数は\emph{代数的数}と呼ばれる。
+代数的数全体の集合
+$$
+\bar{\mathbb{Q}} = \lrset{ a \in \mathbb{C} \mid a^n+c_{n-1}a^{n-1}+\cdots+c_0 = 0, n = 1, 2, 3, \cdots, c_0, \cdots, c_{n-1} \in \mathbb{Q} }
+$$
+は複素数体$\mathbb{C}$の部分体であり、代数的閉体になっている。
+\end{example}
+
+\section{固有値の重複度}
+
+$A$を$K$上の$N$次正方行列として、$c$をその固有値とする。
+このとき、$A$の固有多項式$\det(x I-A)$は$x-c$で割り切れるが、$\det(x I-A)$が$(x-c)^n$で割り切れるような最大の$n$を固有値$c$の\emph{代数的重複度}という。
+固有多項式は$N$次なので代数的重複度は$1, \cdots, N$の値を取る。
+一方で固有空間$W(c)$の次元を\emph{幾何学的重複度}という。
+
+\begin{proposition}
+$A$を$K$上の$N$次正方行列として、$c$をその固有値とする。
+このとき$c$の幾何学的重複度は代数的重複度以下である。
+つまり$M = \dim W(c)$とすると、$A$の固有多項式$\det(x I-A)$は$(x-c)^M$で割り切れる。
+\end{proposition}
+
+\begin{proof}
+線形独立な$M$個のベクトル$\vb*{v}_1, \cdots, \vb*{v}_M \in K^N$がとれ、拡張をして$K^N$の基底$\vb*{v}_1, \cdots, \vb*{v}_N$を構成する。
+このとき、$P = \mqty(\vb*{v}_1 & \cdots & \vb*{v}_N)$を使って、
+$$
+A = P\mqty(c I_M & * \\ O & *)P^{-1}
+$$
+とでき、
+$$
+x I-A = P\mqty((x-c)I_M & * \\ O & *)P^{-1}
+$$
+より、$\det(x I-A)$は$(x-c)^M$で割り切れる。
+\end{proof}

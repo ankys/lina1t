@@ -1,0 +1,699 @@
+
+\chapter{線形空間}
+
+\section{線形空間と例}
+
+今後行列の理論を展開していく上で必要になってくるのが次元の概念でそれを導入するためこの章では抽象的な線形空間の概念を導入する。
+スカラーの属する体などを$K$とする。
+なお、「線形」という単語は「線型」や「一次」とも書かれたりする。
+
+\begin{definition}[線形空間]
+集合$V$に加法$+$（$\vb*{u}, \vb*{v} \in V$に対して$\vb*{u}+\vb*{v} \in V$）とスカラー乗法（$c \in K$と$\vb*{v} \in V$に対して$c\vb*{v} \in V$）が入っていて次を満たす時、$V$を$K$上の\emph{線形空間}という。
+\begin{enumerate}
+\item
+（加法の結合法則）任意の$\vb*{u}, \vb*{v}, \vb*{w} \in V$に対して$(\vb*{u}+\vb*{v})+\vb*{w} = \vb*{u}+(\vb*{v}+\vb*{w})$が成り立つ。
+\item
+（加法の交換法則）任意の$\vb*{u}, \vb*{v} \in V$に対して$\vb*{u}+\vb*{v} = \vb*{v}+\vb*{u}$が成り立つ。
+\item
+（スカラー乗法の結合法則）任意の$c, d \in K$と$\vb*{v} \in V$に対して$(c d)\vb*{v} = c(d\vb*{v})$が成り立つ。
+\item
+（分配法則１）任意の$c \in K$と$\vb*{u}, \vb*{v} \in V$に対して$c(\vb*{u}+\vb*{v}) = c\vb*{u}+c\vb*{v}$が成り立つ。
+\item
+（分配法則２）任意の$c, d \in K$と$\vb*{v} \in V$に対して$(c+d)\vb*{v} = c\vb*{v}+d\vb*{v}$が成り立つ。
+\item
+（零ベクトル）$\vb*{0} \in V$がただ一つ存在して、任意の$\vb*{v} \in V$に対して$\vb*{v}+\vb*{0} = \vb*{0}+\vb*{v} = \vb*{v}$が成り立つ。
+\item
+（反ベクトル）任意の$\vb*{v} \in V$に対して$\vb*{v}+\vb*{x} = \vb*{x}+\vb*{v} = \vb*{0}$が成り立つような$\vb*{x} = -\vb*{v} \in V$がただ一つ存在する。
+\item
+（単位元）$1 \in K$は任意の$\vb*{v} \in K$に対して$1\vb*{v} = \vb*{v}$を満たす。
+\end{enumerate}
+線形空間$V$の元を\emph{ベクトル}と呼ぶ。
+線形空間がいくつかある時$V$の零ベクトル$\vb*{0}$は$\vb*{0}_V$と表されたりする。
+\end{definition}
+
+この線形空間の定義は非常に抽象度が高くてさまざまな具体例が考えられる。
+
+\begin{example}[自明な線形空間]
+線形空間$V$は必ず零ベクトル$\vb*{0}$を元として含んでいるが、逆に$V$として零ベクトルのみからなる集合$O = \{ \vb*{0} \}$として加法を$\vb*{0}+\vb*{0} = \vb*{0}$、スカラー乗法を$c\vb*{0} = \vb*{0}$とすると$O$は線形空間である。
+このような線形空間$O$を自明な線形空間という。
+\end{example}
+
+\begin{example}[スカラーの空間]
+$V$を$K$として設定し加法を$K$での加法、スカラー乗法を$K$での乗法によって定めると$V$は$K$上の線形空間である。
+\end{example}
+
+\begin{example}[数ベクトル空間]
+$N = 1, 2, 3, \cdots$とする。
+$V$として直積$K^N$として設定するつまり$N$個の$K$の元$a_1, \cdots, a_N$を並べたもの$\vb*{v} = (a_1, \cdots, a_N)$の集合として、加法とスカラー乗法を
+$$
+(a_1, \cdots, a_N)+(b_1, \cdots, b_N) = (a_1+b_1, \cdots, a_N+b_N),
+\quad c(a_1, \cdots, a_N) = (c a_1, \cdots, c a_N)
+$$
+によって定義すると$V$は$K$上の線形空間である。
+この$K^N$を$K$上の$N$次元\emph{数ベクトル空間}といい、その元を$N$次元\emph{数ベクトル}という。
+数ベクトルは縦ベクトルや横ベクトルと同一視されうる。
+$N = 1$の時の$K^1$は先述の線形空間としての$K$と同一視される。
+また、拡大解釈して$N = 0$の時の$K^0$が自明な線形空間$O$と見なすことができる。
+\end{example}
+
+\begin{example}[行列空間]
+同様にして$M, N = 1, 2, 3, \cdots$とする。
+$V$として$M\times N$型の$K$上の行列の集合$\M_{M\times N}(K) = K^{M\times N}$とすると$V$は$K$上の線形空間である。
+\end{example}
+
+\begin{example}[数列空間]
+$V$を$K$の元を並べた数列$(a_n)_{n \in \mathbb{N}}$全体$V = K^\mathbb{N}$として加法とスカラー乗法を
+$$
+(a+b)_n = a_n+b_n,
+\quad (c a)_n = c a_n
+$$
+とすると$V$は$K$上の線形空間である。
+\end{example}
+
+\begin{example}[多項式空間]
+$K$の元を係数とする多項式$f(x)$の集合$V = K[x]$は加法とスカラー乗法を
+$$
+(f+g)(x) = f(x)+g(x),
+\quad (c f)(x) = c f(x)
+$$
+とすると$V$は$K$上の線形空間である。
+\end{example}
+
+\begin{example}[関数空間]
+同様にして$V$を集合$X$から$K$への関数$f(x)$全体$V = K^X$として加法とスカラー乗法を
+$$
+(f+g)(x) = f(x)+g(x),
+\quad (c f)(x) = c f(x)
+$$
+とすると$V$は$K$上の線形空間である。
+\end{example}
+
+以下は一見すると線形空間に思えないが、定義上線形空間になる例である。
+
+\begin{example}
+実数は和と有理数倍が定義できるので、$\mathbb{R}$は有理数体$\mathbb{Q}$上の線形空間である。
+\end{example}
+
+\begin{example}
+正の実数$\mathbb{R}_+$の「和」を$x\boxplus y = x y$で「実数$c$倍」を$c\boxdot x = x^c$で定義すると、
+$\mathbb{R}_+$は実数体$\mathbb{R}$上の線形空間である。
+なお、この時の「零ベクトル」は$x = 1$である。
+\end{example}
+
+\begin{definition}[線形部分空間]
+$K$上の線形空間$V$に対して、その部分集合$W$であって$V$の加法とスカラー乗法について線形空間になっているものを$V$の\emph{線形部分空間}という。
+つまり、次の条件を満たせばよい。
+\begin{enumerate}
+\item
+任意の$\vb*{v}, \vb*{w} \in W$に対して$\vb*{v}+\vb*{w} \in W$が成り立つ。
+\item
+任意の$c \in K$と$\vb*{v} \in W$に対して$c\vb*{v} \in W$が成り立つ。
+\end{enumerate}
+この二つの条件はまとめて、任意の$c, d \in K$と$\vb*{v}, \vb*{w} \in W$に対して$c\vb*{v}+d\vb*{w} \in W$とも書ける。
+本テキストでは$W$が$V$の線形部分空間であることを部分集合の記号を使って$W \subset V$と表すことがある。
+\end{definition}
+
+線形空間$V$に対して、$V$自身と零ベクトルのみからなる集合$O = O_V = \{ \vb*{0}_V \}$はいずれも$V$の線形部分空間であり、自明な線形部分空間と呼ばれる。
+
+\begin{example}[連立一次方程式の解空間]
+$N, M = 1, 2, 3, \cdots$として$A$を$M\times N$型の$K$上の行列とする。
+この時、斉次連立一次方程式
+$$
+A\vb*{x} = \vb*{0}
+$$
+の解$\vb*{x} \in K^N$全体からなる集合は$K^N$の線形部分空間である。
+\end{example}
+
+\begin{example}[行列空間の部分空間]
+$N = 1, 2, 3, \cdots$次の対角行列、右上三角行列、左下三角行列、対称行列の集合はいずれも$\M_N(K)$の線形部分空間である。
+\end{example}
+
+\begin{example}[有限次多項式空間]
+$K$の元を係数とする$N = 0, 1, 2, 3, \cdots$次以下の多項式
+$$
+f(x) = a_0+a_1 x+a_2 x^2+a_3 x^3+\cdots+a_N x^N,
+\quad a_0, a_1, a_2, a_3, \cdots, a_N \in K
+$$
+の集合$K^N[x]$は$K[x]$の線形部分空間である。
+\end{example}
+
+\begin{example}
+$\mathbb{R}$の部分集合
+$$
+\mathbb{Q}[\sqrt{2}] = \lrset{ a+b\sqrt{2} \mid a, b \in \mathbb{Q} }
+$$
+は有理数体$\mathbb{Q}$上の線形空間としての$\mathbb{R}$の線形部分空間である。
+\end{example}
+
+一般論で重要な線形部分空間として次がある。
+
+\begin{definition}[線形結合]
+$V$を$K$上の線形空間として、いくつかの元（ベクトル）$\vb*{v}_1, \cdots, \vb*{v}_N$を考える。
+ここでスカラー$c_1, \cdots, c_N \in K$を使って
+$$
+c_1 \vb*{v}_1+\cdots+c_N \vb*{v}_N
+$$
+と表される$V$の元（ベクトル）を$\vb*{v}_1, \cdots, \vb*{v}_N$の\emph{線形結合}という。
+また、$\vb*{v}_1, \cdots, \vb*{v}_N$の線形結合全体からなる集合
+$$
+\lrangle{ \vb*{v}_1, \cdots, \vb*{v}_N } = \lrset{ c_1 \vb*{v}_1+\cdots+c_N \vb*{v}_N \mid c_1, \cdots, c_N \in K }
+$$
+は$V$の線形部分空間であり、$\vb*{v}_1, \cdots, \vb*{v}_N$が\emph{張る}または\emph{線形生成する}線形部分空間と呼ばれる。
+また、$N = 0$の時は線形結合は零ベクトルとして、張る線形部分空間は自明な$O$と考える。
+\end{definition}
+
+また、線形部分空間の演算として次がある。
+
+\begin{definition}[交わりと和]
+$U$を$K$上の線形空間として、$V, W$を$U$の部分空間とする。
+\begin{itemize}
+\item
+共通部分$V\cap W = \lrset{ \vb*{v} \in U \mid \vb*{v} \in V, \vb*{v} \in W }$は$U$の線形部分空間であり、$V$と$W$の\emph{交空間}と呼ばれる。
+\item
+$V+W = \lrset{ \vb*{v}+\vb*{w} \mid \vb*{v} \in V, \vb*{w} \in W }$は$U$の線形部分空間であり、$V$と$W$の\emph{和空間}と呼ばれる。
+\item
+交空間が$V\cap W = O_U$を満たす時、和空間$V+W$は$V\oplus W$と書かれ、$V$と$W$の\emph{直和空間}と呼ばれる。
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+和空間は和集合$V\cup W$とは違うことに注意する。
+和集合$V\cup W$は一般に線形空間ではない。
+\end{remark}
+
+次は集合でいう補集合に相当する。
+
+\begin{definition}[線形補空間]
+$V$を$K$上の線形空間として、$W$を$V$の線形部分空間とする。
+ここで$V$の線形部分空間$U$であって$W\oplus U = V$、つまり$W\cap U = O_V$かつ$W+U = V$を満たすものを$W$の\emph{線形補空間}という。
+\end{definition}
+
+\section{次元と基底}
+
+次元は線形空間を特徴づける（拡大）自然数である。
+
+\begin{definition}[次元]
+$V$を線形空間として、いくつかのベクトル$\vb*{v}_1, \cdots, \vb*{v}_N$ ($N = 0, 1, 2, 3, \cdots$)が存在して
+$$
+\lrangle{ \vb*{v}_1, \cdots, \vb*{v}_N } = V
+$$
+つまり$\vb*{v}_1, \cdots, \vb*{v}_N$が$V$を線形生成するとする時、$V$は\emph{有限次元}であるという。
+有限次元でない線形空間は\emph{無限次元}であるという。
+線形空間の\emph{次元}を以下で定めて$\dim V$と表す。
+有限次元線形空間$V$に対して上記の$N$の最小値が存在するのでそれを$V$の次元とする。
+無限次元線形空間$V$に対しては$V$の次元は$\infty$とする。
+\end{definition}
+
+すぐわかることとして自明な線形空間$O$の次元は$0$であり、次元が$0$の線形空間は$O$しかない。
+また、後でわかることとして
+$$
+\dim K^N = N,
+\quad \dim K^{M\times N} = M N,
+\quad \dim K^{\mathbb{N}} = \infty,
+\quad \dim K[x] = \infty,
+\quad \dim K^X = \# X,
+\quad \dim K^N[x] = N+1
+$$
+である。
+ただし$\# X$は集合$X$の元の個数（有限集合でない場合は$\# X = \infty$）である。
+$N$個のベクトル$\vb*{v}_1, \cdots, \vb*{v}_N \in V$が$V$を線形生成する時、$N \ge \dim V$であることに注意する。
+
+\begin{definition}[基底]
+$V$を有限次元線形空間として$N$をその次元とする。
+ここで$N$個のベクトル$\vb*{v}_1, \cdots, \vb*{v}_N \in V$であって
+$$
+\lrangle{ \vb*{v}_1, \cdots, \vb*{v}_N } = V
+$$
+を満たすものを$V$の\emph{基底}という。
+\end{definition}
+
+次元の定義から有限次元線形空間には基底が存在するが、無限次元線形空間には（本テキストでは）そもそも基底を導入しない。
+また、有限次元線形空間の次元は一意的であるが、基底は一意ではない（例としては$K^2$に対して$(1, 0), (0, 1)$と$(1, 1), (1, -1)$はそれぞれ基底である）。
+
+\begin{definition}[線形独立]
+$V$を$K$上の線形空間として、いくつかのベクトル$\vb*{v}_1, \cdots, \vb*{v}_N \in V$を考える。
+ここでスカラー$c_1, \cdots, c_N \in K$であって
+$$
+c_1 \vb*{v}_1+\cdots+c_N \vb*{v}_N = \vb*{0}
+$$
+となるのは$c_1 = \cdots = c_N = 0$の場合のみとする時、
+$\vb*{v}_1, \cdots, \vb*{v}_N$は\emph{線形独立}であるという。
+$N = 0$の時は$0$個のベクトルは常に線形独立していると理解する。
+線形独立でない時、\emph{線形従属}しているという。
+\end{definition}
+
+\begin{example}
+$N = 0, 1, 2, 3, \cdots$として$1, x, x^2, x^3, \cdots, x^N \in K[x]$は線形独立である。
+\end{example}
+
+基底と線形独立性には関係がある。
+
+\begin{proposition}
+$K$上の線形空間$V$の基底は線形独立である。
+\end{proposition}
+
+\begin{proof}
+$V$の次元を$N \ge 1$、基底を$\vb*{v}_1, \cdots, \vb*{v}_N \in V$とする。
+もし$\vb*{v}_1, \cdots, \vb*{v}_N$が線形独立でないつまり線形従属している時は、$c_1 = \cdots = c_N = 0$でないスカラー$c_1, \cdots, c_N \in K$であって
+$$
+c_1 \vb*{v}_1+\cdots+c_N \vb*{v}_N = \vb*{0}
+$$
+となるものが存在する。
+ここで$c_i \ne 0$となる$i = 1, \cdots, N$が存在するが、$\vb*{v}_1, \cdots, \vb*{v}_N$を並べ替えて、$i = N$の場合のみ考えればよい。
+この時、
+$$
+\vb*{v}_N = -c_N^{-1}(c_1 \vb*{v}_1+\cdots+c_{N-1} \vb*{v}_{N-1})
+$$
+となるため、$\vb*{v}_N$は$\vb*{v}_1, \cdots, \vb*{v}_{N-1}$の線形結合として書け、$\vb*{v}_1, \cdots, \vb*{v}_{N-1}$は$V$を線形生成する。
+実際、$\vb*{v}_1, \cdots, \vb*{v}_N$が$V$を線形生成するため任意の$w \in V$は$\vb*{v}_1, \cdots, \vb*{v}_N$の線形結合として書けるので、$d_1, \cdots, d_N \in K$を使って
+$$
+w = d_1\vb*{v}_1+\cdots+d_N\vb*{v}_N
+= d_1\vb*{v}_1+\cdots+d_{N-1}\vb*{v}_{N-1}-d_N c_N^{-1}(c_1 \vb*{v}_1+\cdots+c_{N-1} \vb*{v}_{N-1})
+$$
+より$\vb*{v}_1, \cdots, \vb*{v}_{N-1}$は$V$を線形生成する。
+ここで次元の定義より$N$は$V$を線形生成するベクトルの個数の最小だったが、$N-1$個でも線形生成されてしまったので矛盾である。
+従って、基底$\vb*{v}_1, \cdots, \vb*{v}_N$は線形独立している。
+\end{proof}
+
+逆に線形独立で$V$を線形生成するならばそれは$V$の基底である。
+まず次を示す。
+
+\begin{lemma}[線形独立と次元]
+$V$を$K$上の線形空間として、$N = 0, 1, 2, 3, \cdots$個のベクトル$\vb*{v}_1, \cdots, \vb*{v}_N \in V$が線形独立ならば$N \le \dim V$である。
+\end{lemma}
+
+この証明のために第2章で学んだ連立一次方程式の理論を用いる。
+
+\begin{proof}
+$M = \dim V$として$M, N = 1, 2, 3, \cdots$の場合を考えればよい。
+つまり、$V$は次元が$M$の有限次元である。
+そこで$V$の基底$\vb*{w}_1, \cdots, \vb*{w}_M$を取ってくる。
+各$j = 1, \cdots, N$に対して$\vb*{v}_i \in V$は$\vb*{w}_1, \cdots, \vb*{w}_M$の線形結合として表されるので、
+$$
+\vb*{v}_j = c_{j 1}\vb*{w}_1+\cdots+c_{j M}\vb*{w}_M
+$$
+となる$c_{j 1}, \cdots, c_{j M} \in K$が存在する。
+ここで$\vb*{v}_1, \cdots, \vb*{v}_N$は線形独立なので、$d_1, \cdots, d_N \in K$が$d_1\vb*{v}_1+\cdots+d_N\vb*{v}_N = \vb*{0}$を満たすならば$d_1 = \cdots = d_N = 0$である。
+$$
+\begin{aligned}
+d_1\vb*{v}_1+\cdots+d_N\vb*{v}_N
+&= d_1(c_{1 1}\vb*{w}_1+\cdots+c_{1 M}\vb*{w}_M)+\cdots+d_N(c_{N 1}\vb*{w}_1+\cdots+c_{N M}\vb*{w}_M) \\
+&= (d_1 c_{1 1}+ d_N c_{N 1})\vb*{w}_1+\cdots+(d_1 c_{1 M}+ d_N c_{N M})\vb*{w}_M
+\end{aligned}
+$$
+なので、$\vb*{w}_1, \cdots, \vb*{w}_M$が線形独立であることから
+$$
+d_1 c_{1 1}+ d_N c_{N 1} = \cdots = d_1 c_{1 M}+ d_N c_{N M} = 0
+$$
+で、これを変形して斉次連立一次方程式
+$$
+\begin{pmatrix}
+c_{1 1} & \cdots & c_{N 1} \\
+\vdots & \ddots & \vdots \\
+c_{1 M} & \cdots & c_{N M} \\
+\end{pmatrix}
+\begin{pmatrix}
+d_1 \\
+\vdots \\
+d_N \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 \\
+\vdots \\
+0 \\
+\end{pmatrix}
+$$
+を得る。
+ここで定理\ref{t:homlinsys}より係数行列の階数を$R$とすると、この方程式の解が$d_1 = \cdots = d_N = 0$に限られる条件は$R = N$であることである。
+よって、係数行列の列数は$M$であることから$N = R \le M = \dim V$を得る。
+\end{proof}
+
+\begin{proposition}
+$V$を線形空間として、いくつかのベクトル$\vb*{v}_1, \cdots, \vb*{v}_N \in V$が線形独立かつ$V$を線形生成するならば、$N = \dim V$であり$\vb*{v}_1, \cdots, \vb*{v}_N$は$V$の基底である。
+\end{proposition}
+
+\begin{proof}
+$\vb*{v}_1, \cdots, \vb*{v}_N$は線形独立なので$N \le \dim V$で、
+$V$を線形生成するので$N \ge \dim V$である。
+したがって$N = \dim V$であり、基底の定義から$\vb*{v}_1, \cdots, \vb*{v}_N$は$V$の基底である。
+\end{proof}
+
+\begin{proposition}[線形補空間]
+\label{t:complement}
+$V$を$K$上の有限次元線形空間とする。
+このとき$V$の任意の線形部分空間$W$に対して線形補空間$U$が存在する。
+\end{proposition}
+
+証明は$W$の基底を取ってきて、そこに$V$の元をいくつか足して$V$の基底を作るという基底の延長と呼ばれる手法で行う。
+そのために次の補題を用意する。
+
+\begin{lemma}
+$K$上の線形空間$V$のいくつかのベクトル$\vb*{v}_1, \cdots, \vb*{v}_N \in V$が線形独立で$V$を生成しないとき、任意の$\vb*{w} \in V\setminus\lrangle{ \vb*{v}_1, \cdots, \vb*{v}_N }$に対して$\vb*{v}_1, \cdots, \vb*{v}_N, \vb*{w}$は線形独立である。
+\end{lemma}
+
+\begin{proof}
+スカラー$c_1, \cdots, c_N, d \in K$を使って$c_1\vb*{v}_1+\cdots+c_N\vb*{v}_N+d\vb*{w} = \vb*{0}_V$となったとする。
+ここで$d \ne 0$とすると
+$$
+\vb*{w} = -d^{-1}(c_1\vb*{v}_1+\cdots+c_N\vb*{v}_N)
+$$
+となり仮定に反する。
+よって$d = 0$であり、$\vb*{v}_1, \cdots, \vb*{v}_N$が線形独立なので$c_1 = \cdots = c_N = 0$である。
+以上より$\vb*{v}_1, \cdots, \vb*{v}_N, \vb*{w}$は線形独立である。
+\end{proof}
+
+この補題の応用として次が示される。
+
+\begin{proposition}
+$V$を$K$上の有限次元線形空間として、$N = \dim V$とおく。
+ここで$N$個のベクトル$\vb*{v}_1, \cdots, \vb*{v}_N \in V$が線形独立なとき、それは$V$の基底である。
+\end{proposition}
+
+\begin{proof}
+$V$を生成しないとすると、補題より$N+1$個の線形独立なベクトルを得るが、これは補題に反する。
+よって、$\vb*{v}_1, \cdots, \vb*{v}_N$は$V$を生成するので基底である。
+\end{proof}
+
+\begin{proof}[命題の証明]
+有限次元なので$V$の次元を$N$、$W$の次元を$M$として、$W$の基底$\vb*{w}_1, \cdots, \vb*{w}_M$を取る。
+ここで補題を$N-M$回繰り返すことで線形独立な$\vb*{w}_1, \cdots, \vb*{w}_M, \vb*{u}_{M+1}, \cdots, \vb*{u}_N \in V$を作ることができ（次元の関係で補題の仮定を満たし続ける）、次元の関係でこれは$V$の基底になる。
+あとは$U = \lrangle{ \vb*{u}_{M+1}, \cdots, \vb*{u}_N }$とすればよい。
+\end{proof}
+
+和空間の次元について次が成り立つ。
+
+\begin{theorem}[和空間の次元]
+$K$上の線形空間$U$の線形部分空間$V, W$について次が成り立つ。
+$$
+\dim(V+W)+\dim(V\cap W) = \dim V+\dim W.
+$$
+特に
+$$
+\dim(V\oplus W) = \dim V+\dim W
+$$
+である。
+\end{theorem}
+
+\begin{proof}
+まず、定義からすぐわかることとして
+$$
+\max\lrset{ \dim V, \dim W } \le \dim(V+W) \le \dim V+\dim W,
+\quad \dim(V\cap W) \le \min\lrset{ \dim V, \dim W }
+$$
+がある（詳細省略）。
+これにより$V$または$W$が無限次元の時は$V+W$も無限次元となり等式は成立する。
+よって、以降では$V$と$W$がともに有限次元の場合を考えればよく、$V+W$と$V\cap W$も有限次元である。
+$N = \dim V$, $M = \dim W$とおく。
+
+定理の後半部分の内容を先に示しておく。
+つまり$V\cap W = O_U$の時、$V$の基底$\vb*{v}_1, \cdots, \vb*{v}_N$と$W$の基底$\vb*{w}_1, \cdots, \vb*{w}_M$を取ってくると$\vb*{v}_1, \cdots, \vb*{v}_N, \vb*{w}_1, \cdots, \vb*{w}_M$が線形独立を示せばよい。
+スカラー$c_1, \cdots, c_N, d_1, \cdots, d_M$について
+$$
+c_1\vb*{v}_1+\cdots+c_N\vb*{v}_N+d_1\vb*{w}_1+\cdots+d_M\vb*{w}_M = \vb*{0}_U
+$$
+の時、
+$$
+c_1\vb*{v}_1+\cdots+c_N\vb*{v}_N = -d_1\vb*{w}_1-\cdots-d_M\vb*{w}_M
+$$
+であり、仮定からこれは$V\cap W = O_U$の元より$\vb*{0}_U$に等しく、
+$\vb*{v}_1, \cdots, \vb*{v}_N$と$\vb*{w}_1, \cdots, \vb*{w}_M$の線形独立性から$\vb*{v}_1, \cdots, \vb{v}_N, \vb*{w}_1, \cdots, \vb*{w}_M$が線形独立がわかる。
+よって、この場合$\dim(V+W) = \dim V+\dim W$である。
+
+一般の場合を示す。
+$V\cap W$は有限次元線形空間$W$の線形部分空間なので、命題\ref{t:complement}より、線形補空間が存在しそれぞれ$W'$とおく。
+ここで$V+W = V\oplus W'$を示す。
+まず$v \in V\cap W'$とすると特に$v \in V\cap W$なので$v \in (V\cap W)\cap W' = O_U$である。
+次に$v+w \in V+W$とすると$w = u+w'$, $u \in V\cap W$, $w' \in W'$とでき、$v+w = (v+u)+w' \in V+W'$である。
+以上より$V+W = V\oplus W'$かつ$W = (V\cap W)\oplus W'$なので、先ほど示したことから
+$$
+\dim(V+W) = \dim V+\dim W',
+\quad \dim W = \dim(V\cap W)+\dim W'.
+$$
+よって、定理の主張を得る。
+\end{proof}
+
+\section{線形写像}
+
+集合に線形性が導入されるように写像にも線形性を導入する。
+
+\begin{definition}[線形写像]
+$V$と$W$を$K$上の線形空間とする。
+$V$から$W$への写像$F$であって以下を満たすものを$V$から$W$への\emph{線形写像}という。
+\begin{enumerate}
+\item
+任意の$\vb*{u}, \vb*{v} \in V$に対して$F(\vb*{u}+\vb*{v}) = F(\vb*{u})+F(\vb*{v})$が成り立つ。
+\item
+任意の$c \in K$と$\vb*{v} \in V$に対して$F(c\vb*{v}) = c F(\vb*{v})$が成り立つ。
+\end{enumerate}
+この二つの条件はまとめて、任意の$c, d \in K$と$\vb*{v}, \vb*{w} \in W$に対して$F(c\vb*{v}+d\vb*{w}) = c F(\vb*{v})+d F(\vb*{w})$とも書ける。
+\end{definition}
+
+線形写像に対してはしばしば丸括弧を省略して$F\vb*{v}$と記述される。
+
+\begin{example}
+$\mathbb{R}$を$\mathbb{R}$上の線形空間と考えて関数$f: \mathbb{R} \to \mathbb{R}$を考える。
+\begin{itemize}
+\item
+$f(x) = x$は線形写像である。
+\item
+$f(x) = x+1$は線形写像でない。
+\item
+$f(x) = x^2$は線形写像でない。
+\end{itemize}
+\end{example}
+
+線形写像の合成は線形写像である。
+
+\begin{proposition}[合成線形写像]
+$U, V, W$を$K$上の線形空間として、$F$を$U$から$V$への線形写像とし$G$を$V$から$W$への線形写像とする。
+この時、合成写像$G F = G\circ F: U \to W$を
+$$
+G F\vb*{v} = G(F(\vb*{v}))
+$$
+で定義する時、$G F$は$U$から$W$への線形写像である。
+\end{proposition}
+
+線形写像による線形部分空間の像や逆像は線形部分空間である。
+
+\begin{proposition}[像と逆像]
+$V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
+\begin{itemize}
+\item
+$U$を$V$の線形部分空間とする時、像$F U = \lrset{ F\vb*{v} \mid \vb*{v} \in U }$は$W$の線形部分空間である。
+\item
+$U$を$W$の線形部分空間とする時、逆像$F^{-1} U = \lrset{ \vb*{v} \in V \mid F\vb*{v} \in U }$は$V$の線形部分空間である。
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+一つ目について、$c, d \in K$と$F\vb*{v}, F\vb*{w} \in F U$に対して$c F\vb*{v}+d F\vb*{w} = F(c \vb*{v}+d \vb*{w})$であり、
+$U$が線形部分空間なので$c \vb*{v}+d \vb*{w} \in U$より$c F\vb*{v}+d F\vb*{w} \in F U$である。
+よって$F U$も線形部分空間である。
+
+二つ目について、$c, d \in K$と$\vb*{v}, \vb*{w} \in F^{-1} U$に対して$F\vb*{v}, F\vb*{w} \in U$で$F(c\vb*{v}+d\vb*{w}) = c F\vb*{v}+d F\vb*{w} \in U$なので、$c\vb*{v}+d\vb*{w} \in F^{-1} U$である。
+よって$F^{-1} U$も線形部分空間である。
+\end{proof}
+
+この性質に基づいて線形写像から定まる特徴的な線形空間を導入する。
+
+\begin{definition}[像と核]
+$V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
+\begin{itemize}
+\item
+$F$による$V$全体の像$F V$は$W$の線形部分空間で$F$の\emph{像}といい$\Img F$と表す。
+\item
+$F$による$O_W$の逆像$F^{-1} O_W$は$V$の線形部分空間で$F$の\emph{核}といい$\Ker F$と表す。
+\end{itemize}
+\end{definition}
+
+像と核はそれぞれ全射性と単射性と結びつく。
+
+\begin{proposition}
+$V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
+\begin{itemize}
+\item
+$F$が全射である、つまり任意の$\vb*{w} \in W$に対して$\vb*{w} = F\vb*{v}$となる$\vb*{v} \in V$が存在する、ための必要十分条件は$\Img F = W$が成り立つことである。
+\item
+$F$が単射である、つまり任意の$\vb*{v}, \vb{w} \in V$に対して$F\vb*{v} = F\vb*{w}$ならば$\vb*{v} = \vb*{w}$が成り立つ、ための必要十分条件は$\Ker F = O_V$が成り立つことである。
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}
+$V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
+ここで$F$を全単射つまり可逆とする時、逆写像$F^{-1}$も線形写像である。
+\end{proposition}
+
+\begin{proof}
+$c, d \in K$と$\vb*{v}, \vb*{w} \in W$を取る。
+示すべきことは
+$$
+F^{-1}(c\vb*{v}+d\vb*{w}) = c F^{-1}\vb*{v}+d F^{-1}\vb*{w}
+$$
+なので、両辺に$F$を施したものを考えると$F$の線形性より
+$$
+F(c F^{-1}\vb*{v}+d F^{-1}\vb*{w}) = c F F^{-1}\vb*{v}+d F F^{-1}\vb*{w} = c\vb*{v}+d\vb*{w}
+$$
+よって示すべき等式が得られて$F^{-1}$は線形写像である。
+\end{proof}
+
+上記の命題の内容を踏まえて次の線形同型性を定義する。
+
+\begin{definition}[線形同型]
+$V, W$を$K$上の線形空間とする。
+$V$から$W$への線形写像$F$が可逆で逆写像$F^{-1}$も線形写像である時、$F$を\emph{線形同型写像}という。
+$V, W$に対してその間の線形同型写像が存在する時$V$と$W$は\emph{線形同型}であるといい、$V \cong W$と表す。
+\end{definition}
+
+\begin{theorem}[次元定理]
+$V, W$を$K$上の線形空間、$F$を$V$から$W$への線形写像とする。
+このとき、
+$$
+\dim V = \dim \Img F+\dim \Ker F
+$$
+が成り立つ。
+\end{theorem}
+
+証明を見ればわかる通りこの定理の要点は$V$から$\Ker F$の部分を除くと（$U$としている）$\Img F$と線形同型になっていることである。
+$\dim \Img F$はしばしば$\rank F$と表される。
+
+\begin{proof}
+$\Img F$が無限次元の時は任意の$N = 0, 1, 2, 3, \cdots$に対して線形独立なベクトル$\vb*{w}_1, \cdots, \vb*{w}_N \in \Img F$が存在する。
+ここで各$\vb*{w}_i$に対して$F\vb*{u}_i = \vb*{w}_i$となる$\vb*{u}_i \in V$が存在するので取ってくる。
+この時$\vb*{u}_1, \cdots, \vb*{u}_N$は線形独立を示す。
+スカラー$c_1, \cdots, c_N \in K$に対して
+$$
+c_1\vb*{u}_1+\cdots+c_N\vb*{u}_N = \vb*{0}_V
+$$
+となったとすると$F$で写して
+$$
+F(c_1\vb*{u}_1+\cdots+c_N\vb*{u}_N)
+= c_1 F\vb*{u}_1+\cdots+c_N F\vb*{u}_N
+= c_1\vb*{w}_1+\cdots+c_N\vb*{w}_N
+= F(\vb*{0}_V)
+= \vb*{0}_W.
+$$
+よって、$\vb*{w}_1, \cdots, \vb*{w}_N$が線形独立なので、$c_1 = \cdots = c_N = 0$であり、$\vb*{u}_1, \cdots, \vb*{u}_N$も線形独立である。
+従って$\dim V \ge N$なので、$\dim V = \infty$となり定理の式を満たす。
+
+$\Img F$が有限次元の時、$N = \dim \Img F$として$\Img F$の基底$\vb*{w}_1, \cdots, \vb*{w}_N$を取ってくる。
+さらに先ほどと同様にして$F\vb*{u}_i = \vb*{w}_i$となる$\vb*{u}_1, \cdots, \vb*{u}_N \in V$を取ってくるとこれは線形独立している。
+よってこれらは$V$の線形部分空間$U = \lrangle{\vb*{u}_1, \cdots, \vb*{u}_N}$の基底になっている。
+この時、$F$は$U$から$\Img F$の線形同型写像になっているので、$U \cong \Img F$である。
+あとは$U\cap \Ker F = O_V$と$U+\Ker F = V$を示せばよい。
+まず$\vb*{v} \in U\cap \Ker F$とすると、
+$$
+\vb*{v} = c_1\vb*{u}_1+\cdots+c_N\vb*{u}_N
+$$
+とでき$F$で移すと
+$$
+F(c_1\vb*{u}_1+\cdots+c_N\vb*{u}_N)
+= c_1 F\vb*{u}_1+\cdots+c_N F\vb*{u}_N
+= c_1\vb*{w}_1+\cdots+c_N\vb*{w}_N
+= F(\vb*{v})
+= \vb*{0}_W
+$$
+よって$c_1 = \cdots = c_N = 0$で$\vb*{v} = \vb*{0}_V$である。
+次に$\vb*{v} \in V$に対して、$F\vb*{v} \in \Img F$より$F\vb*{v} = c_1\vb*{w}_1+\cdots+c_N\vb*{w}_N$とでき、
+$$
+F(\vb*{v}-c_1\vb*{u}_1-\cdots-c_N\vb*{u}_N)
+= F\vb*{v}-c_1 F\vb*{u}_1-\cdots-c_N F\vb*{u}_N
+= F\vb*{v}-c_1\vb*{w}_1-\cdots-c_N\vb*{w}_N
+= \vb*{0}_W.
+$$
+よって、$\vb*{v}-c_1\vb*{u}_1-\cdots-c_N\vb*{u}_N \in \Ker F$である。
+以上より$U\oplus \Ker F = V$なので、
+$$
+\dim V = \dim U+\dim \Ker F = \rank F+\dim \Ker F
+$$
+が成り立つ。
+\end{proof}
+
+\section{数ベクトル空間}
+
+ここまで抽象的に議論していた線形空間であるが、有限次元であれば数ベクトル空間と同一視でき、線形写像も行列に帰着できる。
+まず、数ベクトル空間の次元について述べる。
+
+\begin{proposition}
+$N = 0, 1, 2, 3, \cdots$とする。
+$K$上の$N$次元数ベクトル空間$K^N$は有限次元で$\dim K^N = N$であり、$N$個のベクトル
+$$
+\vb*{e}_1 = (1, 0, \cdots, 0),
+\quad \cdots,
+\quad \vb*{e}_N = (0, \cdots, 0, 1)
+$$
+が$K^N$の基底である。
+\end{proposition}
+
+\begin{proof}
+$\vb*{e}_1, \cdots, \vb*{e}_N$が線形独立かつ$K^N$を線形生成ことを示せばよい。
+線形結合はスカラー$c_1, \cdots, c_N \in K$に対して
+$$
+c_1\vb*{e}_1+\cdots+c_N\vb*{e}_N = (c_1, \cdots, c_N)
+$$
+なので、
+これが零ベクトル$(0, \cdots, 0)$となるのは$c_1 = \cdots = c_N = 0$であり、
+任意の$K^N$の元は上記の形に書ける。
+よって証明できる。
+\end{proof}
+
+この時の基底$\vb*{e}_1, \cdots, \vb*{e}_N$を数ベクトル空間$K^N$の\emph{標準基底}という。
+
+\begin{proposition}
+$V$を$K$上の有限次元線形空間として次元を$N$とおくと、$V$は$K^N$と線形同型である。
+\end{proposition}
+
+\begin{proof}
+$V$の基底$\vb*{v}_1, \cdots, \vb*{v}_N$を取ってきて、$K^N$から$V$への線形写像$F$を
+$$
+F(c_1, \cdots, c_N) = c_1\vb*{v}_1+\cdots+c_N\vb*{v}_N
+$$
+で定義する。
+このとき、$\vb*{v}_1, \cdots, \vb*{v}_N$が$V$を線形生成することから$F$は全射で、
+線形独立であることから$\Ker F = O_{K^N}$つまり$F$は単射である。
+以上より$F$は線形同型写像であるので、$V \cong K^N$である。
+\end{proof}
+
+$M, N = 1, 2, 3, \cdots$として$A$を$K$上の$M\times N$型の行列とする。
+ここで$K^N$から$K^M$への写像
+$$
+F_A(\vb*{v}) = A\vb*{v}
+$$
+で定めるとこれは線形写像であり、行列$A$が定める線形写像という。
+
+これとは逆に線形写像が与えられたら対応する行列が取れる。
+
+\begin{definition}[表現行列]
+$V$と$W$を$K$上の有限次元線形空間として、次元をそれぞれ$N$と$M$とする。
+$F$を$V$から$W$への線形写像として$V$の基底$\vb*{v}_1, \cdots, \vb*{v}_N$と$W$の基底$\vb*{w}_1, \cdots, \vb*{w}_M$について、各$j = 1, \cdots, N$に対して
+$$
+F(\vb*{v}_j) = a_{j 1}\vb*{w}_1+\cdots+a_{j M}\vb*{w}_M
+$$
+となる$a_{j 1}, \cdots, a_{j M} \in K$が一意に存在して定義される$K$上の$M\times N$型の行列
+$$
+\begin{pmatrix}
+a_{1 1} & \cdots & a_{N 1} \\
+\vdots & \ddots & \vdots \\
+a_{1 M} & \cdots & a_{N M} \\
+\end{pmatrix}
+$$
+を線形写像$F$の$V$の基底$\vb*{v}_1, \cdots, \vb*{v}_N$と$W$の基底$\vb*{w}_1, \cdots, \vb*{w}_M$に関する\emph{表現行列}という。
+\end{definition}
+
+表現行列は基底の取り方によって変わってしまうことに注意する。
+$K$上の$M\times N$型の行列$A$が定める$K^N$から$K^M$への線形変換$F_A$の$K^N$と$K^M$の標準基底に関する表現行列は$A$である。
+
+\section{線形変換}
+
+線形写像の中でも定義域の空間と行き先の空間が同じ時、線形変換といい正方行列と同様の扱いができる。
+
+\begin{definition}[線形変換]
+$K$上の線形空間$V$からそこへの線形写像$T$を特に\emph{線形変換}という。
+\end{definition}
+
+\begin{definition}[基底の変換]
+$K$上の有限次元線形空間$V$について、$N = \dim V$として$V$の基底$\vb*{v}_1, \cdots, \vb*{v}_N$と$\vb*{v}'_1, \cdots, \vb*{v}'_N$について
+TODO
+\end{definition}
+
+$K$上の線形空間$V$の元$\vb*{v}$を$\vb*{v}$に移す線形変換を特に\emph{恒等変換}といい、$\Id_V$あるいは単に$\Id$と表す。

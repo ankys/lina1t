@@ -1,0 +1,101 @@
+%!texpl_options -x platex
+\documentclass{jsbook}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{physics}
+\usepackage{makeidx}
+\usepackage{mdframed}
+
+% \usepackage{comment}
+% \usepackage{lineno}
+% \pagewiselinenumbers
+% \usepackage{showkeys}
+% \newcommand{\todo}[1]{\marginpar{TODO: #1}}
+\newcommand{\todo}[1]{}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+
+% \graphicspath{{fig/}}
+
+\setlength{\textwidth}{\fullwidth}
+\setlength{\evensidemargin}{\oddsidemargin}
+
+% \newtheorem{theorem}{定理}[section]
+\newmdtheoremenv[linecolor=blue]{theorem}{定理}[section]
+\newmdtheoremenv[linecolor=blue]{lemma}[theorem]{補題}
+\newmdtheoremenv[linecolor=blue]{proposition}[theorem]{命題}
+\newmdtheoremenv[linecolor=blue]{corollary}[theorem]{系}
+
+\theoremstyle{definition}
+% \newtheorem{definition}[theorem]{定義}
+\newmdtheoremenv[linecolor=blue]{definition}[theorem]{定義}
+\newtheorem{example}[theorem]{例}
+\newtheorem{xca}[theorem]{練習問題}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注意}
+
+\renewcommand{\proofname}{証明}
+\renewcommand{\qedsymbol}{【証明終わり】}
+% \makeatletter
+% \AtBeginEnvironment{proof}{\let\@addpunct\@gobble}
+% \makeatother
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item\relax
+  {\itshape
+  【#1】}\hspace\labelsep\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+
+\numberwithin{equation}{section}
+
+\def\M{\mathrm{M}}
+\def\GL{\mathrm{GL}}
+\def\id{\mathrm{id}}
+\def\Id{\mathrm{Id}}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Img}
+
+\DeclarePairedDelimiter{\lrset}{\{}{\}}
+\DeclarePairedDelimiter{\lrangle}{\langle}{\rangle}
+
+\makeindex
+
+\begin{document}
+
+\title{線形代数学１}
+\author{中安淳}
+\date{\today}
+
+\maketitle
+
+% \input{00_preface.tex}
+
+\tableofcontents
+
+\input{01_2dimension.tex}
+\input{02_matrix.tex}
+\input{03_linearsystem.tex}
+\input{04_determinant.tex}
+\input{05_linearspace.tex}
+\input{06_eigenproblem.tex}
+\input{07_diagonalization.tex}
+\input{08_triangularization.tex}
+\input{09_variousclass.tex}
+\input{10_quadratic.tex}
+
+\input{99_ref.tex}
+
+\printindex
+
+\end{document}

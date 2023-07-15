@@ -1,0 +1,52 @@
+
+\chapter{種々の行列}
+
+\section{ベクトルのテンソル積}
+
+$\vb*{a}$と$\vb*{b}$をそれぞれ$M$次と$N$次のベクトルとする時、
+$\vb*{a}$を$M$次の縦ベクトル、$\vb*{b}^T$を$N$次の横ベクトルとみなして行列の積$\vb*{a}\vb*{b}^T$は$M\times N$型の行列であり、ベクトル$\vb*{a}$と$\vb*{b}$の\emph{テンソル積}と呼ばれ$\vb*{a}\otimes\vb*{b}$とも書かれる。
+成分を使って書けば
+$$
+\vb*{a}\otimes\vb*{b}
+= \vb*{a}\vb*{b}^T
+= \begin{pmatrix}a_1 \\ \vdots \\ a_M\end{pmatrix}\begin{pmatrix}b_1 & \cdots & b_N\end{pmatrix}
+=
+\begin{pmatrix}
+a_1 b_1 & \cdots & a_1 b_N \\
+\vdots  & \ddots & \vdots  \\
+a_M b_1 & \cdots & a_M b_N \\
+\end{pmatrix}
+$$
+である。
+
+また、$\vb*{a}$と$\vb*{b}$を$N$次のベクトルとする時、
+$\vb*{a}^T$を横ベクトル、$\vb*{b}$を縦ベクトルとみなして行列の積$\vb*{a}^T\vb*{b}$はスカラーであり、ベクトル$\vb*{a}$と$\vb*{b}$の\emph{スカラー積}と呼ばれ$\vb*{a}\cdot\vb*{b}$とも書かれる。
+成分を使って書けば
+$$
+\vb*{a}\cdot\vb*{b}
+= \vb*{a}^T\vb*{b}
+= \begin{pmatrix}a_1 & \cdots & a_N\end{pmatrix}\begin{pmatrix}b_1 \\ \vdots \\ b_N\end{pmatrix}
+= a_1 b_1+\cdots+a_N b_N
+$$
+である。
+行列の積には交換法則は一般には成り立たないが、スカラー積に対しては交換法則が成り立つことに注意する。
+つまり、任意の$N$次のベクトル$\vb*{a}$と$\vb*{b}$に対して、
+$$
+\vb*{a}\cdot\vb*{b} = \vb*{b}\cdot\vb*{a}
+$$
+が成り立つ。
+
+ここで、$\vb*{a}$と$\vb*{b}$を$N$次ベクトルとする時のテンソル積である$N$次の正方行列$A = \vb*{a}\otimes\vb*{b}$の$n$乗を考える。
+$2$乗を計算すると、
+$$
+A^2 = (\vb*{a}\vb*{b}^T)(\vb*{a}\vb*{b}^T) = \vb*{a}(\vb*{b}^T\vb*{a})\vb*{b}^T = (\vb*{b}\cdot\vb*{a})A = (\vb*{a}\cdot\vb*{b})A
+$$
+とスカラー積倍になる。
+よってこれを繰り返し用いることで、
+$$
+A^n = (\vb*{a}\cdot\vb*{b})^{n-1}A
+\quad (n = 1, 2, 3, \cdots)
+$$
+を得る。
+
+\section{巡回行列}

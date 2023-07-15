@@ -1,0 +1,59 @@
+
+\chapter{二次式}
+
+\section{二次形式}
+
+\section{二次式と平方完成}
+
+\begin{theorem}[平方完成]
+$A$を$N$次対称正則行列、$\vb*{b}, \vb*{x}$を$N$次ベクトル、$c$をスカラーとする時、
+$$
+\vb*{x}\cdot A\vb*{x}+2\vb*{b}\cdot\vb*{x}+c
+= (\vb*{x}+A^{-1}\vb*{b})\cdot A(\vb*{x}+A^{-1}\vb*{b})+c-A^{-1}\vb*{b}\cdot\vb*{b}
+$$
+が成り立つ。
+\end{theorem}
+
+\begin{example}
+3つの実数$u_1, u_2, u_3$に対して
+$$
+E(u_1, u_2, u_3)
+= (u_1-u_2)^2+(u_2-u_3)^2+(u_3-u_1)^2
+= 2 u_1^2+2 u_2^2+2 u_3^2-2 u_1 u_2-2 u_2 u_3-2 u_3 u_1
+$$
+とおく、このとき6つの実数$u_1, u_2, u_3, v_1, v_2, v_3$に対して、
+$$
+E(u_1, v_2, v_3)+E(v_1, u_2, v_3)+E(v_1, v_2, u_3) \ge \frac{3}{5}E(u_1, u_2, u_3)
+$$
+が成り立つことを示す。
+左辺を$E$とおいて$v_1, v_2, v_3$についての二次式とみなすことで
+$$
+E
+= \begin{pmatrix}v_1 \\ v_2 \\ v_3\end{pmatrix}^T\begin{pmatrix}4 & -1 & -1 \\ -1 & 4 & -1 \\ -1 & -1 & 4\end{pmatrix}\begin{pmatrix}v_1 \\ v_2 \\ v_3\end{pmatrix}-2\begin{pmatrix}u_2+u_3 \\ u_3+u_1 \\ u_1+u_2\end{pmatrix}^T\begin{pmatrix}v_1 \\ v_2 \\ v_3\end{pmatrix}+2(u_1^2+u_2^2+u_3^2).
+$$
+ここで$A = \begin{pmatrix}4 & -1 & -1 \\ -1 & 4 & -1 \\ -1 & -1 & 4\end{pmatrix}$の逆行列の計算が必要になり、掃き出し法を実行してもよいが、ここでは以下のように考えてみよう。
+つまり、$X = \begin{pmatrix}1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1\end{pmatrix}$とおくと、$A = 5 I-X$で$X^2 = 3 X$なので$A^2-7 A+10 I = O$、つまり
+$$
+A^{-1} = -\frac{1}{10}(A-7 I) = \frac{1}{10}(2 I+X)
+$$
+がわかる。
+また、$A$は正定値であることに注意する。
+ここで$\vb*{u} = \begin{pmatrix}u_1 \\ u_2 \\ u_3\end{pmatrix}$, $\vb*{v} = \begin{pmatrix}v_1 \\ v_2 \\ v_3\end{pmatrix}$とおくと、
+$$
+E = \vb*{v}\cdot A\vb*{v}-2(X-I)\vb*{u}\cdot\vb*{v}+2|\vb*{u}|^2.
+$$
+平方完成して$A$は正定値であることから、
+$$
+E \ge 2|\vb*{u}|^2-(X-I)\vb*{u}\cdot A^{-1}(X-I)\vb*{u}.
+$$
+ここで
+$$
+(X-I)A^{-1}(X-I) = \frac{1}{10}(X-I)(2 I+X)(X-I) = \frac{1}{5}(3 X+I)
+$$
+なので、
+$$
+E = E(u_1, v_2, v_3)+E(v_1, u_2, v_3)+E(v_1, v_2, u_3)
+\ge \vb*{u}\cdot \frac{1}{5}(9 I-3 X)\vb*{u} = \frac{3}{5}E(u_1, u_2, u_3)
+$$
+である。
+\end{example}
