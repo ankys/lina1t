@@ -1,0 +1,13 @@
+
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"myriad-dreamin.tinymist"
+			]
+		}
+	},
+	"postCreateCommand": "sudo apt update && sudo apt install -y fonts-noto-cjk"
+}
