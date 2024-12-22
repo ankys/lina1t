@@ -1,1 +1,1 @@
-#include "calc1t.typ"
+#include "lina1t.typ"
