@@ -144,61 +144,66 @@ $M = N = 1$の時の$1 times 1$型の行列はただ一つの成分からなり�
 例えば本来ならば（行列の積を取った時などに）$1 times 1$型の行列になるべきだが$K$の元として扱われることがあるので注意する。
 
 == 行列の演算
-<行列の演算>
+
 これから行列の三つの演算、つまり和とスカラー倍と行列の積を導入する。
 
 まず、行列の和は成分ごとの和として定義される。
 ここで二つの行列の型は同じである必要がある。
 つまり、$K$上の$M times N$型の行列$A = (a_(i j))$と$B = (b_(i j))$に対して、
-$ A+B = mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)+mat(b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots, b_(M N);) = mat(a_(1 1)+b_(1 1), dots, a_(1 N)+b_(1 N); dots.v, dots.down, dots.v; a_(M 1)+b_(M 1), dots, a_(M N)+b_(M N);) $
+$
+A+B
+= mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)+mat(b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots, b_(M N);)
+= mat(a_(1 1)+b_(1 1), dots, a_(1 N)+b_(1 N); dots.v, dots.down, dots.v; a_(M 1)+b_(M 1), dots, a_(M N)+b_(M N);)
+$
 とする。
 
 スカラー倍とは$K$上の$M times N$型の行列$A = (a_(i j))$とスカラー$c in K$に対して定まるもので、行列の各成分を$c$倍する。
 つまり、
-$ c A = c mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);) = mat(c a_(1 1), dots, c a_(1 N); dots.v, dots.down, dots.v; c a_(M 1), dots, c a_(M N);) $
+$
+c A
+= c mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)
+= mat(c a_(1 1), dots, c a_(1 N); dots.v, dots.down, dots.v; c a_(M 1), dots, c a_(M N);) $
 である。
 
-この二つの演算で行列の集合\$\\M\_{M\\times N}(K)\$は線形性と呼ばれる構造を持ち、以下の計算法則が成立する。
+この二つの演算で行列の集合$upright(M)_(M times N) (K)$は線形性と呼ばれる構造を持ち、以下の計算法則が成立する。
 
-+ （行列加法の結合法則）任意の\$A, B, C \\in \\M\_{M\\times N}(K)\$に対して$(A+B)+C = A+(B+C)$が成り立つ。
-
-+ （行列加法の交換法則）任意の\$A, B \\in \\M\_{M\\times N}(K)\$に対して$A+B = B+A$が成り立つ。
-
-+ （行列スカラー乗法の結合法則）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c, d in K$に対して$c (d A) = (c d) A$が成り立つ。
-
-+ （分配法則１）任意の\$A, B \\in \\M\_{M\\times N}(K)\$と$c in K$に対して$c (A+B) = c A+c B$が成り立つ。
-
-+ （分配法則２）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c, d in K$に対して$(c+d) A = c A+d A$が成り立つ。
-
-+ （零行列）$O = O_(M times N)$は零元である。つまり任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A+O = O+A = A$と$0 A = O$が成り立つ。
-
-+ （反行列）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A+X = X+A = O$が成り立つような\$X = -A \\in \\M\_{M\\times N}(K)\$がただ一つ存在し、それは$- A = (-1) A$である。
-
-+ （単位数）$1$は単位数である。つまり任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$1 A = A$が成り立つ。
++ （行列加法の結合法則）任意の$A, B, C in upright(M)_(M times N) (K)$に対して$(A+B)+C = A+(B+C)$が成り立つ。
++ （行列加法の交換法則）任意の$A, B in upright(M)_(M times N) (K)$に対して$A+B = B+A$が成り立つ。
++ （行列スカラー乗法の結合法則）任意の$A in upright(M)_(M times N) (K)$と$c, d in K$に対して$c (d A) = (c d) A$が成り立つ。
++ （分配法則１）任意の$A, B in upright(M)_(M times N) (K)$と$c in K$に対して$c (A+B) = c A+c B$が成り立つ。
++ （分配法則２）任意の$A in upright(M)_(M times N) (K)$と$c, d in K$に対して$(c+d) A = c A+d A$が成り立つ。
++ （零行列）$O = O_(M times N)$は零元である。
+	つまり任意の$A in upright(M)_(M times N) (K)$に対して$A+O = O+A = A$と$0 A = O$が成り立つ。
++ （反行列）任意の$A in upright(M)_(M times N) (K)$に対して$A+X = X+A = O$が成り立つような$X = -A in upright(M)_(M times N) (K)$がただ一つ存在し、それは$-A = (-1)A$である。
++ （単位数）$1$は単位数である。
+	つまり任意の$A in upright(M)_(M times N) (K)$に対して$1 A = A$が成り立つ。
 
 行列の積は行列を行列たらしめる特徴的な演算である。
-$L = 1, 2, 3, dots$として、$M times L$型の行列$A = (a_(i j))$と$M times L$型の行列$B = (b_(i j))$に対して、
-$ A B = mat(a_(1 1), dots, a_(1 L); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M L);) mat(b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(L 1), dots, b_(L N);) = mat(a_(1 1) b_(1 1)+dots+a_(1 L) b_(L 1), dots, a_(1 1) b_(1 N)+dots+a_(1 L) b_(L N); dots.v, dots.down, dots.v; a_(M 1) b_(1 1)+dots+a_(M L) b_(L 1), dots, a_(M 1) b_(1 N)+dots+a_(M L) b_(L N);) $
-とする。 つまり、演算結果は$M times N$型の行列$C = A B = (c_(i j))$で
-$ c_(i j) = a_(i 1) b_(1 j)+a_(i 2) b_(2 j)+a_(i 3) b_(3 j)+dots+a_(i L) b_(L j) $
+$L = 1, 2, 3, dots$として、$M times L$型の行列$A = (a_(i j))$と$L times N$型の行列$B = (b_(i j))$に対して、
+$
+A B
+= mat(a_(1 1), dots, a_(1 L); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M L);) mat(b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(L 1), dots, b_(L N);)
+= mat(a_(1 1) b_(1 1)+dots+a_(1 L) b_(L 1), dots, a_(1 1) b_(1 N)+dots+a_(1 L) b_(L N); dots.v, dots.down, dots.v; a_(M 1) b_(1 1)+dots+a_(M L) b_(L 1), dots, a_(M 1) b_(1 N)+dots+a_(M L) b_(L N);)
+$
+とする。
+つまり、演算結果は$M times N$型の行列$C = A B = (c_(i j))$で
+$
+c_(i j) = a_(i 1) b_(1 j)+a_(i 2) b_(2 j)+a_(i 3) b_(3 j)+dots+a_(i L) b_(L j)
+$
 となっている。
 
 このように一つの成分を見てもたくさんのかけ算と足し算で成り立っており一見妥当性がわからないが、
 実際にはさまざまな場面でこの行列の積が現れる（第1章参照）。
 
-+ （行列積の結合法則）任意の\$A \\in \\M\_{M\\times K}(K), B \\in \\M\_{K\\times L}(K), C \\in \\M\_{L\\times N}(K)\$に対して$(A B) C = A (B C)$が成り立つ。
-
-+ （分配法則１）任意の\$A, B \\in \\M\_{M\\times L}(K)\$と\$B \\in \\M\_{L\\times N}(K)\$に対して$(A+B) C = A C+B C$が成り立つ。
-
-+ （分配法則２）任意の\$A \\in \\M\_{M\\times L}(K)\$と\$B, C \\in \\M\_{L\\times N}(K)\$に対して$A (B+C) = A B+A C$が成り立つ。
-
-+ （零行列）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A O_(N times L) = O_(M times L)$と$O_(L times M) A = O_(L times N)$が成り立つ。
-
-+ （単位行列）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$I_M A = A I_N = A$が成り立つ。
++ （行列積の結合法則）任意の$A in upright(M)_(M times K) (K), B in upright(M)_(K times L) (K), C in upright(M)_(L times N) (K)$に対して$(A B) C = A (B C)$が成り立つ。
++ （分配法則１）任意の$A, B in upright(M)_(M times L) (K)$と$B in upright(M)_(L times N) (K)$に対して$(A+B) C = A C+B C$が成り立つ。
++ （分配法則２）任意の$A in upright(M)_(M times L) (K)$と$B, C in upright(M)_(L times N) (K)$に対して$A (B+C) = A B+A C$が成り立つ。
++ （零行列）任意の$A in upright(M)_(M times N) (K)$に対して$A O_(N times L) = O_(M times L)$と$O_(L times M) A = O_(L times N)$が成り立つ。
++ （単位行列）任意の$A in upright(M)_(M times N) (K)$に対して$I_M A = A I_N = A$が成り立つ。
 
 ここで重要な注意として行列の積に対して交換法則はない。
 つまり、$A B = B A$は一般には成り立たない。
-ここで$A$を$M times N$型で$B$を$K times L$型とすると、積を定義して両辺の型を合わせるためには$K = L = M = N$とするしかないが、\$A, B \\in \\M\_N(K)\$の場合でも$A B = B A$は一般には成り立たない。
+ここで$A$を$M times N$型で$B$を$K times L$型とすると、積を定義して両辺の型を合わせるためには$K = L = M = N$とするしかないが、$A, B in upright(M)_N (K)$の場合でも$A B = B A$は一般には成り立たない。
 実数でいうところの逆数に相当する逆行列は行列の理論の重要な論点であり次の節やその後の章で詳しく述べる。
 
 行列$A$と$B$の積$A B$は、行列$B$に行列$A$を左からかけて得られる行列といい、同時に行列$A$に行列$B$を右からかけて得られる行列ともいう。
@@ -207,49 +212,75 @@ $N$次正方行列$A$に対しては自分自身との積$A A$が定義できこ
 結合法則より左からかけても右からかけてもこの場合は同じ$A (A A) = (A A) A = A A A$が得られることに注意する。
 このようにして$N$次正方行列$A$の$n = 0, 1, 2, 3, dots$乗$A^n$を単位行列$I_N$に$A$を$n$回かけたものとして定義する。
 
-#block[
+#example[
 対角行列
-$ A = mat(a_1,, ;, dots.down, ;,, a_N;) $
+$
+A = mat(a_1, , ; , dots.down, ; , , a_N;)
+$
 の$n$乗は
-$ A^n = mat(a_1^n,, ;, dots.down, ;,, a_N^n;) $
-である。
-
+$
+A^n = mat(a_1^n, , ; , dots.down, ; , , a_N^n;)
+$
+である（省略されている部分は$0$であることに注意）。
 ]
+
 やろうと思えば三角行列、特に後の章で出てくるジョルダン標準形と呼ばれる行列の$n$乗も比較的簡単に計算できる。
 一般の行列の$n$乗を計算する時には手で計算するならば対角化または三角化して対角行列またはジョルダン標準形の$n$乗に帰着させることになるが、
 他にも次のようにして計算量を削減できることが知られている。
 つまり、行列$A$の$2^k$乗($k = 0, 1, 2, 3, dots$)を
-$ A^1 = A, quad A^2 = A^1 A^1, quad A^4 = A^2 A^2, quad A^8 = A^4 A^4, quad dots $
+$
+A^1 = A,
+quad A^2 = A^1 A^1,
+quad A^4 = A^2 A^2,
+quad A^8 = A^4 A^4,
+quad dots
+$
 の要領であらかじめ計算して、$n$を$2$進数表示することで$A$の$2^k$乗をいくつかかけ合わせることで$A^n$を得る。
-例えば、 $ A^10 = A^8 A^2 $ といった具合である。
+例えば、
+$
+A^10 = A^8 A^2
+$
+といった具合である。
 この方法を_二進数法_という。
 これを使えば$2 log_2 n$回以内の行列の積で$A^n$が計算できることになり、計算機での計算に広く使われている。
 
-$K$上の$n = 0, 1, 2, 3, dots$次の_多項式_とはスカラー$c_0, c_1, c_2, c_3, dots, c_n in K$
-($c_n eq.not 0$)を使って
-$ f (x) = c_0+c_1 x+c_2 x^2+c_3 x^3+dots+c_n x^n $
+$K$上の$n = 0, 1, 2, 3, dots$次の_多項式_とはスカラー$c_0, c_1, c_2, c_3, dots, c_n in K$ ($c_n eq.not 0$)を使って
+$
+f(x) = c_0+c_1 x+c_2 x^2+c_3 x^3+dots+c_n x^n
+$
 と表される式のことであるが、
-この多項式$f (x)$と$K$上の$N$次正方行列$A$に対して多項式の変数$x$に行列$A$が代入できると拡大解釈して、$N$次正方行列
-$ f (A) = c_0 I_N+c_1 A+c_2 A^2+c_3 A^3+dots+c_n A^n $
+この多項式$f(x)$と$K$上の$N$次正方行列$A$に対して多項式の変数$x$に行列$A$が代入できると拡大解釈して、$N$次正方行列
+$
+f(A) = c_0 I_N+c_1 A+c_2 A^2+c_3 A^3+dots+c_n A^n
+$
 を定める。 定数項$c_0$は単位行列の項$c_0 I$になることに注意する。
 
 一般には行列の積は交換できないが、上記の多項式は行列が$A$（と$I$）しか登場しないので以下が成り立つ。
 
-#block[
-多項式$f (x)$, $g (x)$と$N$次正方行列$A$に対して、
-$ f (A) g (A) = g (A) f (A) $ が成り立つ。
-
+#proposition[
+多項式$f(x)$, $g(x)$と$N$次正方行列$A$に対して、
+$
+f(A)g(A) = g(A)f(A)
+$
+が成り立つ。
 ]
+
 以上の内容を駆使して行列の特徴を利用すると以下のように行列の計算を簡単に行える場合がある。
 
-#block[
-<t:polyex>
-$X = mat(1, 1, 1; 1, 1, 1; 1, 1, 1)$として$3$次正方行列$(X - I) (X+2 I) (X - I)$を計算する。
+#example[
+$X = mat(1, 1, 1; 1, 1, 1; 1, 1, 1)$として$3$次正方行列$(X-I)(X+2 I)(X-I)$を計算する。
 $X^2 = 3 X$であることに注意して、
-$ (X - I) (X+2 I) (X - I) = (X - I)^2 (X+2 I) = (X^2 - 2 X+I) (X+2 I) = (X+I) (X+2 I) = X^2+3 X+2 I = 2 (3 X+I) . $
-よって答えは$(X - I) (X+2 I) (X - I) = mat(8, 2, 2; 2, 8, 2; 2, 2, 8)$である。
+$
+(X-I)(X+2 I)(X-I)
+= (X-I)^2 (X+2 I)
+= (X^2-2 X+I)(X+2 I)
+= (X+I) (X+2 I)
+= X^2+3 X+2 I
+= 2(3 X+I).
+$
+よって答えは$(X-I)(X+2 I)(X-I) = mat(8, 2, 2; 2, 8, 2; 2, 2, 8)$である。
+] <t_polyex>
 
-]
 == 逆行列
 <逆行列>
 実数$a$の逆数とは$a dot x = x dot a = 1$が成り立つような実数$x$のことであった。
@@ -291,30 +322,30 @@ $ A^(-1) = mat(a_1^(-1),, ;, dots.down, ;,, a_N^(-1);) $
 
 ]
 逆行列を持つような行列は_正則行列_または_可逆行列_と呼ばれる。
-$K$上の$N$次正方行列全体\$\\M\_N(K)\$のうち正則行列全体を\$\\GL\_N(K)\$と表す。
+$K$上の$N$次正方行列全体\$upright(M)_N(K)\$のうち正則行列全体を\$\\GL\_N(K)\$と表す。
 
 すぐわかる逆行列の性質として以下がある。
 
-+ （逆行列の逆行列）任意の\$A \\in \\GL\_N(K)\$に対して\$A^{-1} \\in \\GL\_N(K)\$であり$(A^(-1))^(-1) = A$が成り立つ。
++ （逆行列の逆行列）任意の\$A in \\GL\_N(K)\$に対して\$A^{-1} in \\GL\_N(K)\$であり$(A^(-1))^(-1) = A$が成り立つ。
 
-+ （スカラー倍の逆行列）任意の\$A \\in \\GL\_N(K)\$と$0$でない$c in K$に対して\$c A \\in \\GL\_N(K)\$であり$(c A)^(-1) = c^(-1) A^(-1)$が成り立つ。
++ （スカラー倍の逆行列）任意の\$A in \\GL\_N(K)\$と$0$でない$c in K$に対して\$c A in \\GL\_N(K)\$であり$(c A)^(-1) = c^(-1) A^(-1)$が成り立つ。
 
-+ （積の逆行列）任意の\$A, B \\in \\GL\_N(K)\$に対して\$A B \\in \\GL\_N(K)\$であり$(A B)^(-1) = B^(-1) A^(-1)$が成り立つ。
++ （積の逆行列）任意の\$A, B in \\GL\_N(K)\$に対して\$A B in \\GL\_N(K)\$であり$(A B)^(-1) = B^(-1) A^(-1)$が成り立つ。
 
 三番目の性質は逆行列を取ると積の順序が逆になることに注意する。
 
 #block[
 正方行列$A$に対して、$1$次以上の多項式$f (x) = c_0+c_1 x+c_2 x^2+c_3 x^3+dots+c_n x^n$であって$f (A) = O$となるものが存在したとする。
 ここで$c_0 eq.not 0$の時、$A$は正則であり、逆行列は
-$ A^(-1) = - c_0^(-1) (c_1 I+c_2 A+c_3 A^2+dots+c_n A^(n -1)) $
+$ A^(-1) =-c_0^(-1) (c_1 I+c_2 A+c_3 A^2+dots+c_n A^(n -1)) $
 で与えられる。
 
 ]
 #block[
 $3$次正方行列$A = mat(4, -1, -1; -1, 4, -1; -1, -1, 4)$の逆行列を計算してみよう。
 次章で述べる掃き出し法を実行してもよいが、ここでは以下のように考えてみる。
-つまり、$X = mat(1, 1, 1; 1, 1, 1; 1, 1, 1)$とおくと、$A = 5 I - X$で$X^2 = 3 X$なので$A^2 - 7 A+10 I = O$、つまり
-$ A^(-1) = -1 / 10 (A - 7 I) = 1 / 10 (X+2 I) . $
+つまり、$X = mat(1, 1, 1; 1, 1, 1; 1, 1, 1)$とおくと、$A = 5 I-X$で$X^2 = 3 X$なので$A^2-7 A+10 I = O$、つまり
+$ A^(-1) = -1 / 10 (A-7 I) = 1 / 10 (X+2 I) . $
 よって逆行列は$A = 1 / 10 mat(3, 1, 1; 1, 3, 1; 1, 1, 3)$である。
 
 ]
@@ -339,13 +370,13 @@ $ A^T = mat(a_(1 1), dots, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots, a_
 ]
 すぐわかる転置の性質として以下がある。
 
-+ （転置の転置）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$(A^T)^T = A$が成り立つ。
++ （転置の転置）任意の\$A in upright(M)_(M times N}(K)\$に対して$(A^T)^T = A$が成り立つ。
 
-+ （和の転置）任意の\$A, B \\in \\M\_{M\\times N}(K)\$に対して$(A+B)^T = A^T+B^T$が成り立つ。
++ （和の転置）任意の\$A, B in upright(M)_(M times N}(K)\$に対して$(A+B)^T = A^T+B^T$が成り立つ。
 
-+ （スカラー倍の転置）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c in K$に対して$(c A)^T = c A^T$が成り立つ。
++ （スカラー倍の転置）任意の\$A in upright(M)_(M times N}(K)\$と$c in K$に対して$(c A)^T = c A^T$が成り立つ。
 
-+ （積の転置）任意の\$A \\in \\M\_{M\\times L}(K)\$と\$B \\in \\M\_{L\\times N}(K)\$に対して$(A B)^T = B^T A^T$が成り立つ。
++ （積の転置）任意の\$A in upright(M)_(M times L}(K)\$と\$B in upright(M)_(L times N}(K)\$に対して$(A B)^T = B^T A^T$が成り立つ。
 
 四番目の性質は転置を取ると積の順序が逆になることに注意する。
 
@@ -406,18 +437,18 @@ _Proof._
 <t:blockinv>
 $A$を$N_1$次の正則行列、$D$を$N_2$次の正則行列として$N_1+N_2$次の正方行列
 $ mat(A, B; O, D) $ は正則であり、逆行列は
-$ mat(A^(-1), - A^(-1) B D^(-1); O, D^(-1)) $
+$ mat(A^(-1),-A^(-1) B D^(-1); O, D^(-1)) $
 で与えられる。 実際、積を計算すると
-$ mat(A, B; O, D) mat(A^(-1), - A^(-1) B D^(-1); O, D^(-1)) = mat(A A^(-1), - A A^(-1) B D^(-1)+B D^(-1); O, D D^(-1)) = mat(I, O; O, I), $
-$ mat(A^(-1), - A^(-1) B D^(-1); O, D^(-1)) mat(A, B; O, D) = mat(A^(-1) A, A^(-1) B - A^(-1) B D^(-1) D; O, D^(-1) D) = mat(I, O; O, I) $
+$ mat(A, B; O, D) mat(A^(-1),-A^(-1) B D^(-1); O, D^(-1)) = mat(A A^(-1),-A A^(-1) B D^(-1)+B D^(-1); O, D D^(-1)) = mat(I, O; O, I), $
+$ mat(A^(-1),-A^(-1) B D^(-1); O, D^(-1)) mat(A, B; O, D) = mat(A^(-1) A, A^(-1) B-A^(-1) B D^(-1) D; O, D^(-1) D) = mat(I, O; O, I) $
 であることからわかる。
 
 ]
 #block[
 実数$theta$に対して、$4$次正方行列
-$ A = mat(cos theta, - sin theta, - cos theta, - sin theta; sin theta, cos theta, sin theta, - cos theta; cos theta, sin theta, cos theta, - sin theta; - sin theta, cos theta, sin theta, cos theta;) $
+$ A = mat(cos theta,-sin theta,-cos theta,-sin theta; sin theta, cos theta, sin theta,-cos theta; cos theta, sin theta, cos theta,-sin theta;-sin theta, cos theta, sin theta, cos theta;) $
 は
-$ A = mat(R (theta), - R (- theta); R (- theta), R (theta);) $
+$ A = mat(R (theta),-R (- theta); R (- theta), R (theta);) $
 とみなすことができる。
 
 ]
