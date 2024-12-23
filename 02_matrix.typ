@@ -1,70 +1,82 @@
+
 = 行列
-<行列>
+
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
 == 体
-<体>
+
 行列を定義する前にその構成要素である体について触れる。
-#emph[体];とは集合に四則演算（加減乗除）の構造が入ったもののことで、つまり本テキストでは集合$K$に以下を満たす加法$+$、乗法$dot.op$が存在するものとして話を進める。
+_体_とは集合に四則演算（加減乗除）の構造が入ったもののことで、つまり本テキストでは集合$K$に以下を満たす加法$+$、乗法$dot$が存在するものとして話を進める。
 
-+ （加法の結合法則）任意の$a , b , c in K$に対して$(a + b) + c = a + (b + c)$が成り立つ。
-
-+ （加法の交換法則）任意の$a , b in K$に対して$a + b = b + a$が成り立つ。
-
-+ （乗法の結合法則）任意の$a , b , c in K$に対して$(a dot.op b) dot.op c = a dot.op (b dot.op c)$が成り立つ。
-
-+ （乗法の交換法則）任意の$a , b in K$に対して$a dot.op b = b dot.op a$が成り立つ。
-
-+ （分配法則）任意の$a , b , c in K$に対して$a dot.op (b + c) = a dot.op b + a dot.op c$と$(a + b) dot.op c = a dot.op c + b dot.op c$が成り立つ。
-
-+ （零元）$0 in K$がただ一つ存在して、任意の$a in K$に対して$a + 0 = 0 + a = a$と$a dot.op 0 = 0 dot.op a = 0$が成り立つ。
-
-+ （反数）任意の$a in K$に対して$a + x = x + a = 0$が成り立つような$x = - a in K$がただ一つ存在する。
-
-+ （単位元）$1 in K$がただ一つ存在して、任意の$a in K$に対して$a dot.op 1 = 1 dot.op a = a$が成り立つ。
-
-+ （逆数）任意の$a in K$に対して$a eq.not 0$ならば$a dot.op x = x dot.op a = 1$が成り立つような$x = a^(- 1) in K$がただ一つ存在する。
++ （加法の結合法則）任意の$a, b, c in K$に対して$(a+b)+c = a+(b+c)$が成り立つ。
++ （加法の交換法則）任意の$a, b in K$に対して$a+b = b+a$が成り立つ。
++ （乗法の結合法則）任意の$a, b, c in K$に対して$(a dot b) dot c = a dot (b dot c)$が成り立つ。
++ （乗法の交換法則）任意の$a, b in K$に対して$a dot b = b dot a$が成り立つ。
++ （分配法則）任意の$a, b, c in K$に対して$a dot (b+c) = a dot b+a dot c$と$(a+b) dot c = a dot c+b dot c$が成り立つ。
++ （零元）$0 in K$がただ一つ存在して、任意の$a in K$に対して$a+0 = 0+a = a$と$a dot 0 = 0 dot a = 0$が成り立つ。
++ （反数）任意の$a in K$に対して$a+x = x+a = 0$が成り立つような$x = -a in K$がただ一つ存在する。
++ （単位元）$1 in K$がただ一つ存在して、任意の$a in K$に対して$a dot 1 = 1 dot a = a$が成り立つ。
++ （逆数）任意の$a in K$に対して$a eq.not 0$ならば$a dot x = x dot a = 1$が成り立つような$x = a^(-1) in K$がただ一つ存在する。
 
 ここで$1 = 0$の時は体の元はそれのみという場合になるが、
 それではいくつかの議論で不具合があるので本テキストでは厳密には$1 eq.not 0$も仮定する。
 
 行列や線形代数の理論を展開するうえではこのような体であれば類似のものがいくつもできる。
-体の典型例としては有理数や実数、複素数の集合が挙げられ、それぞれ#emph[有理数体];$bb(Q)$、#emph[実数体];$bb(R)$、#emph[複素数体];$bb(C)$と呼ばれる。
-有理数や実数、複素数の構成は@Nなどを参照のこと。
+体の典型例としては有理数や実数、複素数の集合が挙げられ、それぞれ_有理数体_$QQ$、_実数体_$RR$、_複素数体_$CC$と呼ばれる。
+有理数や実数、複素数の構成は@r_n24 などを参照のこと。
 なお、実数においては四則演算のほかに大小関係や極限操作の構造が入っているが、本テキストの範囲では四則演算のみを用いて展開できる理論のみ紹介する。
-その他、体の例としては素数$p$に対して整数を$p$で割った余り$0 , dots.h.c , p - 1$に対して和や積を取るたびに$p$で割った余りを取れば体ができる。
-このように集合としての元の個数が有限個の体を#emph[有限体];といい、重要な例である。
+その他、体の例としては素数$p$に対して整数を$p$で割った余り$0, dots, p-1$に対して和や積を取るたびに$p$で割った余りを取れば体ができる。
+このように集合としての元の個数が有限個の体を_有限体_といい、重要な例である。
 また、本テキストではいくつかの命題や定理において、割り算（逆数）は必要なく、成分は整数などでもよい。
 しかしながら、抽象化や一般化してもきりがないので本テキストでは基本的に体$K$上の行列や線形代数について議論する。
 
 == 行列
-<行列-1>
-$M = 1 , 2 , 3 , dots.h.c$,
-$N = 1 , 2 , 3 , dots.h.c$として、$M times N$個の体$K$の元
-$ a_(1 1) , a_(1 2) , a_(1 3) , dots.h.c a_(1 N) , a_(2 1) , a_(2 2) , a_(2 3) , dots.h.c a_(2 N) , a_(3 1) , a_(3 2) , a_(3 3) , dots.h.c , a_(3 N) , dots.h.c , a_(M 1) , a_(M 2) , a_(M 3) , dots.h.c a_(M N) in K $
+
+$M = 1, 2, 3, dots$, $N = 1, 2, 3, dots$として、$M times N$個の体$K$の元
+$
+a_(1 1), a_(1 2), a_(1 3), dots a_(1 N), a_(2 1), a_(2 2), a_(2 3), dots a_(2 N), a_(3 1), a_(3 2), a_(3 3), dots, a_(3 N), dots, a_(M 1), a_(M 2), a_(M 3), dots a_(M N) in K
+$
 を縦に$M$個、横に$N$個、長方形状にならべた
-$ mat(delim: "(", a_(1 1), a_(1 2), a_(1 3), dots.h.c, a_(1 N); a_(2 1), a_(2 2), a_(2 3), dots.h.c, a_(2 N); a_(3 1), a_(3 2), a_(3 3), dots.h.c, a_(3 N); dots.v, dots.v, dots.v, dots.down, dots.v; a_(M 1), a_(M 2), a_(M 3), dots.h.c, a_(M N); #none) $
-を$K$上の$M times N$型の#emph[行列];という。
-この行列は$(a_(i j))_(j = 1 , dots.h.c , N)^(i = 1 , dots.h.c , M)$やいくつかの部分を省略して$(a_(i j))_j^i$,
-$(a_(i j))$のようにも記述したりする。 行列をなす各$a_(i j)$
-($i = 1 , dots.h.c , M$,
-$j = 1 , dots.h.c , N$)は#emph[成分];といい、上から$i$行目左から$j$行目の成分$a_(i j)$は第$(i , j)$成分と呼ばれる。
+$
+mat(
+	a_(1 1), a_(1 2), a_(1 3), dots, a_(1 N);
+	a_(2 1), a_(2 2), a_(2 3), dots, a_(2 N);
+	a_(3 1), a_(3 2), a_(3 3), dots, a_(3 N);
+	dots.v, dots.v, dots.v, dots.down, dots.v;
+	a_(M 1), a_(M 2), a_(M 3), dots, a_(M N);
+)
+$
+を$K$上の$M times N$型の_行列_という。
+この行列は$(a_(i j))_(j = 1, dots, N)^(i = 1, dots, M)$やいくつかの部分を省略して$(a_(i j))_j^i$, $(a_(i j))$のようにも記述したりする。
+行列をなす各$a_(i j)$ ($i = 1, dots, M$, $j = 1, dots, N$)は_成分_といい、上から$i$行目左から$j$行目の成分$a_(i j)$は第$(i, j)$成分と呼ばれる。
 
 行列の例としては、
-$ mat(delim: "(", 1, 2, 3, 4, 5; 6, 7, 8, 9, 10; 11, 12, 13, 14, 15; #none) $
+$
+mat(1, 2, 3, 4, 5; 6, 7, 8, 9, 10; 11, 12, 13, 14, 15;)
+$
 は実数上の$3 times 5$型の行列であり（整数上でもある）、
-$ mat(delim: "(", cos theta, - sin theta; sin theta, cos theta; #none) quad (theta in K) $
+$
+mat(cos theta, -sin theta; sin theta, cos theta) quad (theta in K)
+$
 は実数上の$2 times 2$型の行列である。
 
 本テキストでは$0$である成分はしばしば省略され、値を記入したり文字を割り当てるほどではない成分に関しては$\*$で表したりする。
 つまり、
-$ mat(delim: "(", 1, 0, 0, 0; 0, 2, 0, 0; 0, 0, 3, 0; 0, 0, 0, 4; #none) = mat(delim: "(", 1, , , ; #none, 2, , ; #none, , 3, ; #none, , , 4; #none) , quad mat(delim: "(", 1, 2, 0, 4, 5; 0, 0, 1, 9, 0; 0, 0, 0, 1, 0; #none) = mat(delim: "(", 1, \*, 0, \*, \*; #none, , 1, \*, 0; #none, , , 1, 0; #none) $
+$
+mat(1, 0, 0, 0; 0, 2, 0, 0; 0, 0, 3, 0; 0, 0, 0, 4;)
+= mat(1, , , ; , 2, , ; , , 3, ; , , , 4;),
+quad mat(1, 2, 0, 4, 5; 0, 0, 1, 9, 0; 0, 0, 0, 1, 0;)
+= mat(1, \*, 0, \*, \*; , , 1, \*, 0; , , , 1, 0;)
+$
 などである。
 
 二つの行列に対して、型が等しく対応する成分が全て等しい時、それらの行列は等しいという。
 つまり、
-$ mat(delim: "(", a_(1 1), dots.h.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.h.c, a_(M N); #none) = mat(delim: "(", b_(1 1), dots.h.c, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots.h.c, b_(M N); #none) $
-とは各$i = 1 , dots.h.c , M$, $j = 1 , dots.h.c , N$に対して
+$ mat(delim: "(", a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N); #none) = mat(delim: "(", b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots, b_(M N); #none) $
+とは各$i = 1, dots, M$, $j = 1, dots, N$に対して
 $ a_(i j) = b_(i j) $ が成り立つことをいう。
-また、全ての成分が$0$である行列は#emph[零行列];と呼ばれる。
+また、全ての成分が$0$である行列は_零行列_と呼ばれる。
 行列はしばしば大文字の文字が割り当てられるが、$M times N$型の零行列は$O_(M times N)$あるいは単に$O$と表される。
 つまり、
 $ O_(4 times 2) = mat(delim: "(", 0, 0; 0, 0; 0, 0; 0, 0; #none) $
@@ -72,36 +84,36 @@ $ O_(4 times 2) = mat(delim: "(", 0, 0; 0, 0; 0, 0; 0, 0; #none) $
 
 $K$上の$M times N$型の行列全体を\$\\M\_{M\\times N}(K)\$や$K^(M times N)$などと書く。
 
-$M = N$のときの$M times N$型の行列を$N$次#emph[正方行列];という。
+$M = N$のときの$M times N$型の行列を$N$次_正方行列_という。
 
-$N$次正方行列の成分のうち、第$(i , i)$成分($i = 1 , dots.h.c , N$)であるものを#emph[対角成分];といい、それ以外を#emph[非対角成分];という。
+$N$次正方行列の成分のうち、第$(i, i)$成分($i = 1, dots, N$)であるものを_対角成分_といい、それ以外を_非対角成分_という。
 非対角成分が全て$0$である正方行列
-$ mat(delim: "(", \*, , ; #none, dots.down, ; #none, , \*; #none) $
-は#emph[対角行列];と呼ばれ、応用上の扱いが便利である。
+$ mat(delim: "(", \*,, ; #none, dots.down, ; #none,, \*; #none) $
+は_対角行列_と呼ばれ、応用上の扱いが便利である。
 対角行列の中でも対角成分が全て$1$である正方行列
-$ mat(delim: "(", 1, , ; #none, dots.down, ; #none, , 1; #none) $
-は#emph[単位行列];と呼ばれ特別な扱いを受ける。
+$ mat(delim: "(", 1,, ; #none, dots.down, ; #none,, 1; #none) $
+は_単位行列_と呼ばれ特別な扱いを受ける。
 $N$次の単位行列は$I_N$あるいは$E_N$または単に$I$や$E$と表される。
 また、正方行列のうち対角成分より左下または右上の成分がすべて$0$である行列
-$ mat(delim: "(", \*, dots.h.c, \*; #none, dots.down, dots.v; #none, , \*; #none) , quad mat(delim: "(", \*, , ; dots.v, dots.down, ; \*, dots.h.c, \*; #none) $
-をまとめて#emph[三角行列];という。
-より詳しくは前者を#emph[右上三角行列];、後者を#emph[左下三角行列];という。
+$ mat(delim: "(", \*, dots, \*; #none, dots.down, dots.v; #none,, \*; #none), quad mat(delim: "(", \*,, ; dots.v, dots.down, ; \*, dots, \*; #none) $
+をまとめて_三角行列_という。
+より詳しくは前者を_右上三角行列_、後者を_左下三角行列_という。
 以上をまとめると正方行列の中に三角行列があり、さらにその中に対角行列があり、対角行列の特殊なものとして単位行列がある。
 
 $K$上の$N$次正方行列全体を\$\\M\_N(K)\$と表す。
 また、零行列$O_(N times N)$である$N$次正方行列は$O_N$とも書かれる。
 
-$N = 1$の時の$M times 1$型の行列は$M$次の#emph[縦ベクトル];と呼ばれ、
-$M = 1$の時の$1 times N$型の行列は$N$次の#emph[横ベクトル];と呼ばれる。
-縦ベクトルと横ベクトルを総称して#emph[ベクトル];と言ったりする。
+$N = 1$の時の$M times 1$型の行列は$M$次の_縦ベクトル_と呼ばれ、
+$M = 1$の時の$1 times N$型の行列は$N$次の_横ベクトル_と呼ばれる。
+縦ベクトルと横ベクトルを総称して_ベクトル_と言ったりする。
 
-また、全ての成分が$0$であるベクトルは#emph[零ベクトル];と呼ばれる。
+また、全ての成分が$0$であるベクトルは_零ベクトル_と呼ばれる。
 ベクトルはしばしば太字の小文字（\$\\vb\*{a}, \\vb\*{b}, \\vb\*{x}\$など）が割り当てられるが、$N$次の零ベクトルは\$\\vb\*{0}\_N\$あるいは単に\$\\vb\*{0}\$と表される。
 つまり、
 \$\$\\vb\*{0}\_3 = \\begin{pmatrix}0 \\\\ 0 \\\\ 0\\end{pmatrix}\$\$
 などである。
 
-$N$個の$N$次のベクトル\$\\vb\*{e}\_1, \\cdots, \\vb\*{e}\_N\$を$i = 1 , dots.h.c , N$に対して第$i$行が$1$でそれ以外の成分がすべて$0$であるものを\$\\vb\*{e}\_i\$となるように定義し、しばしば#emph[標準基底ベクトル];と呼ばれる。
+$N$個の$N$次のベクトル\$\\vb\*{e}\_1, \\cdots, \\vb\*{e}\_N\$を$i = 1, dots, N$に対して第$i$行が$1$でそれ以外の成分がすべて$0$であるものを\$\\vb\*{e}\_i\$となるように定義し、しばしば_標準基底ベクトル_と呼ばれる。
 つまり縦ベクトルならば、
 \$\$\\vb\*{e}\_1 = \\begin{pmatrix}1 \\\\ 0 \\\\ \\vdots \\\\ 0\\end{pmatrix},
 \\quad \\cdots,
@@ -109,7 +121,7 @@ $N$個の$N$次のベクトル\$\\vb\*{e}\_1, \\cdots, \\vb\*{e}\_N\$を$i = 1 ,
 である。
 
 $M = N = 1$の時の$1 times 1$型の行列はただ一つの成分からなり、行列を$vec(a)$とおくとこれを$a$と同一視してしまう。
-このような行列に対してその成分のことや$1 times 1$型の行列のことを#emph[スカラー];と呼ぶ。
+このような行列に対してその成分のことや$1 times 1$型の行列のことを_スカラー_と呼ぶ。
 例えば本来ならば（行列の積を取った時などに）$1 times 1$型の行列になるべきだが$K$の元として扱われることがあるので注意する。
 
 == 行列の演算
@@ -119,37 +131,37 @@ $M = N = 1$の時の$1 times 1$型の行列はただ一つの成分からなり�
 まず、行列の和は成分ごとの和として定義される。
 ここで二つの行列の型は同じである必要がある。
 つまり、$K$上の$M times N$型の行列$A = (a_(i j))$と$B = (b_(i j))$に対して、
-$ A + B = mat(delim: "(", a_(1 1), dots.h.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.h.c, a_(M N); #none) + mat(delim: "(", b_(1 1), dots.h.c, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots.h.c, b_(M N); #none) = mat(delim: "(", a_(1 1) + b_(1 1), dots.h.c, a_(1 N) + b_(1 N); dots.v, dots.down, dots.v; a_(M 1) + b_(M 1), dots.h.c, a_(M N) + b_(M N); #none) $
+$ A+B = mat(delim: "(", a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N); #none)+mat(delim: "(", b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots, b_(M N); #none) = mat(delim: "(", a_(1 1)+b_(1 1), dots, a_(1 N)+b_(1 N); dots.v, dots.down, dots.v; a_(M 1)+b_(M 1), dots, a_(M N)+b_(M N); #none) $
 とする。
 
 スカラー倍とは$K$上の$M times N$型の行列$A = (a_(i j))$とスカラー$c in K$に対して定まるもので、行列の各成分を$c$倍する。
 つまり、
-$ c A = c mat(delim: "(", a_(1 1), dots.h.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.h.c, a_(M N); #none) = mat(delim: "(", c a_(1 1), dots.h.c, c a_(1 N); dots.v, dots.down, dots.v; c a_(M 1), dots.h.c, c a_(M N); #none) $
+$ c A = c mat(delim: "(", a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N); #none) = mat(delim: "(", c a_(1 1), dots, c a_(1 N); dots.v, dots.down, dots.v; c a_(M 1), dots, c a_(M N); #none) $
 である。
 
 この二つの演算で行列の集合\$\\M\_{M\\times N}(K)\$は線形性と呼ばれる構造を持ち、以下の計算法則が成立する。
 
-+ （行列加法の結合法則）任意の\$A, B, C \\in \\M\_{M\\times N}(K)\$に対して$(A + B) + C = A + (B + C)$が成り立つ。
++ （行列加法の結合法則）任意の\$A, B, C \\in \\M\_{M\\times N}(K)\$に対して$(A+B)+C = A+(B+C)$が成り立つ。
 
-+ （行列加法の交換法則）任意の\$A, B \\in \\M\_{M\\times N}(K)\$に対して$A + B = B + A$が成り立つ。
++ （行列加法の交換法則）任意の\$A, B \\in \\M\_{M\\times N}(K)\$に対して$A+B = B+A$が成り立つ。
 
-+ （行列スカラー乗法の結合法則）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c , d in K$に対して$c (d A) = (c d) A$が成り立つ。
++ （行列スカラー乗法の結合法則）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c, d in K$に対して$c (d A) = (c d) A$が成り立つ。
 
-+ （分配法則１）任意の\$A, B \\in \\M\_{M\\times N}(K)\$と$c in K$に対して$c (A + B) = c A + c B$が成り立つ。
++ （分配法則１）任意の\$A, B \\in \\M\_{M\\times N}(K)\$と$c in K$に対して$c (A+B) = c A+c B$が成り立つ。
 
-+ （分配法則２）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c , d in K$に対して$(c + d) A = c A + d A$が成り立つ。
++ （分配法則２）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c, d in K$に対して$(c+d) A = c A+d A$が成り立つ。
 
-+ （零行列）$O = O_(M times N)$は零元である。つまり任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A + O = O + A = A$と$0 A = O$が成り立つ。
++ （零行列）$O = O_(M times N)$は零元である。つまり任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A+O = O+A = A$と$0 A = O$が成り立つ。
 
-+ （反行列）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A + X = X + A = O$が成り立つような\$X = -A \\in \\M\_{M\\times N}(K)\$がただ一つ存在し、それは$- A = (- 1) A$である。
++ （反行列）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A+X = X+A = O$が成り立つような\$X = -A \\in \\M\_{M\\times N}(K)\$がただ一つ存在し、それは$- A = (-1) A$である。
 
 + （単位数）$1$は単位数である。つまり任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$1 A = A$が成り立つ。
 
 行列の積は行列を行列たらしめる特徴的な演算である。
-$L = 1 , 2 , 3 , dots.h.c$として、$M times L$型の行列$A = (a_(i j))$と$M times L$型の行列$B = (b_(i j))$に対して、
-$ A B = mat(delim: "(", a_(1 1), dots.h.c, a_(1 L); dots.v, dots.down, dots.v; a_(M 1), dots.h.c, a_(M L); #none) mat(delim: "(", b_(1 1), dots.h.c, b_(1 N); dots.v, dots.down, dots.v; b_(L 1), dots.h.c, b_(L N); #none) = mat(delim: "(", a_(1 1) b_(1 1) + dots.h.c + a_(1 L) b_(L 1), dots.h.c, a_(1 1) b_(1 N) + dots.h.c + a_(1 L) b_(L N); dots.v, dots.down, dots.v; a_(M 1) b_(1 1) + dots.h.c + a_(M L) b_(L 1), dots.h.c, a_(M 1) b_(1 N) + dots.h.c + a_(M L) b_(L N); #none) $
+$L = 1, 2, 3, dots$として、$M times L$型の行列$A = (a_(i j))$と$M times L$型の行列$B = (b_(i j))$に対して、
+$ A B = mat(delim: "(", a_(1 1), dots, a_(1 L); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M L); #none) mat(delim: "(", b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(L 1), dots, b_(L N); #none) = mat(delim: "(", a_(1 1) b_(1 1)+dots+a_(1 L) b_(L 1), dots, a_(1 1) b_(1 N)+dots+a_(1 L) b_(L N); dots.v, dots.down, dots.v; a_(M 1) b_(1 1)+dots+a_(M L) b_(L 1), dots, a_(M 1) b_(1 N)+dots+a_(M L) b_(L N); #none) $
 とする。 つまり、演算結果は$M times N$型の行列$C = A B = (c_(i j))$で
-$ c_(i j) = a_(i 1) b_(1 j) + a_(i 2) b_(2 j) + a_(i 3) b_(3 j) + dots.h.c + a_(i L) b_(L j) $
+$ c_(i j) = a_(i 1) b_(1 j)+a_(i 2) b_(2 j)+a_(i 3) b_(3 j)+dots+a_(i L) b_(L j) $
 となっている。
 
 このように一つの成分を見てもたくさんのかけ算と足し算で成り立っており一見妥当性がわからないが、
@@ -157,9 +169,9 @@ $ c_(i j) = a_(i 1) b_(1 j) + a_(i 2) b_(2 j) + a_(i 3) b_(3 j) + dots.h.c + a_(
 
 + （行列積の結合法則）任意の\$A \\in \\M\_{M\\times K}(K), B \\in \\M\_{K\\times L}(K), C \\in \\M\_{L\\times N}(K)\$に対して$(A B) C = A (B C)$が成り立つ。
 
-+ （分配法則１）任意の\$A, B \\in \\M\_{M\\times L}(K)\$と\$B \\in \\M\_{L\\times N}(K)\$に対して$(A + B) C = A C + B C$が成り立つ。
++ （分配法則１）任意の\$A, B \\in \\M\_{M\\times L}(K)\$と\$B \\in \\M\_{L\\times N}(K)\$に対して$(A+B) C = A C+B C$が成り立つ。
 
-+ （分配法則２）任意の\$A \\in \\M\_{M\\times L}(K)\$と\$B, C \\in \\M\_{L\\times N}(K)\$に対して$A (B + C) = A B + A C$が成り立つ。
++ （分配法則２）任意の\$A \\in \\M\_{M\\times L}(K)\$と\$B, C \\in \\M\_{L\\times N}(K)\$に対して$A (B+C) = A B+A C$が成り立つ。
 
 + （零行列）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$A O_(N times L) = O_(M times L)$と$O_(L times M) A = O_(L times N)$が成り立つ。
 
@@ -174,32 +186,32 @@ $ c_(i j) = a_(i 1) b_(1 j) + a_(i 2) b_(2 j) + a_(i 3) b_(3 j) + dots.h.c + a_(
 
 $N$次正方行列$A$に対しては自分自身との積$A A$が定義できこれも$N$次正方行列なのでさらに$A$をかけられる。
 結合法則より左からかけても右からかけてもこの場合は同じ$A (A A) = (A A) A = A A A$が得られることに注意する。
-このようにして$N$次正方行列$A$の$n = 0 , 1 , 2 , 3 , dots.h.c$乗$A^n$を単位行列$I_N$に$A$を$n$回かけたものとして定義する。
+このようにして$N$次正方行列$A$の$n = 0, 1, 2, 3, dots$乗$A^n$を単位行列$I_N$に$A$を$n$回かけたものとして定義する。
 
 #block[
 対角行列
-$ A = mat(delim: "(", a_1, , ; #none, dots.down, ; #none, , a_N; #none) $
+$ A = mat(delim: "(", a_1,, ; #none, dots.down, ; #none,, a_N; #none) $
 の$n$乗は
-$ A^n = mat(delim: "(", a_1^n, , ; #none, dots.down, ; #none, , a_N^n; #none) $
+$ A^n = mat(delim: "(", a_1^n,, ; #none, dots.down, ; #none,, a_N^n; #none) $
 である。
 
 ]
 やろうと思えば三角行列、特に後の章で出てくるジョルダン標準形と呼ばれる行列の$n$乗も比較的簡単に計算できる。
 一般の行列の$n$乗を計算する時には手で計算するならば対角化または三角化して対角行列またはジョルダン標準形の$n$乗に帰着させることになるが、
 他にも次のようにして計算量を削減できることが知られている。
-つまり、行列$A$の$2^k$乗($k = 0 , 1 , 2 , 3 , dots.h.c$)を
-$ A^1 = A , quad A^2 = A^1 A^1 , quad A^4 = A^2 A^2 , quad A^8 = A^4 A^4 , quad dots.h.c $
+つまり、行列$A$の$2^k$乗($k = 0, 1, 2, 3, dots$)を
+$ A^1 = A, quad A^2 = A^1 A^1, quad A^4 = A^2 A^2, quad A^8 = A^4 A^4, quad dots $
 の要領であらかじめ計算して、$n$を$2$進数表示することで$A$の$2^k$乗をいくつかかけ合わせることで$A^n$を得る。
 例えば、 $ A^10 = A^8 A^2 $ といった具合である。
-この方法を#emph[二進数法];という。
+この方法を_二進数法_という。
 これを使えば$2 log_2 n$回以内の行列の積で$A^n$が計算できることになり、計算機での計算に広く使われている。
 
-$K$上の$n = 0 , 1 , 2 , 3 , dots.h.c$次の#emph[多項式];とはスカラー$c_0 , c_1 , c_2 , c_3 , dots.h.c , c_n in K$
+$K$上の$n = 0, 1, 2, 3, dots$次の_多項式_とはスカラー$c_0, c_1, c_2, c_3, dots, c_n in K$
 ($c_n eq.not 0$)を使って
-$ f (x) = c_0 + c_1 x + c_2 x^2 + c_3 x^3 + dots.h.c + c_n x^n $
+$ f (x) = c_0+c_1 x+c_2 x^2+c_3 x^3+dots+c_n x^n $
 と表される式のことであるが、
 この多項式$f (x)$と$K$上の$N$次正方行列$A$に対して多項式の変数$x$に行列$A$が代入できると拡大解釈して、$N$次正方行列
-$ f (A) = c_0 I_N + c_1 A + c_2 A^2 + c_3 A^3 + dots.h.c + c_n A^n $
+$ f (A) = c_0 I_N+c_1 A+c_2 A^2+c_3 A^3+dots+c_n A^n $
 を定める。 定数項$c_0$は単位行列の項$c_0 I$になることに注意する。
 
 一般には行列の積は交換できないが、上記の多項式は行列が$A$（と$I$）しか登場しないので以下が成り立つ。
@@ -213,20 +225,20 @@ $ f (A) g (A) = g (A) f (A) $ が成り立つ。
 
 #block[
 <t:polyex>
-$X = mat(delim: "(", 1, 1, 1; 1, 1, 1; 1, 1, 1)$として$3$次正方行列$(X - I) (X + 2 I) (X - I)$を計算する。
+$X = mat(delim: "(", 1, 1, 1; 1, 1, 1; 1, 1, 1)$として$3$次正方行列$(X - I) (X+2 I) (X - I)$を計算する。
 $X^2 = 3 X$であることに注意して、
-$ (X - I) (X + 2 I) (X - I) = (X - I)^2 (X + 2 I) = (X^2 - 2 X + I) (X + 2 I) = (X + I) (X + 2 I) = X^2 + 3 X + 2 I = 2 (3 X + I) . $
-よって答えは$(X - I) (X + 2 I) (X - I) = mat(delim: "(", 8, 2, 2; 2, 8, 2; 2, 2, 8)$である。
+$ (X - I) (X+2 I) (X - I) = (X - I)^2 (X+2 I) = (X^2 - 2 X+I) (X+2 I) = (X+I) (X+2 I) = X^2+3 X+2 I = 2 (3 X+I) . $
+よって答えは$(X - I) (X+2 I) (X - I) = mat(delim: "(", 8, 2, 2; 2, 8, 2; 2, 2, 8)$である。
 
 ]
 == 逆行列
 <逆行列>
-実数$a$の逆数とは$a dot.op x = x dot.op a = 1$が成り立つような実数$x$のことであった。
+実数$a$の逆数とは$a dot x = x dot a = 1$が成り立つような実数$x$のことであった。
 行列$A$に対しても同様に逆行列の概念を定義するが、定義の都合上正方行列にしか定義されないことに注意する。
 
 #block[
 $A$を$K$上の$N$次正方行列とする。 $ A X = X A = I_N $
-が成り立つような$K$上の$N$次正方行列$X$を$A$の#emph[逆行列];といい（後に述べるように一意なので）$A^(- 1)$と表す。
+が成り立つような$K$上の$N$次正方行列$X$を$A$の_逆行列_といい（後に述べるように一意なので）$A^(-1)$と表す。
 
 ]
 逆行列は存在すれば一意である。
@@ -235,12 +247,12 @@ $A$を$K$上の$N$次正方行列とする。 $ A X = X A = I_N $
 $N$次正方行列$A$は逆行列を持つならば一つしかない、つまり$N$次正方行列$X$と$Y$が$A$の逆行列ならば$X = Y$である。
 
 ]
-#block[
-#emph[Proof.]
-仮定より$A X = A Y = I_N$であり、左から$X$をかけることで$X A X = X A Y$である。
-ここで$X A = I_N$なので、$X = Y$となる。~◻
 
+#proof[
+仮定より$A X = A Y = I_N$であり、左から$X$をかけることで$X A X = X A Y$である。
+ここで$X A = I_N$なので、$X = Y$となる。
 ]
+
 その一方で逆行列は常に存在するとは限らない。
 もちろん零行列$O$は何をかけても零行列で単位行列にはならないので逆行列を持たない。
 
@@ -248,42 +260,42 @@ $N$次正方行列$A$は逆行列を持つならば一つしかない、つま�
 $2$次正方行列 $ A = mat(delim: "(", 0, 1; 0, 0) $ は逆行列を持たない。
 なぜなら
 $ mat(delim: "(", 0, 1; 0, 0) mat(delim: "(", \*, \*; \*, \*) = mat(delim: "(", \*, \*; 0, 0) $
-なので第$(2 , 2)$成分が$1$にならないためである。
+なので第$(2, 2)$成分が$1$にならないためである。
 
 ]
 #block[
 対角成分$a_i$がいずれも$0$でない対角行列
-$ A = mat(delim: "(", a_1, , ; #none, dots.down, ; #none, , a_N; #none) $
+$ A = mat(delim: "(", a_1,, ; #none, dots.down, ; #none,, a_N; #none) $
 の逆行列は
-$ A^(- 1) = mat(delim: "(", a_1^(- 1), , ; #none, dots.down, ; #none, , a_N^(- 1); #none) $
+$ A^(-1) = mat(delim: "(", a_1^(-1),, ; #none, dots.down, ; #none,, a_N^(-1); #none) $
 である。
 
 ]
-逆行列を持つような行列は#emph[正則行列];または#emph[可逆行列];と呼ばれる。
+逆行列を持つような行列は_正則行列_または_可逆行列_と呼ばれる。
 $K$上の$N$次正方行列全体\$\\M\_N(K)\$のうち正則行列全体を\$\\GL\_N(K)\$と表す。
 
 すぐわかる逆行列の性質として以下がある。
 
-+ （逆行列の逆行列）任意の\$A \\in \\GL\_N(K)\$に対して\$A^{-1} \\in \\GL\_N(K)\$であり$(A^(- 1))^(- 1) = A$が成り立つ。
++ （逆行列の逆行列）任意の\$A \\in \\GL\_N(K)\$に対して\$A^{-1} \\in \\GL\_N(K)\$であり$(A^(-1))^(-1) = A$が成り立つ。
 
-+ （スカラー倍の逆行列）任意の\$A \\in \\GL\_N(K)\$と$0$でない$c in K$に対して\$c A \\in \\GL\_N(K)\$であり$(c A)^(- 1) = c^(- 1) A^(- 1)$が成り立つ。
++ （スカラー倍の逆行列）任意の\$A \\in \\GL\_N(K)\$と$0$でない$c in K$に対して\$c A \\in \\GL\_N(K)\$であり$(c A)^(-1) = c^(-1) A^(-1)$が成り立つ。
 
-+ （積の逆行列）任意の\$A, B \\in \\GL\_N(K)\$に対して\$A B \\in \\GL\_N(K)\$であり$(A B)^(- 1) = B^(- 1) A^(- 1)$が成り立つ。
++ （積の逆行列）任意の\$A, B \\in \\GL\_N(K)\$に対して\$A B \\in \\GL\_N(K)\$であり$(A B)^(-1) = B^(-1) A^(-1)$が成り立つ。
 
 三番目の性質は逆行列を取ると積の順序が逆になることに注意する。
 
 #block[
-正方行列$A$に対して、$1$次以上の多項式$f (x) = c_0 + c_1 x + c_2 x^2 + c_3 x^3 + dots.h.c + c_n x^n$であって$f (A) = O$となるものが存在したとする。
+正方行列$A$に対して、$1$次以上の多項式$f (x) = c_0+c_1 x+c_2 x^2+c_3 x^3+dots+c_n x^n$であって$f (A) = O$となるものが存在したとする。
 ここで$c_0 eq.not 0$の時、$A$は正則であり、逆行列は
-$ A^(- 1) = - c_0^(- 1) (c_1 I + c_2 A + c_3 A^2 + dots.h.c + c_n A^(n - 1)) $
+$ A^(-1) = - c_0^(-1) (c_1 I+c_2 A+c_3 A^2+dots+c_n A^(n -1)) $
 で与えられる。
 
 ]
 #block[
-$3$次正方行列$A = mat(delim: "(", 4, - 1, - 1; - 1, 4, - 1; - 1, - 1, 4)$の逆行列を計算してみよう。
+$3$次正方行列$A = mat(delim: "(", 4, -1, -1; -1, 4, -1; -1, -1, 4)$の逆行列を計算してみよう。
 次章で述べる掃き出し法を実行してもよいが、ここでは以下のように考えてみる。
-つまり、$X = mat(delim: "(", 1, 1, 1; 1, 1, 1; 1, 1, 1)$とおくと、$A = 5 I - X$で$X^2 = 3 X$なので$A^2 - 7 A + 10 I = O$、つまり
-$ A^(- 1) = - 1 / 10 (A - 7 I) = 1 / 10 (X + 2 I) . $
+つまり、$X = mat(delim: "(", 1, 1, 1; 1, 1, 1; 1, 1, 1)$とおくと、$A = 5 I - X$で$X^2 = 3 X$なので$A^2 - 7 A+10 I = O$、つまり
+$ A^(-1) = -1 / 10 (A - 7 I) = 1 / 10 (X+2 I) . $
 よって逆行列は$A = 1 / 10 mat(delim: "(", 3, 1, 1; 1, 3, 1; 1, 1, 3)$である。
 
 ]
@@ -297,12 +309,12 @@ $ A^(- 1) = - 1 / 10 (A - 7 I) = 1 / 10 (X + 2 I) . $
 また、スカラー積を考えるときも転置によって行列の積の話に帰着できる。
 
 #block[
-$M times N$行列$A = (a_(i j))_(j = 1 , dots.h.c , N)^(i = 1 , dots.h.c , M)$に対して$N times M$行列
-$ A^T = (a_(j i))_(j = 1 , dots.h.c , M)^(i = 1 , dots.h.c , N) $
-を$A$の#emph[転置行列];という。 つまり、
-$ A = mat(delim: "(", a_(1 1), dots.h.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.h.c, a_(M N); #none) $
+$M times N$行列$A = (a_(i j))_(j = 1, dots, N)^(i = 1, dots, M)$に対して$N times M$行列
+$ A^T = (a_(j i))_(j = 1, dots, M)^(i = 1, dots, N) $
+を$A$の_転置行列_という。 つまり、
+$ A = mat(delim: "(", a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N); #none) $
 に対して、
-$ A^T = mat(delim: "(", a_(1 1), dots.h.c, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots.h.c, a_(M N); #none) $
+$ A^T = mat(delim: "(", a_(1 1), dots, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots, a_(M N); #none) $
 である。
 
 ]
@@ -310,7 +322,7 @@ $ A^T = mat(delim: "(", a_(1 1), dots.h.c, a_(M 1); dots.v, dots.down, dots.v; a
 
 + （転置の転置）任意の\$A \\in \\M\_{M\\times N}(K)\$に対して$(A^T)^T = A$が成り立つ。
 
-+ （和の転置）任意の\$A, B \\in \\M\_{M\\times N}(K)\$に対して$(A + B)^T = A^T + B^T$が成り立つ。
++ （和の転置）任意の\$A, B \\in \\M\_{M\\times N}(K)\$に対して$(A+B)^T = A^T+B^T$が成り立つ。
 
 + （スカラー倍の転置）任意の\$A \\in \\M\_{M\\times N}(K)\$と$c in K$に対して$(c A)^T = c A^T$が成り立つ。
 
@@ -319,13 +331,13 @@ $ A^T = mat(delim: "(", a_(1 1), dots.h.c, a_(M 1); dots.v, dots.down, dots.v; a
 四番目の性質は転置を取ると積の順序が逆になることに注意する。
 
 また、この性質を使えば可逆行列$A$に対して転置行列$A^T$も可逆で
-$ (A^T)^(- 1) = (A^(- 1))^T $ が成り立つことがわかる。
+$ (A^T)^(-1) = (A^(-1))^T $ が成り立つことがわかる。
 
 #block[
-$N$次正方行列$A = (a_(i j))_(j = 1 , dots.h.c , N)^(i = 1 , dots.h.c , N)$に対して転置をとったものが元の行列と等しい、つまり
+$N$次正方行列$A = (a_(i j))_(j = 1, dots, N)^(i = 1, dots, N)$に対して転置をとったものが元の行列と等しい、つまり
 $ A^T = A $
-の場合、$A$は#emph[対称];あるいは#emph[対称行列];であるという。
-成分で書けば $ a_(j i) = a_(i j) quad (i , j = 1 , dots.h.c , N) $
+の場合、$A$は_対称_あるいは_対称行列_であるという。
+成分で書けば $ a_(j i) = a_(i j) quad (i, j = 1, dots, N) $
 である。
 
 ]
@@ -335,12 +347,12 @@ $ A^T = A $
 <行列の区分け>
 行列をいくつかの小さな行列の並びとみなせると計算が楽になることが多い。
 そこでまず小さな行列をもとに大きな行列を作ることを許すことにする。
-つまり、$M_1 , dots.h.c , M_I = 1 , 2 , 3 , dots.h.c$と$N_1 , dots.h.c , N_J = 1 , 2 , 3 , dots.h.c$として、$K$上の$M_i times N_j$型の行列$A_(i j)$が与えられたとする($i = 1 , dots.h.c , I$,
-$j = 1 , dots.h.c , J$)、
-このとき$A_(i j)$の成分をすべて並べて得られる$K$上の$(M_1 + dots.h.c + M_I) times (N_1 + dots.h.c + N_J)$型の行列を
-$ mat(delim: "(", A_(1 1), dots.h.c, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots.h.c, A_(I J); #none) $
+つまり、$M_1, dots, M_I = 1, 2, 3, dots$と$N_1, dots, N_J = 1, 2, 3, dots$として、$K$上の$M_i times N_j$型の行列$A_(i j)$が与えられたとする($i = 1, dots, I$,
+$j = 1, dots, J$)、
+このとき$A_(i j)$の成分をすべて並べて得られる$K$上の$(M_1+dots+M_I) times (N_1+dots+N_J)$型の行列を
+$ mat(delim: "(", A_(1 1), dots, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I J); #none) $
 と書く。
-反対に$(M_1 + dots.h.c + M_I) times (N_1 + dots.h.c + N_J)$型の行列$A$が与えられた時に上記のように小さな行列に分けることを行列の#emph[区分け];という。
+反対に$(M_1+dots+M_I) times (N_1+dots+N_J)$型の行列$A$が与えられた時に上記のように小さな行列に分けることを行列の_区分け_という。
 
 #block[
 \$\\vb\*{e}\_1, \\cdots, \\vb\*{e}\_N\$を$N$次の縦の標準基底ベクトルとする。
@@ -357,8 +369,8 @@ $ mat(delim: "(", A_(1 1), dots.h.c, A_(1 J); dots.v, dots.down, dots.v; A_(I 1)
 特に区分けされた行列の積は以下のように計算できる。
 
 #block[
-区分けされた$(M_1 + dots.h.c + M_I) times (L_1 + dots.h.c + L_H)$型の行列$A = (A_(i j))$と$(L_1 + dots.h.c + L_H) times (N_1 + dots.h.c + N_J)$型の行列$B = (B_(i j))$に対して、
-$ mat(delim: "(", A_(1 1), dots.h.c, A_(1 H); dots.v, dots.down, dots.v; A_(I 1), dots.h.c, A_(I H); #none) mat(delim: "(", B_(1 1), dots.h.c, B_(1 J); dots.v, dots.down, dots.v; B_(H 1), dots.h.c, B_(H J); #none) = mat(delim: "(", A_(1 1) B_(1 1) + dots.h.c + A_(1 H) B_(H 1), dots.h.c, A_(1 1) B_(1 J) + dots.h.c + A_(1 H) b_(H J); dots.v, dots.down, dots.v; A_(I 1) B_(1 1) + dots.h.c + A_(I H) B_(H 1), dots.h.c, A_(I 1) B_(1 J) + dots.h.c + A_(I H) b_(H J); #none) $
+区分けされた$(M_1+dots+M_I) times (L_1+dots+L_H)$型の行列$A = (A_(i j))$と$(L_1+dots+L_H) times (N_1+dots+N_J)$型の行列$B = (B_(i j))$に対して、
+$ mat(delim: "(", A_(1 1), dots, A_(1 H); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I H); #none) mat(delim: "(", B_(1 1), dots, B_(1 J); dots.v, dots.down, dots.v; B_(H 1), dots, B_(H J); #none) = mat(delim: "(", A_(1 1) B_(1 1)+dots+A_(1 H) B_(H 1), dots, A_(1 1) B_(1 J)+dots+A_(1 H) b_(H J); dots.v, dots.down, dots.v; A_(I 1) B_(1 1)+dots+A_(I H) B_(H 1), dots, A_(I 1) B_(1 J)+dots+A_(I H) b_(H J); #none) $
 が成り立つ。
 特に$M times L$型の行列$A$と$L times N$型の行列$B$に対して、$B$の$N$個の列を構成する$L$次の縦ベクトルを\$\\vb\*{b}\_1, \\cdots, \\vb\*{b}\_N\$とすると、
 \$\$A B
@@ -368,17 +380,17 @@ $ mat(delim: "(", A_(1 1), dots.h.c, A_(1 H); dots.v, dots.down, dots.v; A_(I 1)
 
 ]
 #block[
-#emph[Proof.];~◻
+_Proof._
 
 ]
 #block[
 <t:blockinv>
-$A$を$N_1$次の正則行列、$D$を$N_2$次の正則行列として$N_1 + N_2$次の正方行列
+$A$を$N_1$次の正則行列、$D$を$N_2$次の正則行列として$N_1+N_2$次の正方行列
 $ mat(delim: "(", A, B; O, D) $ は正則であり、逆行列は
-$ mat(delim: "(", A^(- 1), - A^(- 1) B D^(- 1); O, D^(- 1)) $
+$ mat(delim: "(", A^(-1), - A^(-1) B D^(-1); O, D^(-1)) $
 で与えられる。 実際、積を計算すると
-$ mat(delim: "(", A, B; O, D) mat(delim: "(", A^(- 1), - A^(- 1) B D^(- 1); O, D^(- 1)) = mat(delim: "(", A A^(- 1), - A A^(- 1) B D^(- 1) + B D^(- 1); O, D D^(- 1)) = mat(delim: "(", I, O; O, I) , $
-$ mat(delim: "(", A^(- 1), - A^(- 1) B D^(- 1); O, D^(- 1)) mat(delim: "(", A, B; O, D) = mat(delim: "(", A^(- 1) A, A^(- 1) B - A^(- 1) B D^(- 1) D; O, D^(- 1) D) = mat(delim: "(", I, O; O, I) $
+$ mat(delim: "(", A, B; O, D) mat(delim: "(", A^(-1), - A^(-1) B D^(-1); O, D^(-1)) = mat(delim: "(", A A^(-1), - A A^(-1) B D^(-1)+B D^(-1); O, D D^(-1)) = mat(delim: "(", I, O; O, I), $
+$ mat(delim: "(", A^(-1), - A^(-1) B D^(-1); O, D^(-1)) mat(delim: "(", A, B; O, D) = mat(delim: "(", A^(-1) A, A^(-1) B - A^(-1) B D^(-1) D; O, D^(-1) D) = mat(delim: "(", I, O; O, I) $
 であることからわかる。
 
 ]
