@@ -40,15 +40,15 @@ $
 を縦に$M$個、横に$N$個、長方形状にならべた
 $
 mat(
-	a_(1 1), a_(1 2), a_(1 3), dots, a_(1 N);
-	a_(2 1), a_(2 2), a_(2 3), dots, a_(2 N);
-	a_(3 1), a_(3 2), a_(3 3), dots, a_(3 N);
+	a_(1 1), a_(1 2), a_(1 3), dots.c, a_(1 N);
+	a_(2 1), a_(2 2), a_(2 3), dots.c, a_(2 N);
+	a_(3 1), a_(3 2), a_(3 3), dots.c, a_(3 N);
 	dots.v, dots.v, dots.v, dots.down, dots.v;
-	a_(M 1), a_(M 2), a_(M 3), dots, a_(M N);
+	a_(M 1), a_(M 2), a_(M 3), dots.c, a_(M N);
 )
 $
 を$K$上の$M times N$型の_行列_という。
-この行列は$(a_(i j))_(j = 1, dots, N)^(i = 1, dots, M)$やいくつかの部分を省略して$(a_(i j))_j^i$, $(a_(i j))$のようにも記述したりする。
+この行列は$(a_(i j))^(i = 1, dots, M)_(j = 1, dots, N)$やいくつかの部分を省略して$(a_(i j))_j^i$, $(a_(i j))$のようにも記述したりする。
 行列をなす各$a_(i j)$ ($i = 1, dots, M$, $j = 1, dots, N$)は_成分_といい、上から$i$行目左から$j$行目の成分$a_(i j)$は第$(i, j)$成分と呼ばれる。
 
 行列の例としては、
@@ -74,8 +74,8 @@ $
 二つの行列に対して、型が等しく対応する成分が全て等しい時、それらの行列は等しいという。
 つまり、
 $
-mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)
-= mat(b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots, b_(M N);)
+mat(a_(1 1), dots.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.c, a_(M N);)
+= mat(b_(1 1), dots.c, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots.c, b_(M N);)
 $
 とは各$i = 1, dots, M$, $j = 1, dots, N$に対して
 $
@@ -108,8 +108,8 @@ $
 $N$次の単位行列は$I_N$あるいは$E_N$または単に$I$や$E$と表される。
 また、正方行列のうち対角成分より左下または右上の成分がすべて$0$である行列
 $
-mat(\*, dots, \*; , dots.down, dots.v; , , \*;),
-quad mat(\*, , ; dots.v, dots.down, ; \*, dots, \*;)
+mat(\*, dots.c, \*; , dots.down, dots.v; , , \*;),
+quad mat(\*, , ; dots.v, dots.down, ; \*, dots.c, \*;)
 $
 をまとめて_三角行列_という。
 より詳しくは前者を_右上三角行列_、後者を_左下三角行列_という。
@@ -152,8 +152,8 @@ $M = N = 1$の時の$1 times 1$型の行列はただ一つの成分からなり�
 つまり、$K$上の$M times N$型の行列$A = (a_(i j))$と$B = (b_(i j))$に対して、
 $
 A+B
-= mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)+mat(b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots, b_(M N);)
-= mat(a_(1 1)+b_(1 1), dots, a_(1 N)+b_(1 N); dots.v, dots.down, dots.v; a_(M 1)+b_(M 1), dots, a_(M N)+b_(M N);)
+= mat(a_(1 1), dots.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.c, a_(M N);)+mat(b_(1 1), dots.c, b_(1 N); dots.v, dots.down, dots.v; b_(M 1), dots.c, b_(M N);)
+= mat(a_(1 1)+b_(1 1), dots.c, a_(1 N)+b_(1 N); dots.v, dots.down, dots.v; a_(M 1)+b_(M 1), dots.c, a_(M N)+b_(M N);)
 $
 とする。
 
@@ -161,8 +161,8 @@ $
 つまり、
 $
 c A
-= c mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)
-= mat(c a_(1 1), dots, c a_(1 N); dots.v, dots.down, dots.v; c a_(M 1), dots, c a_(M N);) $
+= c mat(a_(1 1), dots.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.c, a_(M N);)
+= mat(c a_(1 1), dots.c, c a_(1 N); dots.v, dots.down, dots.v; c a_(M 1), dots.c, c a_(M N);) $
 である。
 
 この二つの演算で行列の集合$upright(M)_(M times N) (K)$は線形性と呼ばれる構造を持ち、以下の計算法則が成立する。
@@ -182,8 +182,8 @@ c A
 $L = 1, 2, 3, dots$として、$M times L$型の行列$A = (a_(i j))$と$L times N$型の行列$B = (b_(i j))$に対して、
 $
 A B
-= mat(a_(1 1), dots, a_(1 L); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M L);) mat(b_(1 1), dots, b_(1 N); dots.v, dots.down, dots.v; b_(L 1), dots, b_(L N);)
-= mat(a_(1 1) b_(1 1)+dots+a_(1 L) b_(L 1), dots, a_(1 1) b_(1 N)+dots+a_(1 L) b_(L N); dots.v, dots.down, dots.v; a_(M 1) b_(1 1)+dots+a_(M L) b_(L 1), dots, a_(M 1) b_(1 N)+dots+a_(M L) b_(L N);)
+= mat(a_(1 1), dots.c, a_(1 L); dots.v, dots.down, dots.v; a_(M 1), dots.c, a_(M L);) mat(b_(1 1), dots.c, b_(1 N); dots.v, dots.down, dots.v; b_(L 1), dots.c, b_(L N);)
+= mat(a_(1 1) b_(1 1)+dots+a_(1 L) b_(L 1), dots.c, a_(1 1) b_(1 N)+dots+a_(1 L) b_(L N); dots.v, dots.down, dots.v; a_(M 1) b_(1 1)+dots+a_(M L) b_(L 1), dots.c, a_(M 1) b_(1 N)+dots+a_(M L) b_(L N);)
 $
 とする。
 つまり、演算結果は$M times N$型の行列$C = A B = (c_(i j))$で
@@ -376,18 +376,18 @@ $
 また、スカラー積を考えるときも転置によって行列の積の話に帰着できる。
 
 #definition([転置行列])[
-$M times N$行列$A = (a_(i j))_(j = 1, dots, N)^(i = 1, dots, M)$に対して$N times M$行列
+$M times N$行列$A = (a_(i j))^(i = 1, dots, M)_(j = 1, dots, N)$に対して$N times M$行列
 $
-A^T = (a_(j i))_(j = 1, dots, M)^(i = 1, dots, N)
+A^T = (a_(j i))^(i = 1, dots, N)_(j = 1, dots, M)
 $
 を$A$の_転置行列_という。
 つまり、
 $
-A = mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)
+A = mat(a_(1 1), dots.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.c, a_(M N);)
 $
 に対して、
 $
-A^T = mat(a_(1 1), dots, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots, a_(M N);)
+A^T = mat(a_(1 1), dots.c, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots.c, a_(M N);)
 $
 である。
 ]
@@ -408,7 +408,7 @@ $
 が成り立つことがわかる。
 
 #definition([対称行列])[
-$N$次正方行列$A = (a_(i j))_(j = 1, dots, N)^(i = 1, dots, N)$に対して転置をとったものが元の行列と等しい、つまり
+$N$次正方行列$A = (a_(i j))^(i = 1, dots, N)_(j = 1, dots, N)$に対して転置をとったものが元の行列と等しい、つまり
 $
 A^T = A
 $
@@ -430,7 +430,7 @@ $
 $j = 1, dots, J$)、
 このとき$A_(i j)$の成分をすべて並べて得られる$K$上の$(M_1+dots+M_I) times (N_1+dots+N_J)$型の行列を
 $
-mat(A_(1 1), dots, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I J);)
+mat(A_(1 1), dots.c, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots.c, A_(I J);)
 $
 と書く。
 反対に$(M_1+dots+M_I) times (N_1+dots+N_J)$型の行列$A$が与えられた時に上記のように小さな行列に分けることを行列の_区分け_という。
@@ -446,7 +446,7 @@ quad bold(e)_N = vec(0, dots.v, 0, 1)
 $
 である。 このとき$N$次の単位行列$I_N$は
 $
-I_N = mat(bold(e)_1, dots, bold(e)_N)
+I_N = mat(bold(e)_1, dots.c, bold(e)_N)
 $
 と区分けされる。
 ]
@@ -457,15 +457,15 @@ $
 #proposition([区分けされた行列の積])[
 区分けされた$(M_1+dots+M_I) times (L_1+dots+L_H)$型の行列$A = (A_(i j))$と$(L_1+dots+L_H) times (N_1+dots+N_J)$型の行列$B = (B_(i j))$に対して、
 $
-mat(A_(1 1), dots, A_(1 H); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I H);) mat(B_(1 1), dots, B_(1 J); dots.v, dots.down, dots.v; B_(H 1), dots, B_(H J);)
-= mat(A_(1 1) B_(1 1)+dots+A_(1 H) B_(H 1), dots, A_(1 1) B_(1 J)+dots+A_(1 H) b_(H J); dots.v, dots.down, dots.v; A_(I 1) B_(1 1)+dots+A_(I H) B_(H 1), dots, A_(I 1) B_(1 J)+dots+A_(I H) b_(H J);)
+mat(A_(1 1), dots.c, A_(1 H); dots.v, dots.down, dots.v; A_(I 1), dots.c, A_(I H);) mat(B_(1 1), dots.c, B_(1 J); dots.v, dots.down, dots.v; B_(H 1), dots.c, B_(H J);)
+= mat(A_(1 1) B_(1 1)+dots+A_(1 H) B_(H 1), dots.c, A_(1 1) B_(1 J)+dots+A_(1 H) b_(H J); dots.v, dots.down, dots.v; A_(I 1) B_(1 1)+dots+A_(I H) B_(H 1), dots.c, A_(I 1) B_(1 J)+dots+A_(I H) b_(H J);)
 $
 が成り立つ。
 特に$M times L$型の行列$A$と$L times N$型の行列$B$に対して、$B$の$N$個の列を構成する$L$次の縦ベクトルを$bold(b)_1, dots, bold(b)_N$とすると、
 $
 A B
-= A vec(bold(b)_1, dots, bold(b)_N)
-= vec(A bold(b)_1, dots, A bold(b)_N)
+= A vec(bold(b)_1, dots.c, bold(b)_N)
+= vec(A bold(b)_1, dots.c, A bold(b)_N)
 $
 が成り立つ。
 ]
