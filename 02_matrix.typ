@@ -370,44 +370,56 @@ $
 この証明には基本変形を用いる必要があるので証明は第3章で行う。
 
 == 転置行列と対称行列
-<転置行列と対称行列>
+
 行列の行と列を入れ替える操作を転置といい、定義しておけば便利になることが多い。
 例えば行列式の基本変形は行について示せば転置をして列に対しても同様のものが成り立つことがわかる。
 また、スカラー積を考えるときも転置によって行列の積の話に帰着できる。
 
-#block[
+#definition([転置行列])[
 $M times N$行列$A = (a_(i j))_(j = 1, dots, N)^(i = 1, dots, M)$に対して$N times M$行列
-$ A^T = (a_(j i))_(j = 1, dots, M)^(i = 1, dots, N) $
-を$A$の_転置行列_という。 つまり、
-$ A = mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);) $
+$
+A^T = (a_(j i))_(j = 1, dots, M)^(i = 1, dots, N)
+$
+を$A$の_転置行列_という。
+つまり、
+$
+A = mat(a_(1 1), dots, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots, a_(M N);)
+$
 に対して、
-$ A^T = mat(a_(1 1), dots, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots, a_(M N);) $
+$
+A^T = mat(a_(1 1), dots, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots, a_(M N);)
+$
 である。
-
 ]
+
 すぐわかる転置の性質として以下がある。
 
-+ （転置の転置）任意の\$A in upright(M)_(M times N}(K)\$に対して$(A^T)^T = A$が成り立つ。
-
-+ （和の転置）任意の\$A, B in upright(M)_(M times N}(K)\$に対して$(A+B)^T = A^T+B^T$が成り立つ。
-
-+ （スカラー倍の転置）任意の\$A in upright(M)_(M times N}(K)\$と$c in K$に対して$(c A)^T = c A^T$が成り立つ。
-
-+ （積の転置）任意の\$A in upright(M)_(M times L}(K)\$と\$B in upright(M)_(L times N}(K)\$に対して$(A B)^T = B^T A^T$が成り立つ。
++ （転置の転置）任意の$A in upright(M)_(M times N) (K)$に対して$(A^T)^T = A$が成り立つ。
++ （和の転置）任意の$A, B in upright(M)_(M times N) (K)$に対して$(A+B)^T = A^T+B^T$が成り立つ。
++ （スカラー倍の転置）任意の$A in upright(M)_(M times N) (K)$と$c in K$に対して$(c A)^T = c A^T$が成り立つ。
++ （積の転置）任意の$A in upright(M)_(M times L) (K)$と$B in upright(M)_(L times N) (K)$に対して$(A B)^T = B^T A^T$が成り立つ。
 
 四番目の性質は転置を取ると積の順序が逆になることに注意する。
 
 また、この性質を使えば可逆行列$A$に対して転置行列$A^T$も可逆で
-$ (A^T)^(-1) = (A^(-1))^T $ が成り立つことがわかる。
+$
+(A^T)^(-1) = (A^(-1))^T
+$
+が成り立つことがわかる。
 
-#block[
+#definition([対称行列])[
 $N$次正方行列$A = (a_(i j))_(j = 1, dots, N)^(i = 1, dots, N)$に対して転置をとったものが元の行列と等しい、つまり
-$ A^T = A $
+$
+A^T = A
+$
 の場合、$A$は_対称_あるいは_対称行列_であるという。
-成分で書けば $ a_(j i) = a_(i j) quad (i, j = 1, dots, N) $
+成分で書けば
+$
+a_(j i) = a_(i j) quad (i, j = 1, dots, N)
+$
 である。
-
 ]
+
 スカラーは常に対称である。
 
 == 行列の区分け
@@ -422,13 +434,13 @@ $ mat(A_(1 1), dots, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I J);
 反対に$(M_1+dots+M_I) times (N_1+dots+N_J)$型の行列$A$が与えられた時に上記のように小さな行列に分けることを行列の_区分け_という。
 
 #block[
-\$bold(e)_1, dots, bold(e)_N\$を$N$次の縦の標準基底ベクトルとする。
+$bold(e)_1, dots, bold(e)_N$を$N$次の縦の標準基底ベクトルとする。
 つまり、
-\$\$bold(e)_1 = \\begin{pmatrix}1 \\\\ 0 \\\\ \\vdots \\\\ 0\\end{pmatrix},
+$$bold(e)_1 = \\begin{pmatrix}1 \\\\ 0 \\\\ \\vdots \\\\ 0\\end{pmatrix},
 \\quad dots,
-\\quad bold(e)_N = \\begin{pmatrix}0 \\\\ \\vdots \\\\ 0 \\\\ 1\\end{pmatrix}\$\$
+\\quad bold(e)_N = \\begin{pmatrix}0 \\\\ \\vdots \\\\ 0 \\\\ 1\\end{pmatrix}$$
 である。 このとき$N$次の単位行列$I_N$は
-\$\$I\_N = \\begin{pmatrix}bold(e)_1 & dots & bold(e)_N\\end{pmatrix}\$\$
+$$I\_N = \\begin{pmatrix}bold(e)_1 & dots & bold(e)_N\\end{pmatrix}$$
 と区分けされる。
 
 ]
@@ -439,10 +451,10 @@ $ mat(A_(1 1), dots, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I J);
 区分けされた$(M_1+dots+M_I) times (L_1+dots+L_H)$型の行列$A = (A_(i j))$と$(L_1+dots+L_H) times (N_1+dots+N_J)$型の行列$B = (B_(i j))$に対して、
 $ mat(A_(1 1), dots, A_(1 H); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I H);) mat(B_(1 1), dots, B_(1 J); dots.v, dots.down, dots.v; B_(H 1), dots, B_(H J);) = mat(A_(1 1) B_(1 1)+dots+A_(1 H) B_(H 1), dots, A_(1 1) B_(1 J)+dots+A_(1 H) b_(H J); dots.v, dots.down, dots.v; A_(I 1) B_(1 1)+dots+A_(I H) B_(H 1), dots, A_(I 1) B_(1 J)+dots+A_(I H) b_(H J);) $
 が成り立つ。
-特に$M times L$型の行列$A$と$L times N$型の行列$B$に対して、$B$の$N$個の列を構成する$L$次の縦ベクトルを\$bold(b)_1, dots, bold(b)_N\$とすると、
-\$\$A B
+特に$M times L$型の行列$A$と$L times N$型の行列$B$に対して、$B$の$N$個の列を構成する$L$次の縦ベクトルを$bold(b)_1, dots, bold(b)_N$とすると、
+$$A B
 = A\\begin{pmatrix}bold(b)_1 & dots & bold(b)_N\\end{pmatrix}
-= \\begin{pmatrix}Abold(b)_1 & dots & Abold(b)_N\\end{pmatrix}\$\$
+= \\begin{pmatrix}Abold(b)_1 & dots & Abold(b)_N\\end{pmatrix}$$
 が成り立つ。
 
 ]
