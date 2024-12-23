@@ -336,13 +336,13 @@ $
 ]
 
 逆行列を持つような行列は_正則行列_または_可逆行列_と呼ばれる。
-$K$上の$N$次正方行列全体$upright(M)_N (K)$のうち正則行列全体を$upright(GL)_N (K)$と表す。
+$K$上の$N$次正方行列全体$upright(M)_N (K)$のうち正則行列全体を$upright(G L)_N (K)$と表す。
 
 すぐわかる逆行列の性質として以下がある。
 
-+ （逆行列の逆行列）任意の$A in upright(GL)_N (K)$に対して$A^{-1} in upright(GL)_N (K)$であり$(A^(-1))^(-1) = A$が成り立つ。
-+ （スカラー倍の逆行列）任意の$A in upright(GL)_N (K)$と$0$でない$c in K$に対して$c A in upright(GL)_N (K)$であり$(c A)^(-1) = c^(-1) A^(-1)$が成り立つ。
-+ （積の逆行列）任意の$A, B in upright(GL)_N (K)$に対して$A B in upright(GL)_N (K)$であり$(A B)^(-1) = B^(-1) A^(-1)$が成り立つ。
++ （逆行列の逆行列）任意の$A in upright(G L)_N (K)$に対して$A^{-1} in upright(G L)_N (K)$であり$(A^(-1))^(-1) = A$が成り立つ。
++ （スカラー倍の逆行列）任意の$A in upright(G L)_N (K)$と$0$でない$c in K$に対して$c A in upright(G L)_N (K)$であり$(c A)^(-1) = c^(-1) A^(-1)$が成り立つ。
++ （積の逆行列）任意の$A, B in upright(G L)_N (K)$に対して$A B in upright(G L)_N (K)$であり$(A B)^(-1) = B^(-1) A^(-1)$が成り立つ。
 
 三番目の性質は逆行列を取ると積の順序が逆になることに注意する。
 
@@ -423,61 +423,94 @@ $
 スカラーは常に対称である。
 
 == 行列の区分け
-<行列の区分け>
+
 行列をいくつかの小さな行列の並びとみなせると計算が楽になることが多い。
 そこでまず小さな行列をもとに大きな行列を作ることを許すことにする。
 つまり、$M_1, dots, M_I = 1, 2, 3, dots$と$N_1, dots, N_J = 1, 2, 3, dots$として、$K$上の$M_i times N_j$型の行列$A_(i j)$が与えられたとする($i = 1, dots, I$,
 $j = 1, dots, J$)、
 このとき$A_(i j)$の成分をすべて並べて得られる$K$上の$(M_1+dots+M_I) times (N_1+dots+N_J)$型の行列を
-$ mat(A_(1 1), dots, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I J);) $
+$
+mat(A_(1 1), dots, A_(1 J); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I J);)
+$
 と書く。
 反対に$(M_1+dots+M_I) times (N_1+dots+N_J)$型の行列$A$が与えられた時に上記のように小さな行列に分けることを行列の_区分け_という。
 
-#block[
+#example[
 $bold(e)_1, dots, bold(e)_N$を$N$次の縦の標準基底ベクトルとする。
 つまり、
-$$bold(e)_1 = \\begin{pmatrix}1 \\\\ 0 \\\\ \\vdots \\\\ 0\\end{pmatrix},
-\\quad dots,
-\\quad bold(e)_N = \\begin{pmatrix}0 \\\\ \\vdots \\\\ 0 \\\\ 1\\end{pmatrix}$$
+$
+bold(e)_1 = vec(1, 0, dots.v, 0)
+,
+quad dots,
+quad bold(e)_N = vec(0, dots.v, 0, 1)
+$
 である。 このとき$N$次の単位行列$I_N$は
-$$I\_N = \\begin{pmatrix}bold(e)_1 & dots & bold(e)_N\\end{pmatrix}$$
+$
+I_N = mat(bold(e)_1, dots, bold(e)_N)
+$
 と区分けされる。
-
 ]
+
 区分けされた行列に対しては演算規則が自然と拡張され、
 特に区分けされた行列の積は以下のように計算できる。
 
-#block[
+#proposition([区分けされた行列の積])[
 区分けされた$(M_1+dots+M_I) times (L_1+dots+L_H)$型の行列$A = (A_(i j))$と$(L_1+dots+L_H) times (N_1+dots+N_J)$型の行列$B = (B_(i j))$に対して、
-$ mat(A_(1 1), dots, A_(1 H); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I H);) mat(B_(1 1), dots, B_(1 J); dots.v, dots.down, dots.v; B_(H 1), dots, B_(H J);) = mat(A_(1 1) B_(1 1)+dots+A_(1 H) B_(H 1), dots, A_(1 1) B_(1 J)+dots+A_(1 H) b_(H J); dots.v, dots.down, dots.v; A_(I 1) B_(1 1)+dots+A_(I H) B_(H 1), dots, A_(I 1) B_(1 J)+dots+A_(I H) b_(H J);) $
+$
+mat(A_(1 1), dots, A_(1 H); dots.v, dots.down, dots.v; A_(I 1), dots, A_(I H);) mat(B_(1 1), dots, B_(1 J); dots.v, dots.down, dots.v; B_(H 1), dots, B_(H J);)
+= mat(A_(1 1) B_(1 1)+dots+A_(1 H) B_(H 1), dots, A_(1 1) B_(1 J)+dots+A_(1 H) b_(H J); dots.v, dots.down, dots.v; A_(I 1) B_(1 1)+dots+A_(I H) B_(H 1), dots, A_(I 1) B_(1 J)+dots+A_(I H) b_(H J);)
+$
 が成り立つ。
 特に$M times L$型の行列$A$と$L times N$型の行列$B$に対して、$B$の$N$個の列を構成する$L$次の縦ベクトルを$bold(b)_1, dots, bold(b)_N$とすると、
-$$A B
-= A\\begin{pmatrix}bold(b)_1 & dots & bold(b)_N\\end{pmatrix}
-= \\begin{pmatrix}Abold(b)_1 & dots & Abold(b)_N\\end{pmatrix}$$
+$
+A B
+= A vec(bold(b)_1, dots, bold(b)_N)
+= vec(A bold(b)_1, dots, A bold(b)_N)
+$
 が成り立つ。
-
 ]
-#block[
-_Proof._
 
+#proof[
 ]
-#block[
-<t:blockinv>
+
+#example[
 $A$を$N_1$次の正則行列、$D$を$N_2$次の正則行列として$N_1+N_2$次の正方行列
-$ mat(A, B; O, D) $ は正則であり、逆行列は
-$ mat(A^(-1),-A^(-1) B D^(-1); O, D^(-1)) $
-で与えられる。 実際、積を計算すると
-$ mat(A, B; O, D) mat(A^(-1),-A^(-1) B D^(-1); O, D^(-1)) = mat(A A^(-1),-A A^(-1) B D^(-1)+B D^(-1); O, D D^(-1)) = mat(I, O; O, I), $
-$ mat(A^(-1),-A^(-1) B D^(-1); O, D^(-1)) mat(A, B; O, D) = mat(A^(-1) A, A^(-1) B-A^(-1) B D^(-1) D; O, D^(-1) D) = mat(I, O; O, I) $
+$
+mat(A, B; O, D)
+$
+は正則であり、逆行列は
+$
+mat(A^(-1), -A^(-1) B D^(-1); O, D^(-1))
+$
+で与えられる。
+実際、積を計算すると
+$
+mat(A, B; O, D)mat(A^(-1), -A^(-1) B D^(-1); O, D^(-1))
+= mat(A A^(-1), -A A^(-1) B D^(-1)+B D^(-1); O, D D^(-1))
+= mat(I, O; O, I),
+$
+$
+mat(A^(-1), -A^(-1) B D^(-1); O, D^(-1))mat(A, B; O, D)
+= mat(A^(-1) A, A^(-1) B-A^(-1) B D^(-1) D; O, D^(-1) D)
+= mat(I, O; O, I)
+$
 であることからわかる。
+] <t_blockinv>
 
-]
-#block[
+#example[
 実数$theta$に対して、$4$次正方行列
-$ A = mat(cos theta,-sin theta,-cos theta,-sin theta; sin theta, cos theta, sin theta,-cos theta; cos theta, sin theta, cos theta,-sin theta;-sin theta, cos theta, sin theta, cos theta;) $
+$
+A
+= mat(
+	cos theta, -sin theta, -cos theta, -sin theta;
+	sin theta, cos theta, sin theta, -cos theta;
+	cos theta, sin theta, cos theta, -sin theta;
+	-sin theta, cos theta, sin theta, cos theta;
+)
+$
 は
-$ A = mat(R (theta),-R (- theta); R (- theta), R (theta);) $
+$
+A = mat(R(theta), -R(-theta); R(-theta), R(theta);)
+$
 とみなすことができる。
-
 ]
