@@ -1,6 +1,11 @@
 
 = 連立一次方程式
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#let rank = $op("rank")$
+
 == 拡大係数行列
 
 $N = 1, 2, 3, dots$個の未知数$x_1, dots, x_N$と$M = 1, 2, 3, dots$個の等式からなる次の形の連立方程式
@@ -377,7 +382,6 @@ $
 そのため前の定理は斉次連立一次方程式に対しては以下のように単純になる。
 
 #theorem([斉次連立一次方程式の解])[
-<t:homlinsys>
 $K$上の$M times N$型の行列$A$を係数行列として斉次連立一次方程式$A bold(x) = bold(0)$を考える。
 このとき、$L = N-rank(A)$個の$N$次のベクトル$bold(y)_1, dots bold(y)_L$が存在して、解は$L$個のスカラー$c_1, dots c_L in K$を使って
 $
@@ -385,7 +389,7 @@ bold(x) = c_1 bold(y)_1+dots+c_L bold(y)_L
 $
 と書ける。
 特に$rank(A) = N$の時、解は零ベクトル$bold(0)$ただ一つである。
-]
+] <t_homlinsys>
 
 係数行列の等しい連立一次方程式と斉次連立一次方程式
 $
