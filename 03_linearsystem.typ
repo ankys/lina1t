@@ -324,71 +324,85 @@ $
 ]
 
 == 連立一次方程式の解
-<連立一次方程式の解>
+
 連立一次方程式を解くことを考えると拡大係数行列に対する行基本変形は同値変形になる。
 その結果として行簡約行列が得られたとすると実はそれで連立一次方程式はもう解かれた形になっていることがわかる。
 
 つまり以下の流れで解くことができる。
 
 + 連立一次方程式が与えられる。
-
 + 対応する拡大係数行列を書く。
-
 + 行基本変形して行簡約行列を求める。
-
 + 対応する連立一次方程式を書く。
-
 + 解を得る。
 
 いくつかの具体例を見てみる。
 
-#block[
+#example([連立一次方程式の解法])[
 ]
+
 前の方で述べた通り解はただ一つに定まるとは限らず、解がない場合と複数ある場合が存在する。
 複数ある場合は未知数のうちいくつかが自由に値を取れる状態になり解は無数にあることになる。
 
-#block[
+#example([解を持たない場合])[
 ]
-#block[
+
+#example([解が無数にある場合])[
 ]
+
 これらの状況を一般化してまとめると以下の定理が得られる。
 
-#block[
-$K$上の$M times N$型の行列$A$を係数行列、$M$次の縦ベクトル\$bold(b)$を定数項ベクトルとして連立一次方程式\$Abold(x} = bold(b)$を考える。
-\$tilde(A} = mat(A & bold(b}\\end{pmatrix)$を拡大係数行列とする。
+#theorem([連立一次方程式の解])[
+$K$上の$M times N$型の行列$A$を係数行列、$M$次の縦ベクトル$bold(b)$を定数項ベクトルとして連立一次方程式$A bold(x) = bold(b)$を考える。
+$tilde(A) = mat(A, bold(b))$を拡大係数行列とする。
 
-- \$\\rank(tilde(A}) \> \\rank(A)\$の時、\$Abold(x} = bold(b)$は解を持たない。
-
-- \$\\rank(tilde(A}) = \\rank(A)\$の時、$N$次のベクトル\$macron(bold(x})$と\$L = N-\\rank(A)\$個の$N$次のベクトル\$bold(y)_1, \\cdots bold(y)_L\$が存在して、解は$L$個のスカラー$c_1, dots c_L in K$を使って
-  \$\$bold(x} = macron(bold(x}}+c\_1bold(y)_1+\\cdots+c\_Lbold(y)_L\$\$
-  と書ける。 特に\$\\rank(A) = N\$の時、解はただ一つである。
-
+- $rank(tilde(A)) > rank(A)$の時、$A bold(x) = bold(b)$は解を持たない。
+- $rank(tilde(A)) = rank(A)$の時、$N$次のベクトル$macron(bold(x))$と$L = N-rank(A)$個の$N$次のベクトル$bold(y)_1, dots bold(y)_L$が存在して、解は$L$個のスカラー$c_1, dots c_L in K$を使って
+  $
+  bold(x) = macron(bold(x))+c_1 bold(y)_1+dots+c_L bold(y)_L
+  $
+  と書ける。
+  特に$rank(A) = N$の時、解はただ一つである。
 ]
-定数項がすべて零である連立一次方程式 \$\$Abold(x} = bold(0)$\$
+
+定数項がすべて零である連立一次方程式
+$
+A bold(x) = bold(0)
+$
 を_斉次連立一次方程式_という。
-この場合拡大係数行列\$tilde(A} = mat(A & bold(0}\\end{pmatrix)$を行基本変形しても一番右の列は常に零ベクトルである。
+この場合拡大係数行列$tilde(A) = mat(A, bold(0))$を行基本変形しても一番右の列は常に零ベクトルである。
 そのため拡大係数行列を考える必要はなく係数行列$A$を行基本変形したので十分である。
-特に\$\\rank(tilde(A}) = \\rank(A)\$である。
-よく考えてみると零ベクトル\$bold(x} = bold(0)$は解なので解を持たないことはない。
+特に$rank(tilde(A)) = rank(A)$である。
+よく考えてみると零ベクトル$bold(x) = bold(0)$は解なので解を持たないことはない。
 そのため前の定理は斉次連立一次方程式に対しては以下のように単純になる。
 
-#block[
+#theorem([斉次連立一次方程式の解])[
 <t:homlinsys>
-$K$上の$M times N$型の行列$A$を係数行列として斉次連立一次方程式\$Abold(x} = bold(0)$を考える。
-このとき、\$L = N-\\rank(A)\$個の$N$次のベクトル\$bold(y)_1, \\cdots bold(y)_L\$が存在して、解は$L$個のスカラー$c_1, dots c_L in K$を使って
-\$\$bold(x} = c\_1bold(y)_1+\\cdots+c\_Lbold(y)_L\$\$ と書ける。
-特に\$\\rank(A) = N\$の時、解は零ベクトル\$bold(0)$ただ一つである。
-
+$K$上の$M times N$型の行列$A$を係数行列として斉次連立一次方程式$A bold(x) = bold(0)$を考える。
+このとき、$L = N-rank(A)$個の$N$次のベクトル$bold(y)_1, dots bold(y)_L$が存在して、解は$L$個のスカラー$c_1, dots c_L in K$を使って
+$
+bold(x) = c_1 bold(y)_1+dots+c_L bold(y)_L
+$
+と書ける。
+特に$rank(A) = N$の時、解は零ベクトル$bold(0)$ただ一つである。
 ]
+
 係数行列の等しい連立一次方程式と斉次連立一次方程式
-\$\$Abold(x} = bold(b},
-\\quad Abold(x} = bold(0)$\$ を考える。
-ここでもし斉次とは限らない連立一次方程式\$Abold(x} = bold(b)$の解\$macron(bold(x})$が一つ見つかったとする。
-このとき、斉次連立一次方程式\$Abold(x} = bold(0)$の任意の解\$bold(y)$とスカラー$c$に対して\$macron(bold(x}}+cbold(y)$は連立一次方程式\$Abold(x} = bold(b)$の解である。
-そのため前の定理によって斉次連立一次方程式\$Abold(x} = bold(0)$の全ての解
-\$\$bold(x} = c\_1bold(y)_1+\\cdots+c\_Lbold(y)_L\$\$
-を得たとすると、連立一次方程式\$Abold(x} = bold(b)$の全ての解は
-\$\$bold(x} = macron(bold(x}}+c\_1bold(y)_1+\\cdots+c\_Lbold(y)_L\$\$
+$
+A bold(x) = bold(b),
+quad A bold(x) = bold(0)
+$
+を考える。
+ここでもし斉次とは限らない連立一次方程式$A bold(x) = bold(b)$の解$macron(bold(x))$が一つ見つかったとする。
+このとき、斉次連立一次方程式$A bold(x) = bold(0)$の任意の解$bold(y)$とスカラー$c$に対して$macron(bold(x))+c bold(y)$は連立一次方程式$A bold(x) = bold(b)$の解である。
+そのため前の定理によって斉次連立一次方程式$A bold(x) = bold(0)$の全ての解
+$
+bold(x) = c_1 bold(y)_1+dots+c_L bold(y)_L
+$
+を得たとすると、連立一次方程式$A bold(x) = bold(b)$の全ての解は
+$
+bold(x) = macron(bold(x))+c_1 bold(y)_1+dots+c_L bold(y)_L
+$
 となる。
 つまり方程式の解を一つ見つけて斉次方程式を完全に解くと元の方程式も完全に解かれる。
 このような解のことを_特解_という。
@@ -396,60 +410,77 @@ $K$上の$M times N$型の行列$A$を係数行列として斉次連立一次方
 微分方程式に対しても同様のことができしばしば重要になる。
 
 == 逆行列の計算
-<逆行列の計算>
+
 この章の始めの方で述べたように$N$次正方行列$A$の逆行列を計算することは
-$ A X = I_N $ を満たす$N$次正方行列$X$を見つけることである。
+$
+A X = I_N
+$
+を満たす$N$次正方行列$X$を見つけることである。
 正方行列$X$と単位行列$I_N$を
-\$\$X = mat(bold(x)_1 & \\cdots & bold(x)_N\\end{pmatrix},
-\\quad I\_N = mat(bold(e)_1 & \\cdots & bold(e)_N\\end{pmatrix)$\$
-と区分けする（\$bold(e)_1, \\cdots, bold(e)_N\$は$N$次の標準基底ベクトル）と、
-\$\$Abold(x)_1 = bold(e)_1, \\cdots, Abold(x)_N = bold(e)_N\$\$
+$
+X = mat(bold(x)_1, dots.c, bold(x)_N),
+quad I_N = mat(bold(e)_1, dots.c, bold(e)_N)
+$
+と区分けする（$bold(e)_1, dots, bold(e)_N$は$N$次の標準基底ベクトル）と、
+$
+A bold(x)_1 = bold(e)_1, dots, A bold(x)_N = bold(e)_N
+$
 となる。
 これらは連立一次方程式になっていて、つまり逆行列を求めることは上記の$N$個の連立一次方程式を解くことに帰着される。
 
-しかしながら$N$個の連立一次方程式を順番に解くことは効率が悪い、なぜなら拡大係数行列は\$mat(A & bold(e)_1\\end{pmatrix}, \\cdots, mat(A & bold(e)_1\\end{pmatrix)$であり係数行列が$A$で同じであるため同じ計算を何度もしてしまうためである。
+しかしながら$N$個の連立一次方程式を順番に解くことは効率が悪い、なぜなら拡大係数行列は$mat(A, bold(e)_1), dots, mat(A, bold(e)_N)$であり係数行列が$A$で同じであるため同じ計算を何度もしてしまうためである。
 そこで拡大係数行列をまとめて次の$N times (N+N)$型の行列
-\$\$mat(A & bold(e)_1 & \\cdots & bold(e)_N\\end{pmatrix} = mat(A & I\_N\\end{pmatrix)$\$
+$
+mat(A, bold(e)_1, dots.c, bold(e)_N) = mat(A, I_N)
+$
 を行簡約化する。
-もしこの行列が$N$次正方行列\$Y = mat(bold(y)_1 & \\cdots & bold(y)_N\\end{pmatrix)$を使って
-\$\$mat(I\_N & Y\\end{pmatrix} = mat(I\_N & bold(y)_1 & \\cdots & bold(y)_N\\end{pmatrix)$\$
-と行簡約化されたとすると、各$i = 1, dots, N$に対して\$mat(A & bold(e)_i\\end{pmatrix)$は\$mat(I\_N & bold(y)_i\\end{pmatrix)$に簡約化されるので、
-連立一次方程式\$Abold(x} = bold(e)_i\$の解は\$bold(x} = bold(y)_i\$であり先述の議論により$Y$こそが$A$の逆行列であることがわかる。
+もしこの行列が$N$次正方行列$Y = mat(bold(y)_1, dots.c, bold(y)_N)$を使って
+$
+mat(I_N, Y) = mat(I_N, bold(y)_1, dots.c, bold(y)_N)$
+と行簡約化されたとすると、各$i = 1, dots, N$に対して$mat(A, bold(e)_i)$は$mat(I_N, bold(y)_i)$に簡約化されるので、
+連立一次方程式$A bold(x) = bold(e)_i$の解は$bold(x) = bold(y)_i$であり先述の議論により$Y$こそが$A$の逆行列であることがわかる。
 一方でこの形に行簡約化されない場合は逆行列を持たないこともわかり、まとめると以下になる。
 
-#block[
+#theorem([逆行列の計算])[
 $A$を$N$次正方行列とする。
 
-- \$\\rank(A) = N\$の時、$A$は正則であり、$N times (N+N)$型の行列$mat(A, I_N)$は$mat(I_N, X)$の形に行簡約化されて、$X$は$A$の逆行列である。
-
-- \$\\rank(A) \\ne N\$の時、$A$は正則でない。
-
+- $rank(A) = N$の時、$A$は正則であり、$N times (N+N)$型の行列$mat(A, I_N)$は$mat(I_N, X)$の形に行簡約化されて、$X$は$A$の逆行列である。
+- $rank(A) eq.not N$の時、$A$は正則でない。
 ]
-#block[
+
+#remark[
 さらに$P mat(A, I_N) = mat(I_N, X)$とおくと$X = P$なので、$A$の逆行列は基本行列の積として表される。
 特にすべての正則行列は基本行列の積として表される。
-
 ]
+
 == 区分けと基本変形
-<区分けと基本変形>
+
 行列の行基本変形は一行ずつ処理していくが、まとめて処理すると区分けされた行列の行簡約化がやりやすい場合がある。
 そこで次の三つの変形を導入する。
 
 - いくつかの行をまとめて入れ替える。
-
 - $R$個の行に$R$次の正則行列を左からかける。
-
 - ある$L$個の行に、別の$R$個の行に$L times R$型の行列を左からかけたものを加える。
 
 これらはいずれも行基本変形の繰り返しとして実現できる。
 (1)と(3)は容易にわかるが、(2)は前節で述べた通り正則行列が基本行列の積として表されることにより証明できる。
 
-#block[
-例@t:blockinvで見た通り$A$を$N_1$次の正則行列、$D$を$N_2$次の正則行列として$N_1+N_2$次の正方行列
-$ mat(A, B; O, D) $ の逆行列は
-$ mat(A^(-1), - A^(-1) B D^(-1); O, D^(-1)) $
-で与えられる。 これを導出しようとすると上記の変形により
-$ mat(A, B, I, O; O, D, O, I) -> mat(I, A^(-1) B, A^(-1), O; O, D, O, I) -> mat(I, A^(-1) B, A^(-1), O; O, I, O, D^(-1)) -> mat(I, O, A^(-1), - A^(-1) B D^(-1); O, I, O, D^(-1)) $
+#example[
+@t_blockinv で見た通り$A$を$N_1$次の正則行列、$D$を$N_2$次の正則行列として$N_1+N_2$次の正方行列
+$
+mat(A, B; O, D)
+$
+の逆行列は
+$
+mat(A^(-1), - A^(-1) B D^(-1); O, D^(-1))
+$
+で与えられる。
+これを導出しようとすると上記の変形により
+$
+mat(A, B, I, O; O, D, O, I)
+-> mat(I, A^(-1) B, A^(-1), O; O, D, O, I)
+-> mat(I, A^(-1) B, A^(-1), O; O, I, O, D^(-1))
+-> mat(I, O, A^(-1), - A^(-1) B D^(-1); O, I, O, D^(-1))
+$
 とできるからわかる。
-
 ]
