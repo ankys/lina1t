@@ -423,120 +423,153 @@ $
 ]
 
 == 余因子展開
-<余因子展開>
+
 $N$次正方行列$A$と$i, j = 1, dots, N$に対して、$A$の第$i$行と第$j$列を取り除いて得られる$N-1$次正方行列の行列式を$(-1)^(i+j)$倍した数を$A$の$(i, j)$_余因子_という。
 つまり、$A$を
-$ A = mat(A_(U L), \*, A_(U R); \*, a_(i j), \*; A_(L L), \*, A_(L R);) $
+$
+A = mat(A_(U L), \*, A_(U R); \*, a_(i j), \*; A_(L L), \*, A_(L R);)
+$
 と区分けした時に
-$ tilde(A)_(i j) = (-1)^(i+j) mat(delim: "||", A_(U L), A_(U R); A_(L L), A_(L R);) $
+$
+tilde(A)_(i j) = (-1)^(i+j) mat(delim: "|", A_(U L), A_(U R); A_(L L), A_(L R);) $
 を定義する。
 
 元の行列$A$の行列式は余因子を使って次のように表現される。
 
-#block[
+#theorem([余因子展開])[
 $N$次正方行列$A$と$i, j = 1, dots, N$に対して
-$ det A = a_(i 1) tilde(A)_(i 1)+dots+a_(i N) tilde(A)_(i N) = a_(1 j) tilde(A)_(1 j)+dots+a_(N j) tilde(A)_(N j) $
+$
+det A
+= a_(i 1) tilde(A)_(i 1)+dots+a_(i N) tilde(A)_(i N)
+= a_(1 j) tilde(A)_(1 j)+dots+a_(N j) tilde(A)_(N j)
+$
 が成り立つ。
-
 ]
+
 この式の中で$i$を使った式を第$i$行についての余因子展開といい、$j$を使った式を第$j$列についての余因子展開という。
 
-#block[
+#proof[
 第$i$行についての余因子展開を示す。 第$i$行を
-$ mat(a_(i 1), a_(i 2), dots, a_(i N)) = a_(i 1) mat(1, 0, dots, 0)+a_(i 2) mat(0, 1, dots, 0)+a_(i N) mat(0, 0, dots, 1) $
+$
+mat(a_(i 1), a_(i 2), dots, a_(i N))
+= a_(i 1) mat(1, 0, dots, 0)+a_(i 2) mat(0, 1, dots, 0)+a_(i N) mat(0, 0, dots, 1)
+$
 と分解すると、多重線形性より示される。
 列についての余因子展開は転置を取ればよい。
+]
 
+#example[
 ]
-#block[
+
+#remark[
 ]
-#block[
-]
+
 余因子は逆行列とも結びつく。 まず、余因子を次のように並べて得られる行列
-$ tilde(A) = mat(tilde(A)_(1 1), dots, tilde(A)_(N 1); dots.v, dots.down, dots.v; tilde(A)_(1 N), dots, tilde(A)_(N N);) $
+$
+tilde(A)
+= mat(tilde(A)_(1 1), dots.c, tilde(A)_(N 1); dots.v, dots.down, dots.v; tilde(A)_(1 N), dots.c, tilde(A)_(N N);)
+$
 を$A$の_余因子行列_という。
 並べ方が転置を取ったようになっているので注意。
 
-#block[
-<t:cofactinv> $N$次正方行列$A$とその余因子行列$tilde(A)$について
-$ A tilde(A) = tilde(A) A = det (A) I_N $ が成り立つ。
+#theorem([余因子行列と逆行列])[
+$N$次正方行列$A$とその余因子行列$tilde(A)$について
+$
+A tilde(A) = tilde(A) A = det(A) I_N
+$
+が成り立つ。
 特に$A$が可逆であることと$det A eq.not 0$であることは同値であり、$A$の逆行列は
-$ A^(-1) = frac(1, det A) tilde(A) $ で与えられる。
+$
+A^(-1) = 1/(det A) tilde(A)
+$
+で与えられる。
+] <t_cofactinv>
 
-]
 この定理は逆行列を持つための必要十分条件を与えて非常に重要であるが、
 逆行列の計算という観点からは行列式の値の計算が大変なので基本変形の方が一般に効率が良い。
 
 証明のために次の補題を用意する。
 
-#block[
-<t:cofactvec>
-$A$を$N$次正方行列、$tilde(A)$をその余因子行列として\$bold(b}\$を$N$次ベクトルとする。
-この時、 \$\$\\tilde{A}bold(b}
-= \\begin{pmatrix}\\det A_(1, bold(b}} \\\\ \\vdots \\\\ \\det A_(N, bold(b}}\\end{pmatrix}\$\$
+#lemma[
+$A$を$N$次正方行列、$tilde(A)$をその余因子行列として$bold(b)$を$N$次ベクトルとする。
+この時、
+$
+tilde(A)bold(b)
+= mat(det A_(1, bold(b)), dots.c, det A_(N, bold(b)))
+$
 が成り立つ。
-ただし、\$A_(k, bold(b}}\$は行列\$A = \\begin{pmatrix}bold(a)_1 & dots & bold(a)_N\\end{pmatrix}\$の第$k = 1, dots, N$列をベクトル\$bold(b}\$で置き換えて得られる行列
-\$\$A_(k, bold(b}} = \\begin{pmatrix}bold(a)_1 & dots & bold(a)_{k-1} & bold(b} & bold(a)_{k+1} & dots & bold(a)_N\\end{pmatrix}\$\$
+ただし、$A_(k, bold(b))$は行列$A = mat(bold(a)_1, dots.c, bold(a)_N)$の第$k = 1, dots, N$列をベクトル$bold(b)$で置き換えて得られる行列
+$
+A_(k, bold(b))
+= mat(bold(a)_1, dots, bold(a)_(k-1), bold(b), bold(a)_(k+1), dots, bold(a)_N)
+$
 である。
+] <t_cofactvec>
 
+#proof[
+ベクトル$tilde(A)bold(b)$の第$k$成分は
+$
+tilde(A)_(1 k) b_1+dots+tilde(A)_(N k) b_N
+$
+であり、これは$det A_(k, bold(b))$の第$k$列についての余因子展開に一致する。
 ]
-#block[
-ベクトル\$\\tilde{A}bold(b}\$の第$k$成分は
-$ tilde(A)_(1 j) b_1+dots+tilde(A)_(N j) b_N $
-であり、これは\$\\det A_(k, bold(b}}\$の第$k$列についての余因子展開に一致する。
 
-]
-#block[
-_定理@t:cofactinvの証明.]
+#proof([@t_cofactinv の証明])[
 $tilde(A) A = det (A) I_N$を示せば十分である。
-$tilde(A) A$の第$(i, j)$成分は、$A$の第$j$列を\$bold(a)_j\$とすると、\$\\tilde{A}bold(a)_j\$の第$i$成分なので、補題@t:cofactvecより、\$\\det A_(i, bold(a)_j}\$に等しい。
+$tilde(A) A$の第$(i, j)$成分は、$A$の第$j$列を$bold(a)_j$とすると、$tilde(A)bold(a)_j$の第$i$成分なので、@t_cofactvecより、$det A_(i, bold(a)_j)$に等しい。
 これは$j eq.not i$の時は同じ列が二つあるので$0$であり、$j = i$の時は$det A$に他ならない。
 以上より証明される。
-
 ]
+
 この節の最後に行列式を用いた連立一次方程式の解の公式を紹介する。
 
 #block[
 $A$を$N$次正則行列つまり逆行列を持つとして、連立一次方程式
-\$\$Abold(x} = bold(b}\$\$
-の一意な解\$bold(x} = \\begin{pmatrix}x\_1 \\\\ \\vdots \\\\ x\_N\\end{pmatrix}\$の成分$x_k$は
-\$\$x\_k = \\frac{\\det A_(k, bold(b}}}{\\det A}\$\$ で与えられる。
-
+$
+A bold(x) = bold(b)
+$
+の一意な解$bold(x) = vec(x_1, dots.v, x_N)$の成分$x_k$は
+$
+x_k = (det A_(k, bold(b)))/(det A)
+$
+で与えられる。
 ]
-#block[
-_Proof.]
-$A$は逆行列を持ち、それは余因子行列を用いて$A = frac(1, det A) tilde(A)$で与えられるので、解は\$bold(x} = \\frac{1}{\\det A}\\tilde{A}bold(b}\$である。
-よって後は補題@t:cofactvecにより計算される。
 
+#proof[
+$A$は逆行列を持ち、それは余因子行列を用いて$A = frac(1, det A) tilde(A)$で与えられるので、解は$bold(x) = 1/(det A) tilde(A)bold(b)$である。
+よって後は@t_cofactvecにより計算される。
 ]
+
 == 基本変形と行列式
-<基本変形と行列式>
+
 行列の基本変形は基本行列との積を取ることと考えられることと基本行列の行列式は簡単な計算で
-$ det P_n(i, j) =-1, quad det Q_n(i, c) = c, quad det R_n(i, j, c) = 1 $
+$
+det P_n(i, j) = -1,
+quad det Q_n(i, c) = c,
+quad det R_n(i, j, c) = 1
+$
 と求まることから、基本変形をすると行列式の値は次のように変化する。
 
 - 二つの行（または列）を入れ替えると行列式の符号が反転する。
-
 - ある行（または列）を定数$c in K$倍すると行列式の値が$c$倍になる。
-
 - ある行（または列）に、別の行（列）の定数倍を加えても行列式は変化しない。
 
 基本変形して行列をより単純な形にすることで、行列式の計算をやりやすくすることができる。
 
-#block[
+#example[
 ]
+
 また、基本変形をまとめて処理すると行列式の値は次のように変化する。
 
-- 置換$s$に従っていくつかの行（または列）をまとめて入れ替えると行列式の値は\$sgn(s)\$倍になる。
-
+- 置換$s$に従っていくつかの行（または列）をまとめて入れ替えると行列式の値は$sgn(s)$倍になる。
 - $R$個の行（または列）に$R$次の正則行列$A$を左からかけると行列式の値は$det A$倍になる。
-
 - ある$L$個の行（または列）に、別の$R$個の行（列）に$L times R$型の行列を左からかけたものを加えても行列式は変化しない。
 
 ここで(2)は正則行列が基本行列の積として表されることから正当化される。
 
-#block[
+#example[
 ]
+
 == 種々の行列式
 <種々の行列式>
 重要な行列式の公式として以下がある。
