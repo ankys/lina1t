@@ -213,170 +213,215 @@ $
 以上のことから偶置換の符号は正で奇置換の符号は負であることがわかる。
 
 == 置換による行列式
-<置換による行列式>
+
 行列式は置換とその符号を用いて以下のように定義される。
 
-#block[
+#definition([行列式])[
 $K$上の$N$次正方行列$A = (a_(i j))$の_行列式_を以下で定義する。
-\$\$\\det A = abs(A} =
-\\begin{vmatrix}
-a\_{1 1} & \\cdots & a\_{1 N} \\\\
-\\vdots & \\ddots & \\vdots \\\\
-a\_{N 1} & \\cdots & a\_{N N} \\\\
-\\end{vmatrix}
-= \\sum\_{s \\in S\_N}sgn(s) a\_{1 s(1)}\\cdots a\_{N s(N)}.\$\$
+$
+det A = abs(A)
+= mat(delim: "|", a_(1 1), dots.c, a_(1 N); dots.v, dots.down, dots.v; a_(N 1), dots.c, a_(N N);)
+= sum_(s in S_N) sgn(s) a_(1 s(1)) dots a_(N s(N)).
+$
 正確には\$sgn(s)\$は実数の$plus.minus 1$として定義されたがこれを$K$の$plus.minus 1$と同一視して、
 行列式は$K$の元つまりスカラーとして定義する。
-
 ]
+
 $N$が小さいうちはこの定義によって直接行列式を定義することができる。
 
-#block[
-$1$次正方行列（スカラー）の行列式は以下になる。
-$ mat(delim: "||", a) =+a . $ $2$次正方行列の行列式は以下になる。
-$ mat(delim: "||", a, b; c, d) =+a d-b c . $
-$3$次正方行列の行列式は以下になる。
-$ mat(delim: "||", a, b, c; d, e, f; g, h, i) =+a e i+b f g+c d h-c e g-b d i-a f h . $
-
+#proposition([サラスの公式])[
+- $1$次正方行列（スカラー）の行列式は以下になる。
+	$
+	mat(delim: "|", a) = +a.
+	$
+- $2$次正方行列の行列式は以下になる。
+	$
+	mat(delim: "|", a, b; c, d) = +a d-b c.
+	$
+- $3$次正方行列の行列式は以下になる。
+	$
+	mat(delim: "|", a, b, c; d, e, f; g, h, i) = +a e i+b f g+c d h-c e g-b d i-a f h.
+	$
 ]
-これらの公式は行列の成分を斜めがけして方向によって符号を決めるという覚え方がある。
-しかしながら$N$が大きくなると置換の個数が$N !$個あるため項数が爆発的に増えるのと、$N >= 4$では覚え方が通用しない。
+
+これらの公式は行列の成分を斜めがけして方向によって符号を決めるという覚え方がある（サラスの方法）。
+しかしながら$N$が大きくなると置換の個数が$N!$個あるため項数が爆発的に増えるのと、$N >= 4$では覚え方が通用しない。
 そこで行列式が満たす性質をうまく使って効率よく計算する必要がある。
 
 == 行列式の性質
-<行列式の性質>
+
 重要な行列式の性質として以下が挙げられる。
 
-#block[
-$N$次正方行列$A$に対して、 $ det A^T = det A $ が成り立つ。
-
-]
-#block[
-変形すると \$\$\\begin{aligned}
-\\det A^T
-&= \\sum\_{s \\in S\_N}sgn(s) a\_{s(1) 1}\\cdots a\_{s(N) N}
-= \\sum\_{s \\in S\_N}sgn(s) a\_{1 s^(-1)(1)}\\cdots a\_{N s^(-1)(N)} \\\\
-&= \\sum\_{s \\in S\_N}sgn(s^(-1)) a\_{1 s(1)}\\cdots a\_{N s(N)}
-= \\sum\_{s \\in S\_N}sgn(s) a\_{1 s(1)}\\cdots a\_{N s(N)} \\\\
-&= \\det A.
-\\end{aligned}\$\$
-
-]
-#block[
-第$1$行または第$1$列が第$(1, 1)$成分を残して他がすべて零の行列の行列式について、
-$ mat(delim: "||", a_(1 1), 0, dots, 0; a_(2 1), a_(2 2), dots, a_(2 N); dots.v, dots.v, dots.down, dots.v; a_(N 1), a_(N 2), dots, a_(N N);) = mat(delim: "||", a_(1 1), a_(1 2), dots, a_(1 N); 0, a_(2 2), dots, a_(2 N); dots.v, dots.v, dots.down, dots.v; 0, a_(N 2), dots, a_(N N);) = a_(1 1) mat(delim: "||", a_(2 2), dots, a_(2 N); dots.v, dots.down, dots.v; a_(N 2), dots, a_(N N);) $
+#proposition([転置])[
+$N$次正方行列$A$に対して、
+$
+det A^T = det A
+$
 が成り立つ。
-
 ]
-#block[
-_Proof.]
+
+#proof[
+変形すると
+$
+det A^T
+&= sum_(s in S_N) sgn(s) a_(s(1) 1) dots a_(s(N) N)
+= sum_(s in S_N) sgn(s) a_(1 s^(-1) (1)) dots a_(N s^(-1) (N))
+&= sum_(s in S_N) sgn(s^(-1)) a_(1 s(1)) dots a_(N s(N))
+= sum_(s in S_N) sgn(s) a_(1 s(1)) dots a_(N s(N))
+= det A.
+$
+]
+
+#proposition[
+第$1$行または第$1$列が第$(1, 1)$成分を残して他がすべて零の行列の行列式について、
+$
+mat(delim: "|",
+	a_(1 1), 0, dots.c, 0;
+	a_(2 1), a_(2 2), dots.c, a_(2 N);
+	dots.v, dots.v, dots.down, dots.v;
+	a_(N 1), a_(N 2), dots.c, a_(N N);
+)
+= mat(delim: "|",
+	a_(1 1), a_(1 2), dots.c, a_(1 N);
+	0, a_(2 2), dots.c, a_(2 N);
+	dots.v, dots.v, dots.down, dots.v;
+	0, a_(N 2), dots.c, a_(N N);
+)
+= a_(1 1) mat(delim: "|", a_(2 2), dots.c, a_(2 N); dots.v, dots.down, dots.v; a_(N 2), dots.c, a_(N N);)
+$
+が成り立つ。
+]
+
+#proof[
 左辺の行列について示せば、中辺の行列はその転置なので前命題より行列式の値は等しい。
 その左辺の行列の行列式について、置換$s in S_N$に対して$s(1) eq.not 1$だと$a_(1 s(1)) = 0$である。
 よって、$s(1) = 1$であり行列式で$a_(1 s(1)) = a_(1 1)$がくくり出せて命題が従う。
-
 ]
+
 この命題を繰り返し用いることで次の命題が従う。
 
-#block[
+#proposition([三角行列の行列式])[
 三角行列の行列式は対角成分を掛け合わせることで得られる。 つまり
-$ mat(delim: "||", a_(1 1), dots, a_(1 N);, dots.down, dots.v;,, a_(N N);) = mat(delim: "||", a_(1 1),, ; dots.v, dots.down, ; a_(N 1), dots, a_(N N);) = a_(1 1) dots a_(N N) $
-が成り立つ。 特に単位行列について $ det I_N = 1 $ である。
-
+$
+mat(delim: "|", a_(1 1), dots.c, a_(1 N); , dots.down, dots.v; , , a_(N N);)
+= mat(delim: "|", a_(1 1), , ; dots.v, dots.down, ; a_(N 1), dots.c, a_(N N);)
+= a_(1 1) dots a_(N N)
+$
+が成り立つ。
+特に単位行列について
+$
+det I_N = 1
+$
+である。
 ]
+
 次の二つの命題は行列式の計算をする上で重要である。
 
-#block[
-$N$次の横ベクトル\$bold(a}\_1, \\cdots, bold(a}\_N, bold(a)'\_1, \\cdots, bold(a)'\_N\$とスカラー$c_1, dots, c_N, c'_1, dots, c'_N$に対して、
-\$\$\\begin{vmatrix}\\vdots \\\\ c\_ibold(a}\_i+c\'\_ibold(a)'\_i \\\\ \\vdots\\end{vmatrix}
-= c\_i\\begin{vmatrix}\\vdots \\\\ bold(a}\_i \\\\ \\vdots\\end{vmatrix}+c\'\_i\\begin{vmatrix}\\vdots \\\\ bold(a)'\_i \\\\ \\vdots\\end{vmatrix}\$\$
+#proposition([多重線形性])[
+$N$次の横ベクトル$bold(a)_1, dots, bold(a)_N, bold(a)'_1, dots, bold(a)'_N$とスカラー$c_1, dots, c_N, c'_1, dots, c'_N$に対して、
+$
+mat(delim: "|", dots.v; c_i bold(a)_i+c'_i bold(a)'_i; dots.v)
+= c_i mat(delim: "|", dots.v; bold(a)_i; dots.v)+c'_i mat(delim: "|", dots.v; bold(a)'_i; dots.v)
+$
 が成り立つ。
-また、$N$次の縦ベクトル\$bold(a}\_1, \\cdots, bold(a}\_N, bold(a)'\_1, \\cdots, bold(a)'\_N\$とスカラー$c_1, dots, c_N, c'_1, dots, c'_N$に対して、
-\$\$\\begin{vmatrix}\\cdots & c\_ibold(a}\_i+c\'\_ibold(a)'\_i & \\cdots\\end{vmatrix}
-= c\_i\\begin{vmatrix}\\cdots & bold(a}\_i & \\cdots\\end{vmatrix}+c\'\_i\\begin{vmatrix}\\cdots & bold(a)'\_i & \\cdots\\end{vmatrix}\$\$
+また、$N$次の縦ベクトル$bold(a)_1, dots, bold(a)_N, bold(a)'_1, dots, bold(a)'_N$とスカラー$c_1, dots, c_N, c'_1, dots, c'_N$に対して、
+$
+mat(delim: "|", dots.c, c_i bold(a)_i+c'_i bold(a)'_i, dots.c)
+= c_i mat(delim: "|", dots.c, bold(a)_i, dots.c)+c'_i mat(delim: "|", dots.c, bold(a)'_i, dots.c)
+$
 が成り立つ。
-
 ]
-#block[
-_Proof.]
+
+#proof[
 成分を設定して行列式の定義に従って計算するとすぐわかるので詳細は省略する。
-
 ]
-#block[
-$N$次の横ベクトル\$bold(a}\_1, \\cdots, bold(a}\_N\$と$i eq.not j$を満たす$i, j = 1, dots, N$に対して
-\$\$\\begin{vmatrix}\\vdots \\\\ bold(a}\_j \\\\ \\vdots \\\\ bold(a}\_i \\\\ \\vdots\\end{vmatrix}
-= -\\begin{vmatrix}\\vdots \\\\ bold(a}\_i \\\\ \\vdots \\\\ bold(a}\_j \\\\ \\vdots\\end{vmatrix},
-\\quad \\begin{vmatrix}\\vdots \\\\ bold(a} \\\\ \\vdots \\\\ bold(a} \\\\ \\vdots\\end{vmatrix} = 0\$\$
-が成り立つ。
-また、$N$次の縦ベクトル\$bold(a}\_1, \\cdots, bold(a}\_N, bold(a}\$と$i eq.not j$を満たす$i, j = 1, dots, N$に対して
-\$\$\\begin{vmatrix}\\cdots & bold(a}\_j & \\cdots & bold(a}\_i & \\cdots\\end{vmatrix}
-= -\\begin{vmatrix}\\cdots & bold(a}\_i & \\cdots & bold(a}\_j & \\cdots\\end{vmatrix},
-\\quad \\begin{vmatrix}\\cdots & bold(a} & \\cdots & bold(a} & \\cdots\\end{vmatrix} = 0\$\$
-が成り立つ。
 
+#proposition([交代性])[
+$N$次の横ベクトル$bold(a)_1, dots, bold(a)_N, bold(a)$と$i eq.not j$を満たす$i, j = 1, dots, N$に対して
+$
+mat(delim: "|", dots.v; bold(a)_j; dots.v; bold(a)_i; dots.v)
+= -mat(delim: "|", dots.v; bold(a)_i; dots.v; bold(a)_j; dots.v)
+quad
+mat(delim: "|", dots.v; bold(a); dots.v; bold(a); dots.v) = 0
+$
+が成り立つ。
+また、$N$次の縦ベクトル$bold(a)_1, dots, bold(a)_N, bold(a)$と$i eq.not j$を満たす$i, j = 1, dots, N$に対して
+$
+mat(delim: "|", dots.c, bold(a)_j, dots.c, bold(a)_i, dots.c)
+= -mat(delim: "|", dots.c, bold(a)_i, dots.c, bold(a)_j, dots.c)
+quad
+mat(delim: "|", dots.c, bold(a), dots.c, bold(a), dots.c) = 0
+$
+が成り立つ。
 ]
+
 この命題の一つ目の等式は行を交換したら行列式の符号が変わることを述べ、二つ目の等式は二つの行が同じだったら行列式は零であることを述べている。
 一見すると二つ目の式は一つ目の特別な場合であるが、$2 = 0$となるような体に配慮して二つ目を先に示し、そのことを利用して一つ目を示す。
 
-#block[
+#proof[
 転置すればよいので、前半部分だけ示す。
 一つ目の等式を示すために$A = (a_(i, j))_(j = 1, dots, N)^(i = 1, dots, N)$は第$i$行と第$j$行が等しい、つまり$a_(i k) = a_(j k)$がすべての$k = 1, dots, N$に対して成り立つとすると、
-\$\$\\det A
-= \\det A^T
-= \\sum\_{s \\in S\_N}sgn(s) a\_{s(1) 1}\\cdots a\_{s(N) N}
-= \\sum\_{s \\in S\_N^+}a\_{s(1) 1}\\cdots a\_{s(N) N}-\\sum\_{s \\in S\_N^-}a\_{s(1) 1}\\cdots a\_{s(N) N}.\$\$
+$
+det A
+= det A^T
+= sum_(s in S_N) sgn(s) a_(s(1) 1) dots a_(s(N) N)
+= sum_(s in S_N^+) a_(s(1) 1) dots a_(s(N) N)-sum_(s in S_N^-) a_(s(1) 1) dots a_(s(N) N).
+$
 ここで奇置換の方にだけ互換$t = mat(i, j)$の操作をすると、$A$の仮定から
-$ sum_(s in S_N^(-)) a_(s(1) 1) dots a_(s(N) N) = sum_(s in S_N^(-)) a_(t (s(1)) 1) dots a_(t (s(N)) N) = sum_(s in S_N^(+)) a_(s(1) 1) dots a_(s(N) N) . $
+$
+sum_(s in S_N^(-)) a_(s(1) 1) dots a_(s(N) N)
+= sum_(s in S_N^(-)) a_(t(s(1)) 1) dots a_(t(s(N)) N)
+= sum_(s in S_N^(+)) a_(s(1) 1) dots a_(s(N) N).
+$
 よって$det A = 0$である。
 
-二つ目を示すために第$i$行と第$j$行がともに\$bold(a}\_i+bold(a}\_j\$である行列の行列式を考えると多重線形性と先ほど示したことより、
-\$\$\\begin{vmatrix}\\vdots \\\\ bold(a}\_i+bold(a}\_j \\\\ \\vdots \\\\ bold(a}\_i+bold(a}\_j \\\\ \\vdots\\end{vmatrix}
+二つ目を示すために第$i$行と第$j$行がともに$bold(a)_i+bold(a)_j$である行列の行列式を考えると多重線形性と先ほど示したことより、
+$
+mat(delim: "|", dots.v; bold(a)_i+bold(a)_j; dots.v; bold(a)_i+bold(a)_j; dots.v)
 =
-\\begin{vmatrix}\\vdots \\\\ bold(a}\_i \\\\ \\vdots \\\\ bold(a}\_i \\\\ \\vdots\\end{vmatrix}
-+\\begin{vmatrix}\\vdots \\\\ bold(a}\_i \\\\ \\vdots \\\\ bold(a}\_j \\\\ \\vdots\\end{vmatrix}
-+\\begin{vmatrix}\\vdots \\\\ bold(a}\_j \\\\ \\vdots \\\\ bold(a}\_i \\\\ \\vdots\\end{vmatrix}
-+\\begin{vmatrix}\\vdots \\\\ bold(a}\_j \\\\ \\vdots \\\\ bold(a}\_j \\\\ \\vdots\\end{vmatrix}
-= \\begin{vmatrix}\\vdots \\\\ bold(a}\_i \\\\ \\vdots \\\\ bold(a}\_j \\\\ \\vdots\\end{vmatrix}
-+\\begin{vmatrix}\\vdots \\\\ bold(a}\_j \\\\ \\vdots \\\\ bold(a}\_i \\\\ \\vdots\\end{vmatrix}\$\$
+mat(delim: "|", dots.v; bold(a)_i; dots.v; bold(a)_i; dots.v)
++mat(delim: "|", dots.v; bold(a)_i; dots.v; bold(a)_j; dots.v)
++mat(delim: "|", dots.v; bold(a)_j; dots.v; bold(a)_i; dots.v)
++mat(delim: "|", dots.v; bold(a)_j; dots.v; bold(a)_j; dots.v)
+= mat(delim: "|", dots.v; bold(a)_i; dots.v; bold(a)_j; dots.v)+mat(delim: "|", dots.v; bold(a)_j; dots.v; bold(a)_i; dots.v)
+$
 でこれが$0$に等しいので、証明すべき等式が得られる。
-
 ]
-#block[
-<t:proddet> 二つの$N$次正方行列$A$と$B$に対して、
-$ det (A B) = det A det B $ が成り立つ。
 
-]
-#block[
+#proposition([積の行列式])[
+二つの$N$次正方行列$A$と$B$に対して、
+$
+det (A B) = det A det B
+$
+が成り立つ。
+] <t_proddet>
+
+#proof[
 まず、積$A B$は成分を使って以下のように書くことができる。
-\$\$A B =
-\\begin{pmatrix}
-a\_{1 1} & \\cdots & a\_{1 N}\\\\
-\\vdots  & \\ddots & \\vdots \\\\
-a\_{N 1} & \\cdots & a\_{N N}\\\\
-\\end{pmatrix}
-\\begin{pmatrix}
-bold(b}\_1\\\\
-\\vdots   \\\\
-bold(b}\_N\\\\
-\\end{pmatrix}
-=
-\\begin{pmatrix}
-a\_{1 1}bold(b}\_1+\\cdots+a\_{1 N}bold(b}\_N \\\\
-\\vdots   \\\\
-a\_{N 1}bold(b}\_1+\\cdots+a\_{N N}bold(b}\_N \\\\
-\\end{pmatrix}.\$\$ よって、 \$\$\\det(A B) =
-\\begin{vmatrix}
-\\sum\_{j\_1 = 1}^N a\_{1 j\_i}bold(b}\_{j\_1} \\\\
-\\vdots   \\\\
-\\sum\_{j\_N = 1}^N a\_{N j\_N}bold(b}\_{j\_N} \\\\
-\\end{vmatrix}.\$\$ 多重線形性より、 \$\$\\det(A B) =
-\\sum\_{j\_1 = 1}^N \\cdots \\sum\_{j\_N = 1}^N a\_{1 j\_1}\\cdots a\_{N j\_N}\\begin{vmatrix}bold(b}\_{j\_1} \\\\ \\vdots \\\\ bold(b}\_{j\_N}\\end{vmatrix}.\$\$
-交代性より同じ行がある場合の行列式は$0$なので、 \$\$\\det(A B) =
-\\sum\_{s \\in S\_N} a\_{1 s(1)}\\cdots a\_{N s(N)}\\begin{vmatrix}bold(b}\_{s(1)} \\\\ \\vdots \\\\ bold(b}\_{s(N)}\\end{vmatrix}.\$\$
-行を並べ替えて、 \$\$\\det(A B) =
-\\sum\_{s \\in S\_N} sgn(s)a\_{1 s(1)}\\cdots a\_{N s(N)}\\begin{vmatrix}bold(b}\_1 \\\\ \\vdots \\\\ bold(b}\_N\\end{vmatrix}.\$\$
+$
+A B =
+mat(a_(1 1), dots.c, a_(1 N); dots.v, dots.down, dots.v; a_(N 1), dots.c, a_(N N))
+mat(bold(b)_1; dots.v; bold(b)_N)
+= mat(a_(1 1) bold(b)_1+dots+a_(1 N) bold(b)_N; dots.v; a_(N 1) bold(b)_1+dots+a_(N N) bold(b)_N)
+$
+よって多重線形性より、
+$
+det(A B) =
+sum_(j_1 = 1)^N dots sum_(j_N = 1)^N a_(1 j_1) dots a_(N j_N) mat(delim: "|", bold(b)_(j_1); dots.v; bold(b)_(j_N))
+$
+交代性より同じ行がある場合の行列式は$0$なので、
+$
+det(A B) =
+sum_(s in S_N) a_(1 s(1)) dots a_(N s(N)) mat(delim: "|", bold(b)_(s(1)); dots.v; bold(b)_(s(N)))
+$
+行を並べ替えて、
+$
+det(A B) =
+sum_(s in S_N) sgn(s) a_(1 s(1)) dots a_(N s(N)) mat(delim: "|", bold(b)_1; dots.v; bold(b)_N)
+$
 よって$det (A B) = det A det B$である。
-
 ]
+
 == 余因子展開
 <余因子展開>
 $N$次正方行列$A$と$i, j = 1, dots, N$に対して、$A$の第$i$行と第$j$列を取り除いて得られる$N-1$次正方行列の行列式を$(-1)^(i+j)$倍した数を$A$の$(i, j)$_余因子_という。
@@ -428,23 +473,23 @@ $ A^(-1) = frac(1, det A) tilde(A) $ で与えられる。
 <t:cofactvec>
 $A$を$N$次正方行列、$tilde(A)$をその余因子行列として\$bold(b}\$を$N$次ベクトルとする。
 この時、 \$\$\\tilde{A}bold(b}
-= \\begin{pmatrix}\\det A\_{1, bold(b}} \\\\ \\vdots \\\\ \\det A\_{N, bold(b}}\\end{pmatrix}\$\$
+= \\begin{pmatrix}\\det A_(1, bold(b}} \\\\ \\vdots \\\\ \\det A_(N, bold(b}}\\end{pmatrix}\$\$
 が成り立つ。
-ただし、\$A\_{k, bold(b}}\$は行列\$A = \\begin{pmatrix}bold(a}\_1 & \\cdots & bold(a}\_N\\end{pmatrix}\$の第$k = 1, dots, N$列をベクトル\$bold(b}\$で置き換えて得られる行列
-\$\$A\_{k, bold(b}} = \\begin{pmatrix}bold(a}\_1 & \\cdots & bold(a}\_{k-1} & bold(b} & bold(a}\_{k+1} & \\cdots & bold(a}\_N\\end{pmatrix}\$\$
+ただし、\$A_(k, bold(b}}\$は行列\$A = \\begin{pmatrix}bold(a)_1 & dots & bold(a)_N\\end{pmatrix}\$の第$k = 1, dots, N$列をベクトル\$bold(b}\$で置き換えて得られる行列
+\$\$A_(k, bold(b}} = \\begin{pmatrix}bold(a)_1 & dots & bold(a)_{k-1} & bold(b} & bold(a)_{k+1} & dots & bold(a)_N\\end{pmatrix}\$\$
 である。
 
 ]
 #block[
 ベクトル\$\\tilde{A}bold(b}\$の第$k$成分は
 $ tilde(A)_(1 j) b_1+dots+tilde(A)_(N j) b_N $
-であり、これは\$\\det A\_{k, bold(b}}\$の第$k$列についての余因子展開に一致する。
+であり、これは\$\\det A_(k, bold(b}}\$の第$k$列についての余因子展開に一致する。
 
 ]
 #block[
 _定理@t:cofactinvの証明.]
 $tilde(A) A = det (A) I_N$を示せば十分である。
-$tilde(A) A$の第$(i, j)$成分は、$A$の第$j$列を\$bold(a}\_j\$とすると、\$\\tilde{A}bold(a}\_j\$の第$i$成分なので、補題@t:cofactvecより、\$\\det A\_{i, bold(a}\_j}\$に等しい。
+$tilde(A) A$の第$(i, j)$成分は、$A$の第$j$列を\$bold(a)_j\$とすると、\$\\tilde{A}bold(a)_j\$の第$i$成分なので、補題@t:cofactvecより、\$\\det A_(i, bold(a)_j}\$に等しい。
 これは$j eq.not i$の時は同じ列が二つあるので$0$であり、$j = i$の時は$det A$に他ならない。
 以上より証明される。
 
@@ -455,7 +500,7 @@ $tilde(A) A$の第$(i, j)$成分は、$A$の第$j$列を\$bold(a}\_j\$とする�
 $A$を$N$次正則行列つまり逆行列を持つとして、連立一次方程式
 \$\$Abold(x} = bold(b}\$\$
 の一意な解\$bold(x} = \\begin{pmatrix}x\_1 \\\\ \\vdots \\\\ x\_N\\end{pmatrix}\$の成分$x_k$は
-\$\$x\_k = \\frac{\\det A\_{k, bold(b}}}{\\det A}\$\$ で与えられる。
+\$\$x\_k = \\frac{\\det A_(k, bold(b}}}{\\det A}\$\$ で与えられる。
 
 ]
 #block[
@@ -498,10 +543,10 @@ $ det P_n(i, j) =-1, quad det Q_n(i, c) = c, quad det R_n(i, j, c) = 1 $
 
 #block[
 $a_1, dots, a_N in K$に対して、 \$\$\\mqty|
-1 & a\_1 & a\_1^2 & \\cdots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & \\cdots & a\_2^{N-1} \\\\
+1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
+1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & \\cdots & a\_N^{N-1} \\\\
+1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
 |
 = product_(i < j}(a\_j-a\_i)\$\$ が成り立つ。
 
@@ -512,63 +557,63 @@ $N = 1$の時は両辺ともに$1$である。
 $N-1$次で成立する時、第$(1, 1)$成分で第$1$行を掃き出すことで、
 \$\$\\begin{aligned}
 \\mqty|
-1 & a\_1 & a\_1^2 & \\cdots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & \\cdots & a\_2^{N-1} \\\\
+1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
+1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & \\cdots & a\_N^{N-1} \\\\
+1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
 |
 &=
 \\mqty|
-1 & a\_1 & a\_1^2 & \\cdots & a\_1^{N-1} \\\\
-0 & a\_2-a\_1 & a\_2^2-a\_1^2 & \\cdots & a\_2^{N-1}-a\_1^{N-1} \\\\
+1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
+0 & a\_2-a\_1 & a\_2^2-a\_1^2 & dots & a\_2^{N-1}-a\_1^{N-1} \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots \\\\
-0 & a\_N-a\_1 & a\_N^2-a\_1^2 & \\cdots & a\_N^{N-1}-a\_1^{N-1} \\\\
+0 & a\_N-a\_1 & a\_N^2-a\_1^2 & dots & a\_N^{N-1}-a\_1^{N-1} \\\\
 | \\\\
 &=
 \\mqty|
-a\_2-a\_1 & a\_2^2-a\_1^2 & \\cdots & a\_2^{N-1}-a\_1^{N-1} \\\\
+a\_2-a\_1 & a\_2^2-a\_1^2 & dots & a\_2^{N-1}-a\_1^{N-1} \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-a\_N-a\_1 & a\_N^2-a\_1^2 & \\cdots & a\_N^{N-1}-a\_1^{N-1} \\\\
+a\_N-a\_1 & a\_N^2-a\_1^2 & dots & a\_N^{N-1}-a\_1^{N-1} \\\\
 | \\\\
 &=
-(a\_2-a\_1)\\cdots(a\_N-a\_1)\\mqty|
-1 & a\_2+a\_1 & \\cdots & a\_2^{N-2}+a\_2^{N-3}a\_1\\cdots+a\_1^{N-2} \\\\
+(a\_2-a\_1)dots(a\_N-a\_1)\\mqty|
+1 & a\_2+a\_1 & dots & a\_2^{N-2}+a\_2^{N-3}a\_1dots+a\_1^{N-2} \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N+a\_1 & \\cdots & a\_N^{N-2}+a\_N^{N-3}a\_1\\cdots+a\_1^{N-2} \\\\
+1 & a\_N+a\_1 & dots & a\_N^{N-2}+a\_N^{N-3}a\_1dots+a\_1^{N-2} \\\\
 |.
 \\end{aligned}\$\$
 ここで最右辺の行列式は$N-1$次で、第$N-1$列から第$N-2$列の$a_1$倍を引き、第$N-2$列から第$N-3$列の$a_1$倍を引き、ということを続けると、
 \$\$\\mqty|
-1 & a\_1 & a\_1^2 & \\cdots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & \\cdots & a\_2^{N-1} \\\\
+1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
+1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & \\cdots & a\_N^{N-1} \\\\
+1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
 |
 =
-(a\_2-a\_1)\\cdots(a\_N-a\_1)\\mqty|
-1 & a\_2 & \\cdots & a\_2^{N-2} \\\\
+(a\_2-a\_1)dots(a\_N-a\_1)\\mqty|
+1 & a\_2 & dots & a\_2^{N-2} \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & \\cdots & a\_N^{N-2} \\\\
+1 & a\_N & dots & a\_N^{N-2} \\\\
 |.\$\$ よって、数学的帰納法の仮定より、 \$\$\\mqty|
-1 & a\_1 & a\_1^2 & \\cdots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & \\cdots & a\_2^{N-1} \\\\
+1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
+1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & \\cdots & a\_N^{N-1} \\\\
+1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
 |
-= (a\_2-a\_1)\\cdots(a\_N-a\_1)product_(2 \\le i < j}(a\_j -a\_i)
+= (a\_2-a\_1)dots(a\_N-a\_1)product_(2 \\le i < j}(a\_j -a\_i)
 = product_(i < j}(a\_j -a\_i)\$\$ を得る。
 
 ]
 #block[
 $a, b, c in K$に対して$N$次正方行列の行列式 \$\$D\_N =
 \\mqty|
-a & b & 0 & \\cdots & 0 \\\\
-c & a & b & \\cdots & 0 \\\\
-0 & c & a & \\cdots & 0 \\\\
+a & b & 0 & dots & 0 \\\\
+c & a & b & dots & 0 \\\\
+0 & c & a & dots & 0 \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & 0 & \\cdots & a \\\\
+0 & 0 & 0 & dots & a \\\\
 |\$\$ とおくと、
-\$\$D\_{n+2} = a D\_{n+1}-b c D\_n, \\qq{\$D\_1 = a\$, \$D\_2 = a^2-b c\$}\$\$
+\$\$D_(n+2} = a D_(n+1}-b c D\_n, \\qq{\$D\_1 = a\$, \$D\_2 = a^2-b c\$}\$\$
 が成り立つ。
 ただし、この行列は対角成分が$a$でその右上成分が$b$で左下成分が$c$であり他は全て$0$となっている。
 
@@ -584,50 +629,50 @@ $D_1$, $D_2$はサラスの公式より成立する。
 第$1$行に関する余因子展開をして、 \$\$D\_N =
 a
 \\mqty|
-a & b & \\cdots & 0 \\\\
-c & a & \\cdots & 0 \\\\
+a & b & dots & 0 \\\\
+c & a & dots & 0 \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & \\cdots & a \\\\
+0 & 0 & dots & a \\\\
 |
 -b
 \\mqty|
-c & b & \\cdots & 0 \\\\
-0 & a & \\cdots & 0 \\\\
+c & b & dots & 0 \\\\
+0 & a & dots & 0 \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & \\cdots & a \\\\
+0 & 0 & dots & a \\\\
 |.\$\$ さらに後ろの行列式は第$1$列に関する余因子展開をして、 \$\$D\_N =
 a
 \\mqty|
-a & b & \\cdots & 0 \\\\
-c & a & \\cdots & 0 \\\\
+a & b & dots & 0 \\\\
+c & a & dots & 0 \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & \\cdots & a \\\\
+0 & 0 & dots & a \\\\
 |
 -b c
 \\mqty|
-a & \\cdots & 0 \\\\
+a & dots & 0 \\\\
 \\vdots & & \\vdots \\\\
-0 & \\cdots & a \\\\
+0 & dots & a \\\\
 |
-= a D\_{N-1}-b c D\_{N-2}.\$\$ よって主張が示された。
+= a D_(N-1}-b c D_(N-2}.\$\$ よって主張が示された。
 
 ]
 #block[
 $a = 2, b = c = 1$の時、
-\$\$D\_{n+2} = 2 D\_{n+1}-D\_n, \\qq{\$D\_1 = 2\$, \$D\_2 = 3\$}\$\$
+\$\$D_(n+2} = 2 D_(n+1}-D\_n, \\qq{\$D\_1 = 2\$, \$D\_2 = 3\$}\$\$
 であり、この漸化式を解いて $ D_N = N+1 $ を得る。
 
 ]
 #block[
 $x, a_1, dots, a_N in K$に対して、 \$\$\\mqty|
-x & -1 & 0 & \\cdots & 0 & 0 \\\\
-0 & x & -1 & \\cdots & 0 & 0 \\\\
-0 & 0 & x & \\cdots & 0 & 0 \\\\
+x & -1 & 0 & dots & 0 & 0 \\\\
+0 & x & -1 & dots & 0 & 0 \\\\
+0 & 0 & x & dots & 0 & 0 \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots & \\vdots \\\\
-0 & 0 & 0 & \\cdots & x & -1 \\\\
-a\_1 & a\_2 & a\_3 & \\cdots & a\_{N-1} & x+a\_N \\\\
+0 & 0 & 0 & dots & x & -1 \\\\
+a\_1 & a\_2 & a\_3 & dots & a_(N-1} & x+a\_N \\\\
 |
-= x^N+a\_N x^{N-1}+\\cdots+a\_1\$\$ が成り立つ。
+= x^N+a\_N x^{N-1}+dots+a\_1\$\$ が成り立つ。
 
 ]
 #block[
@@ -635,32 +680,32 @@ $N$についての数学的帰納法で示す。 $N = 1$の時は成立する。
 $N-1$次で成立する時、$N$次を考える。
 第$1$列についての余因子展開をすると、 \$\$\\begin{aligned}
 \\mqty|
-x & -1 & 0 & \\cdots & 0 \\\\
-0 & x & -1 & \\cdots & 0 \\\\
-0 & 0 & x & \\cdots & 0 \\\\
+x & -1 & 0 & dots & 0 \\\\
+0 & x & -1 & dots & 0 \\\\
+0 & 0 & x & dots & 0 \\\\
 \\vdots & \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & 0 & \\cdots & -1 \\\\
-a\_1 & a\_2 & a\_3 & \\cdots & x+a\_N \\\\
+0 & 0 & 0 & dots & -1 \\\\
+a\_1 & a\_2 & a\_3 & dots & x+a\_N \\\\
 |
 &=
 x
 \\mqty|
-x & -1 & \\cdots & 0 \\\\
-0 & x & \\cdots & 0 \\\\
+x & -1 & dots & 0 \\\\
+0 & x & dots & 0 \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & \\cdots & -1 \\\\
-a\_2 & a\_3 & \\cdots & x+a\_N \\\\
+0 & 0 & dots & -1 \\\\
+a\_2 & a\_3 & dots & x+a\_N \\\\
 |
 +(-1)^{N+1}a\_1
 \\mqty|
--1 & 0 & \\cdots & 0 \\\\
-x & -1 & \\cdots & 0 \\\\
-0 & x & \\cdots & 0 \\\\
+-1 & 0 & dots & 0 \\\\
+x & -1 & dots & 0 \\\\
+0 & x & dots & 0 \\\\
 \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & \\cdots & -1 \\\\
+0 & 0 & dots & -1 \\\\
 | \\\\
-&= x(x^{N-1}+a\_N x^{N-2}+\\cdots+a\_2)+a\_1 \\\\
-&= x^N+a\_N x^{N-1}+\\cdots+a\_1.
+&= x(x^{N-1}+a\_N x^{N-2}+dots+a\_2)+a\_1 \\\\
+&= x^N+a\_N x^{N-1}+dots+a\_1.
 \\end{aligned}\$\$ よって、主張が示された。
 
 ]
