@@ -571,174 +571,201 @@ $
 ]
 
 == 種々の行列式
-<種々の行列式>
+
 重要な行列式の公式として以下がある。
 
-#block[
-$a_1, dots, a_N in K$に対して、 \$\$\\mqty|
-1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
-|
-= product_(i < j}(a\_j-a\_i)\$\$ が成り立つ。
-
+#theorem([ヴァンデルモンドの行列式])[
+$a_1, dots, a_N in K$に対して、
+$
+mat(delim: "|",
+	1, a_1, a_1^2, dots.c, a_1^(N-1);
+	1, a_2, a_2^2, dots.c, a_2^(N-1);
+	dots.v, dots.v, dots.down, dots.v;
+	1, a_N, a_N^2, dots.c, a_N^(N-1);
+)
+= product_(i < j) (a_j-a_i)
+$
+が成り立つ。
 ]
-#block[
+
+#proof[
 $N$についての数学的帰納法で示す。
 $N = 1$の時は両辺ともに$1$である。
 $N-1$次で成立する時、第$(1, 1)$成分で第$1$行を掃き出すことで、
-\$\$\\begin{aligned}
-\\mqty|
-1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
-|
-&=
-\\mqty|
-1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
-0 & a\_2-a\_1 & a\_2^2-a\_1^2 & dots & a\_2^{N-1}-a\_1^{N-1} \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots \\\\
-0 & a\_N-a\_1 & a\_N^2-a\_1^2 & dots & a\_N^{N-1}-a\_1^{N-1} \\\\
-| \\\\
-&=
-\\mqty|
-a\_2-a\_1 & a\_2^2-a\_1^2 & dots & a\_2^{N-1}-a\_1^{N-1} \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-a\_N-a\_1 & a\_N^2-a\_1^2 & dots & a\_N^{N-1}-a\_1^{N-1} \\\\
-| \\\\
-&=
-(a\_2-a\_1)dots(a\_N-a\_1)\\mqty|
-1 & a\_2+a\_1 & dots & a\_2^{N-2}+a\_2^{N-3}a\_1dots+a\_1^{N-2} \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N+a\_1 & dots & a\_N^{N-2}+a\_N^{N-3}a\_1dots+a\_1^{N-2} \\\\
-|.
-\\end{aligned}\$\$
+$
+mat(delim: "|",
+	1, a_1, a_1^2, dots.c, a_1^(N-1);
+	1, a_2, a_2^2, dots.c, a_2^(N-1);
+	dots.v, dots.v, dots.down, dots.v;
+	1, a_N, a_N^2, dots.c, a_N^(N-1);
+)
+= mat(delim: "|",
+	1, a_1, a_1^2, dots.c, a_1^(N-1);
+	0, a_2-a_1, a_2^2-a_1^2, dots.c, a_2^(N-1)-a_1^(N-1);
+	dots.v, dots.v, dots.v, dots.down, dots.v;
+	0, a_N-a_1, a_N^2-a_1^2, dots.c, a_N^(N-1)-a_1^(N-1);
+)
+= mat(delim: "|",
+	a_2-a_1, a_2^2-a_1^2, dots.c, a_2^(N-1)-a_1^(N-1);
+	dots.v, dots.v, dots.down, dots.v;
+	a_N-a_1, a_N^2-a_1^2, dots.c, a_N^(N-1)-a_1^(N-1);
+)
+= (a_2-a_1)dots(a_N-a_1) mat(delim: "|",
+	1, a_2+a_1, dots.c, a_2^(N-2)+a_2^(N-3)a_1+dots+a_1^(N-2);
+	dots.v, dots.v, dots.down, dots.v;
+	1, a_N+a_1, dots.c, a_N^(N-2)+a_N^(N-3)a_1+dots+a_1^(N-2);
+)
+$
 ここで最右辺の行列式は$N-1$次で、第$N-1$列から第$N-2$列の$a_1$倍を引き、第$N-2$列から第$N-3$列の$a_1$倍を引き、ということを続けると、
-\$\$\\mqty|
-1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
-|
-=
-(a\_2-a\_1)dots(a\_N-a\_1)\\mqty|
-1 & a\_2 & dots & a\_2^{N-2} \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & dots & a\_N^{N-2} \\\\
-|.\$\$ よって、数学的帰納法の仮定より、 \$\$\\mqty|
-1 & a\_1 & a\_1^2 & dots & a\_1^{N-1} \\\\
-1 & a\_2 & a\_2^2 & dots & a\_2^{N-1} \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots \\\\
-1 & a\_N & a\_N^2 & dots & a\_N^{N-1} \\\\
-|
-= (a\_2-a\_1)dots(a\_N-a\_1)product_(2 \\le i < j}(a\_j -a\_i)
-= product_(i < j}(a\_j -a\_i)\$\$ を得る。
-
+$
+mat(delim: "|",
+	1, a_1, a_1^2, dots.c, a_1^(N-1);
+	1, a_2, a_2^2, dots.c, a_2^(N-1);
+	dots.v, dots.v, dots.down, dots.v;
+	1, a_N, a_N^2, dots.c, a_N^(N-1);
+)
+= (a_2-a_1)dots(a_N-a_1) mat(delim: "|",
+	1, a_2, dots.c, a_2^(N-2);
+	dots.v, dots.v, dots.down, dots.v;
+	1, a_N, dots.c, a_N^(N-2);
+)
+$
+よって、数学的帰納法の仮定より、
+$
+mat(delim: "|",
+	1, a_2, dots.c, a_2^(N-2);
+	1, a_3, dots.c, a_3^(N-2);
+	dots.v, dots.v, dots.down, dots.v;
+	1, a_N, dots.c, a_N^(N-2);
+)
+= (a_2-a_1)dots(a_N-a_1) product_(2 <= i < j) (a_j-a_i)
+= product_(i < j) (a_j-a_i)
+$
+を得る。
 ]
-#block[
-$a, b, c in K$に対して$N$次正方行列の行列式 \$\$D\_N =
-\\mqty|
-a & b & 0 & dots & 0 \\\\
-c & a & b & dots & 0 \\\\
-0 & c & a & dots & 0 \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & 0 & dots & a \\\\
-|\$\$ とおくと、
-\$\$D_(n+2} = a D_(n+1}-b c D\_n, \\qq{\$D\_1 = a\$, \$D\_2 = a^2-b c\$}\$\$
+
+#proposition([三重対角行列])[
+$a, b, c in K$に対して$N$次正方行列の行列式
+$
+D_N
+= mat(delim: "|",
+	a, b, 0, dots.c, 0;
+	c, a, b, dots.c, 0;
+	0, c, a, dots.c, 0;
+	dots.v, dots.v, dots.v, dots.down, dots.v;
+	0, 0, 0, dots.c, a;
+)
+$
+とおくと、
+$
+D_(n+2) = a D_(n+1)-b c D_n, quad D_1 = a, quad D_2 = a^2-b c
+$
 が成り立つ。
 ただし、この行列は対角成分が$a$でその右上成分が$b$で左下成分が$c$であり他は全て$0$となっている。
-
 ]
-#block[
+
+#remark[
 計算すると
-$ D_1 = a, quad D_2 = a^2-b c, quad D_3 = a^3-2 a b c, quad dots $
+$
+D_1 = a,
+quad D_2 = a^2-b c,
+quad D_3 = a^3-2 a b c,
+quad dots
+$
 である。
-
 ]
-#block[
+
+#proof[
 $D_1$, $D_2$はサラスの公式より成立する。
-第$1$行に関する余因子展開をして、 \$\$D\_N =
-a
-\\mqty|
-a & b & dots & 0 \\\\
-c & a & dots & 0 \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & dots & a \\\\
-|
--b
-\\mqty|
-c & b & dots & 0 \\\\
-0 & a & dots & 0 \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & dots & a \\\\
-|.\$\$ さらに後ろの行列式は第$1$列に関する余因子展開をして、 \$\$D\_N =
-a
-\\mqty|
-a & b & dots & 0 \\\\
-c & a & dots & 0 \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & dots & a \\\\
-|
--b c
-\\mqty|
-a & dots & 0 \\\\
-\\vdots & & \\vdots \\\\
-0 & dots & a \\\\
-|
-= a D_(N-1}-b c D_(N-2}.\$\$ よって主張が示された。
-
+第$1$行に関する余因子展開をして、
+$
+D_N
+= a mat(delim: "|",
+	a, b, dots.c, 0;
+	c, a, dots.c, 0;
+	dots.v, dots.v, dots.down, dots.v;
+	0, 0, dots.c, a;
+)-b mat(delim: "|",
+	c, b, dots.c, 0;
+	0, a, dots.c, 0;
+	dots.v, dots.v, dots.down, dots.v;
+	0, 0, dots.c, a;
+).
+$
+さらに後ろの行列式は第$1$列に関する余因子展開をして、
+$
+D_N
+= a mat(delim: "|",
+	a, b, dots.c, 0;
+	c, a, dots.c, 0;
+	dots.v, dots.v, dots.down, dots.v;
+	0, 0, dots.c, a;
+)-b c mat(delim: "|",
+	a, dots.c, 0;
+	dots.v, dots.down, dots.v;
+	0, dots.c, a;
+)
+= a D_(N-1}-b c D_(N-2).
+$
+よって主張が示された。
 ]
-#block[
+
+#example[
 $a = 2, b = c = 1$の時、
-\$\$D_(n+2} = 2 D_(n+1}-D\_n, \\qq{\$D\_1 = 2\$, \$D\_2 = 3\$}\$\$
-であり、この漸化式を解いて $ D_N = N+1 $ を得る。
-
+$
+D_(n+2) = 2 D_(n+1)-D_n, quad D_1 = 2, D_2 = 3
+$
+であり、この漸化式を解いて
+$
+D_N = N+1
+$
+を得る。
 ]
-#block[
-$x, a_1, dots, a_N in K$に対して、 \$\$\\mqty|
-x & -1 & 0 & dots & 0 & 0 \\\\
-0 & x & -1 & dots & 0 & 0 \\\\
-0 & 0 & x & dots & 0 & 0 \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots & \\vdots \\\\
-0 & 0 & 0 & dots & x & -1 \\\\
-a\_1 & a\_2 & a\_3 & dots & a_(N-1} & x+a\_N \\\\
-|
-= x^N+a\_N x^{N-1}+dots+a\_1\$\$ が成り立つ。
 
+#proposition[
+$x, a_1, dots, a_N in K$に対して、
+$
+mat(delim: "|",
+	x, -1, 0, dots.c, 0, 0;
+	0, x, -1, dots.c, 0, 0;
+	0, 0, x, dots.c, 0, 0;
+	dots.v, dots.v, dots.v, dots.down, dots.v, dots.v;
+	0, 0, 0, dots.c, x, -1;
+	a_1, a_2, a_3, dots.c, a_(N-1), x+a_N;
+)
+= x^N+a_N x^(N-1)+dots+a_1
+$
+が成り立つ。
 ]
+
 #block[
 $N$についての数学的帰納法で示す。 $N = 1$の時は成立する。
 $N-1$次で成立する時、$N$次を考える。
-第$1$列についての余因子展開をすると、 \$\$\\begin{aligned}
-\\mqty|
-x & -1 & 0 & dots & 0 \\\\
-0 & x & -1 & dots & 0 \\\\
-0 & 0 & x & dots & 0 \\\\
-\\vdots & \\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & 0 & dots & -1 \\\\
-a\_1 & a\_2 & a\_3 & dots & x+a\_N \\\\
-|
-&=
-x
-\\mqty|
-x & -1 & dots & 0 \\\\
-0 & x & dots & 0 \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & dots & -1 \\\\
-a\_2 & a\_3 & dots & x+a\_N \\\\
-|
-+(-1)^{N+1}a\_1
-\\mqty|
--1 & 0 & dots & 0 \\\\
-x & -1 & dots & 0 \\\\
-0 & x & dots & 0 \\\\
-\\vdots & \\vdots & & \\vdots \\\\
-0 & 0 & dots & -1 \\\\
-| \\\\
-&= x(x^{N-1}+a\_N x^{N-2}+dots+a\_2)+a\_1 \\\\
-&= x^N+a\_N x^{N-1}+dots+a\_1.
-\\end{aligned}\$\$ よって、主張が示された。
-
+第$1$列についての余因子展開をすると、
+$
+mat(delim: "|",
+	x, -1, 0, dots.c, 0, 0;
+	0, x, -1, dots.c, 0, 0;
+	0, 0, x, dots.c, 0, 0;
+	dots.v, dots.v, dots.v, dots.down, dots.v, dots.v;
+	0, 0, 0, dots.c, x, -1;
+	a_1, a_2, a_3, dots.c, a_(N-1), x+a_N;
+)
+= x mat(delim: "|",
+	x, -1, dots.c, 0, 0;
+	0, x, dots.c, 0, 0;
+	dots.v, dots.v, dots.down, dots.v, dots.v;
+	0, 0, dots.c, x, -1;
+	a_2, a_3, dots.c, a_(N-1), x+a_N;
+)-(-1)^(N+1) a_1 mat(delim: "|",
+	-1, 0, dots.c, 0, 0;
+	x, -1, dots.c, 0, 0;
+	0, x, dots.c, 0, 0;
+	dots.v, dots.v, dots.down, dots.v, dots.v;
+	0, 0, dots.c, x, -1;
+)
+= x(x^(N-1)+a_N x^(N-2)+dots+a_2)-(-1)^(N+1) a_1 (-1)^(N-2)
+= x^N+a_N x^(N-1)+dots+a_1.
+$
+よって、主張が示された。
 ]
