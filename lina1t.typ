@@ -30,7 +30,7 @@
 #include "01_2dimension.typ"
 #include "02_matrix.typ"
 #include "03_linearsystem.typ"
-// #include "04_determinant.typ"
+#include "04_determinant.typ"
 // #include "05_linearspace.typ"
 // #include "06_eigenproblem.typ"
 // #include "07_diagonalization.typ"

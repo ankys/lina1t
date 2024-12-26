@@ -1,6 +1,11 @@
 
 = 行列式
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#let sgn = $op("sgn")$
+
 == 行列式の導入
 
 行列式は正方行列に対して定まる特徴的な量で、その正方行列の可逆性の判定や正方行列が定める線形変換による体積の拡大率に応用される重要な量である。
@@ -265,7 +270,7 @@ $
 $
 det A^T
 &= sum_(s in S_N) sgn(s) a_(s(1) 1) dots a_(s(N) N)
-= sum_(s in S_N) sgn(s) a_(1 s^(-1) (1)) dots a_(N s^(-1) (N))
+= sum_(s in S_N) sgn(s) a_(1 s^(-1) (1)) dots a_(N s^(-1) (N)) \
 &= sum_(s in S_N) sgn(s^(-1)) a_(1 s(1)) dots a_(N s(N))
 = sum_(s in S_N) sgn(s) a_(1 s(1)) dots a_(N s(N))
 = det A.
@@ -516,7 +521,7 @@ $
 
 #proof([@t_cofactinv の証明])[
 $tilde(A) A = det (A) I_N$を示せば十分である。
-$tilde(A) A$の第$(i, j)$成分は、$A$の第$j$列を$bold(a)_j$とすると、$tilde(A)bold(a)_j$の第$i$成分なので、@t_cofactvecより、$det A_(i, bold(a)_j)$に等しい。
+$tilde(A) A$の第$(i, j)$成分は、$A$の第$j$列を$bold(a)_j$とすると、$tilde(A)bold(a)_j$の第$i$成分なので、@t_cofactvec より、$det A_(i, bold(a)_j)$に等しい。
 これは$j eq.not i$の時は同じ列が二つあるので$0$であり、$j = i$の時は$det A$に他ならない。
 以上より証明される。
 ]
@@ -537,7 +542,7 @@ $
 
 #proof[
 $A$は逆行列を持ち、それは余因子行列を用いて$A = frac(1, det A) tilde(A)$で与えられるので、解は$bold(x) = 1/(det A) tilde(A)bold(b)$である。
-よって後は@t_cofactvecにより計算される。
+よって後は@t_cofactvec により計算される。
 ]
 
 == 基本変形と行列式
@@ -596,10 +601,10 @@ $
 mat(delim: "|",
 	1, a_1, a_1^2, dots.c, a_1^(N-1);
 	1, a_2, a_2^2, dots.c, a_2^(N-1);
-	dots.v, dots.v, dots.down, dots.v;
+	dots.v, dots.v, dots.v, dots.down, dots.v;
 	1, a_N, a_N^2, dots.c, a_N^(N-1);
 )
-= mat(delim: "|",
+&= mat(delim: "|",
 	1, a_1, a_1^2, dots.c, a_1^(N-1);
 	0, a_2-a_1, a_2^2-a_1^2, dots.c, a_2^(N-1)-a_1^(N-1);
 	dots.v, dots.v, dots.v, dots.down, dots.v;
@@ -609,8 +614,8 @@ mat(delim: "|",
 	a_2-a_1, a_2^2-a_1^2, dots.c, a_2^(N-1)-a_1^(N-1);
 	dots.v, dots.v, dots.down, dots.v;
 	a_N-a_1, a_N^2-a_1^2, dots.c, a_N^(N-1)-a_1^(N-1);
-)
-= (a_2-a_1)dots(a_N-a_1) mat(delim: "|",
+) \
+&= (a_2-a_1)dots(a_N-a_1) mat(delim: "|",
 	1, a_2+a_1, dots.c, a_2^(N-2)+a_2^(N-3)a_1+dots+a_1^(N-2);
 	dots.v, dots.v, dots.down, dots.v;
 	1, a_N+a_1, dots.c, a_N^(N-2)+a_N^(N-3)a_1+dots+a_1^(N-2);
@@ -621,7 +626,7 @@ $
 mat(delim: "|",
 	1, a_1, a_1^2, dots.c, a_1^(N-1);
 	1, a_2, a_2^2, dots.c, a_2^(N-1);
-	dots.v, dots.v, dots.down, dots.v;
+	dots.v, dots.v, dots.v, dots.down, dots.v;
 	1, a_N, a_N^2, dots.c, a_N^(N-1);
 )
 = (a_2-a_1)dots(a_N-a_1) mat(delim: "|",
@@ -633,10 +638,10 @@ $
 よって、数学的帰納法の仮定より、
 $
 mat(delim: "|",
-	1, a_2, dots.c, a_2^(N-2);
-	1, a_3, dots.c, a_3^(N-2);
-	dots.v, dots.v, dots.down, dots.v;
-	1, a_N, dots.c, a_N^(N-2);
+	1, a_1, a_1^2, dots.c, a_1^(N-1);
+	1, a_2, a_2^2, dots.c, a_2^(N-1);
+	dots.v, dots.v, dots.v, dots.down, dots.v;
+	1, a_N, a_N^2, dots.c, a_N^(N-1);
 )
 = (a_2-a_1)dots(a_N-a_1) product_(2 <= i < j) (a_j-a_i)
 = product_(i < j) (a_j-a_i)
@@ -751,7 +756,7 @@ mat(delim: "|",
 	0, 0, 0, dots.c, x, -1;
 	a_1, a_2, a_3, dots.c, a_(N-1), x+a_N;
 )
-= x mat(delim: "|",
+&= x mat(delim: "|",
 	x, -1, dots.c, 0, 0;
 	0, x, dots.c, 0, 0;
 	dots.v, dots.v, dots.down, dots.v, dots.v;
@@ -763,9 +768,9 @@ mat(delim: "|",
 	0, x, dots.c, 0, 0;
 	dots.v, dots.v, dots.down, dots.v, dots.v;
 	0, 0, dots.c, x, -1;
-)
-= x(x^(N-1)+a_N x^(N-2)+dots+a_2)-(-1)^(N+1) a_1 (-1)^(N-2)
-= x^N+a_N x^(N-1)+dots+a_1.
+) \
+&= x(x^(N-1)+a_N x^(N-2)+dots+a_2)-(-1)^(N+1) a_1 (-1)^(N-2) \
+&= x^N+a_N x^(N-1)+dots+a_1.
 $
 よって、主張が示された。
 ]
