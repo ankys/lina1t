@@ -1,6 +1,11 @@
 
 = 固有値問題
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
+#let Ker = $op("Ker")$
+
 == 固有値と固有ベクトル
 
 いよいよこの章から体$K$上の$N$次正方行列$A$の$n = 0, 1, 2, 3, dots$乗を計算するのに役に立つ理論を学ぶ。
@@ -21,7 +26,7 @@ $ <e_eigen>
 この時の$x$を$A$の_固有値_、$bold(v)$を$A$の_固有ベクトル_といい関係式@e_eigen を_固有値問題_という。
 
 それではどうやって固有値・固有ベクトルを見つけてくればよいのだろうか。
-@e:eigen を変形すると$bold(v)$は斉次連立一次方程式
+@e_eigen を変形すると$bold(v)$は斉次連立一次方程式
 $
 (x I-A) bold(v) = bold(0)
 $
@@ -48,9 +53,9 @@ $
 となりこれを対角化することを考える。 $A$の固有多項式は
 $
 det(x I-A)
-= mat(delim: "|", x-1+p, -q; -p, x-1+q)
-= (x-1+p)(x-1+q)-p q
-= x^2-(2-p-q)x+1-p-q
+&= mat(delim: "|", x-1+p, -q; -p, x-1+q)
+= (x-1+p)(x-1+q)-p q \
+&= x^2-(2-p-q)x+1-p-q
 = (x-1)(x-1+p+q).
 $
 よって固有値は$x = 1, 1-p-q$である。
@@ -116,9 +121,9 @@ $ <e_tri>
 $N$次正方行列$A$が@e_tri と三角化されたとすると固有多項式は
 $
 det(x I-A) = (x-c_1) dots (x-c_N)
-$
+$ <e_eigenfactor>
 と因数分解される。
-] <t:eigenfactor>
+] <t_eigenfactor>
 
 #proof[
 $x I-A$を書き直すと
@@ -222,13 +227,13 @@ $A$を体$K$上の$N$次正方行列として、$c$をその固有値とする�
 固有多項式は$N$次なので代数的重複度は$1, dots, N$の値を取る。
 一方で固有空間$W(c)$の次元を_幾何学的重複度_という。
 
-#block[
+#proposition[
 $A$を$K$上の$N$次正方行列として、$c$をその固有値とする。
 このとき$c$の幾何学的重複度は代数的重複度以下である。
 つまり$M = dim W(c)$とすると、$A$の固有多項式$det(x I-A)$は$(x-c)^M$で割り切れる。
 ]
 
-#block[
+#proof[
 線形独立な$M$個のベクトル$bold(v)_1, dots, bold(v)_M in K^N$がとれ、拡張をして$K^N$の基底$bold(v)_1, dots, bold(v)_N$を構成する。
 このとき、$P = mat(bold(v)_1, dots.c, bold(v)_N)$を使って、
 $
