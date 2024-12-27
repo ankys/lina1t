@@ -416,151 +416,165 @@ $
 ]
 
 == 線形写像
-<線形写像>
+
 集合に線形性が導入されるように写像にも線形性を導入する。
 
-#block[
+#definition([線形写像])[
 $V$と$W$を$K$上の線形空間とする。
 $V$から$W$への写像$F$であって以下を満たすものを$V$から$W$への_線形写像_という。
 
 + 任意の$bold(u), bold(v) in V$に対して$F(bold(u)+bold(v)) = F(bold(u))+F(bold(v))$が成り立つ。
-
 + 任意の$c in K$と$bold(v) in V$に対して$F(c bold(v)) = c F(bold(v))$が成り立つ。
 
 この二つの条件はまとめて、任意の$c, d in K$と$bold(v), bold(w) in W$に対して$F(c bold(v)+d bold(w)) = c F(bold(v))+d F(bold(w))$とも書ける。
-
 ]
+
 線形写像に対してはしばしば丸括弧を省略して$F bold(v)$と記述される。
 
-#block[
-$RR$を$RR$上の線形空間と考えて関数$f : RR arrow.r RR$を考える。
+#example[
+$RR$を$RR$上の線形空間と考えて関数$f: RR -> RR$を考える。
 
-- $f (x) = x$は線形写像である。
-
-- $f (x) = x+1$は線形写像でない。
-
-- $f (x) = x^2$は線形写像でない。
-
+- $f(x) = x$は線形写像である。
+- $f(x) = x+1$は線形写像でない。
+- $f(x) = x^2$は線形写像でない。
 ]
+
 線形写像の合成は線形写像である。
 
 #block[
 $U, V, W$を$K$上の線形空間として、$F$を$U$から$V$への線形写像とし$G$を$V$から$W$への線形写像とする。
-この時、合成写像$G F = G circle.stroked.tiny F : U arrow.r W$を
+この時、合成写像$G F = G circle.stroked.tiny F : U -> W$を
 $$G F bold(v) = G(F(bold(v)))$$
 で定義する時、$G F$は$U$から$W$への線形写像である。
 
 ]
 線形写像による線形部分空間の像や逆像は線形部分空間である。
 
-#block[
+#proposition([合成線形写像])[
 $V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
 
 - $U$を$V$の線形部分空間とする時、像$F U = { F bold(v) mid(|) bold(v) in U }$は$W$の線形部分空間である。
-
-- $U$を$W$の線形部分空間とする時、逆像$F^(-1)  U = { bold(v) in V mid(|) F bold(v) in U }$は$V$の線形部分空間である。
-
+- $U$を$W$の線形部分空間とする時、逆像$F^(-1) U = { bold(v) in V mid(|) F bold(v) in U }$は$V$の線形部分空間である。
 ]
-#block[
 
+#proof[
 一つ目について、$c, d in K$と$F bold(v), F bold(w) in F U$に対して$c F bold(v)+d F bold(w) = F(c bold(v)+d bold(w))$であり、
 $U$が線形部分空間なので$c bold(v)+d bold(w) in U$より$c F bold(v)+d F bold(w) in F U$である。
 よって$F U$も線形部分空間である。
 
-二つ目について、$c, d in K$と$bold(v), bold(w) in F^(-1)  U$に対して$F bold(v), F bold(w) in U$で$F(c bold(v)+d bold(w)) = c F bold(v)+d F bold(w) in U$なので、$c bold(v)+d bold(w) in F^(-1)  U$である。
+二つ目について、$c, d in K$と$bold(v), bold(w) in F^(-1)  U$に対して$F bold(v), F bold(w) in U$で$F(c bold(v)+d bold(w)) = c F bold(v)+d F bold(w) in U$なので、$c bold(v)+d bold(w) in F^(-1) U$である。
 よって$F^(-1) U$も線形部分空間である。
-
 ]
+
 この性質に基づいて線形写像から定まる特徴的な線形空間を導入する。
 
-#block[
+#definition([像と逆像])[
 $V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
 
 - $F$による$V$全体の像$F V$は$W$の線形部分空間で$F$の_像_といい$Img F$と表す。
-
 - $F$による$O_W$の逆像$F^(-1) O_W$は$V$の線形部分空間で$F$の_核_といい$Ker F$と表す。
-
 ]
+
 像と核はそれぞれ全射性と単射性と結びつく。
 
-#block[
+#proposition[
 $V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
 
-- $F$が全射である、つまり任意の$bold(w) in W$に対して$bold(w) = F bold(v)$となる$bold(v) in V$が存在する、ための必要十分条件は$\\Img F = W$が成り立つことである。
-
-- $F$が単射である、つまり任意の$bold(v), bold(w) in V$に対して$F bold(v) = F bold(w)$ならば$bold(v) = bold(w)$が成り立つ、ための必要十分条件は$\\Ker F = O_V$が成り立つことである。
-
+- $F$が全射である、つまり任意の$bold(w) in W$に対して$bold(w) = F bold(v)$となる$bold(v) in V$が存在する、ための必要十分条件は$Img F = W$が成り立つことである。
+- $F$が単射である、つまり任意の$bold(v), bold(w) in V$に対して$F bold(v) = F bold(w)$ならば$bold(v) = bold(w)$が成り立つ、ための必要十分条件は$Ker F = O_V$が成り立つことである。
 ]
-#block[
+
+#proposition[
 $V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像とする。
 ここで$F$を全単射つまり可逆とする時、逆写像$F^(-1)$も線形写像である。
-
 ]
+
 #block[
- $c, d in K$と$bold(v), bold(w) in W$を取る。
+$c, d in K$と$bold(v), bold(w) in W$を取る。
 示すべきことは
-$$F^(-1) (c bold(v)+d bold(w)) = c F^(-1) bold(v)+d F^(-1) bold(w)$$
-なので、両辺に$F$を施したものを考えると$F$の線形性より
-$$F(c F^(-1) bold(v)+d F^(-1) bold(w)) = c F F^(-1) bold(v)+d F F^(-1) bold(w) = c bold(v)+d bold(w)$$
+$
+F^(-1) (c bold(v)+d bold(w)) = c F^(-1) bold(v)+d F^(-1) bold(w)
+$
+なので、両辺に$F$を施したものを考える。
+$F$の線形性より
+$
+F(c F^(-1) bold(v)+d F^(-1) bold(w)) = c F F^(-1) bold(v)+d F F^(-1) bold(w) = c bold(v)+d bold(w).
+$
 よって示すべき等式が得られて$F^(-1)$は線形写像である。
-
 ]
+
 上記の命題の内容を踏まえて次の線形同型性を定義する。
 
-#block[
+#definition([線形同型])[
 $V, W$を$K$上の線形空間とする。
 $V$から$W$への線形写像$F$が可逆で逆写像$F^(-1)$も線形写像である時、$F$を_線形同型写像_という。
 $V, W$に対してその間の線形同型写像が存在する時$V$と$W$は_線形同型_であるといい、$V tilde.equiv W$と表す。
-
 ]
-#block[
-$V, W$を$K$上の線形空間、$F$を$V$から$W$への線形写像とする。 このとき、
-$$\\dim V = \\dim \\Img F+\\dim \\Ker F$$ が成り立つ。
 
+#theorem([次元定理])[
+$V, W$を$K$上の線形空間、$F$を$V$から$W$への線形写像とする。
+このとき、
+$
+dim V = dim Img F+dim Ker F
+$
+が成り立つ。
 ]
-証明を見ればわかる通りこの定理の要点は$V$から$\\Ker F$の部分を除くと（$U$としている）$\\Img F$と線形同型になっていることである。
-$\\dim \\Img F$はしばしば$rank F$と表される。
 
-#block[
+証明を見ればわかる通りこの定理の要点は$V$から$Ker F$の部分を除くと（$U$としている）$Img F$と線形同型になっていることである。
+$dim Img F$はしばしば$rank F$と表される。
 
-$\\Img F$が無限次元の時は任意の$N = 0, 1, 2, 3, dots$に対して線形独立なベクトル$bold(w)_1, dots, bold(w)_N in \\Img F$が存在する。
+#proof[
+$Img F$が無限次元の時は任意の$N = 0, 1, 2, 3, dots$に対して線形独立なベクトル$bold(w)_1, dots, bold(w)_N in Img F$が存在する。
 ここで各$bold(w)_i$に対して$F bold(u)_i = bold(w)_i$となる$bold(u)_i in V$が存在するので取ってくる。
 この時$bold(u)_1, dots, bold(u)_N$は線形独立を示す。
 スカラー$c_1, dots, c_N in K$に対して
-$$c_1bold(u)_1+dots+c_Nbold(u)_N = bold(0)_V$$
-となったとすると$F$で写して
-$$F(c_1bold(u)_1+dots+c_Nbold(u)_N)
+$
+c_1 bold(u)_1+dots+c_N bold(u)_N = bold(0)_V
+$
+となったとすると$F$で移して
+$
+F(c_1 bold(u)_1+dots+c_N bold(u)_N)
 = c_1 F bold(u)_1+dots+c_N F bold(u)_N
-= c_1bold(w)_1+dots+c_Nbold(w)_N
+= c_1 bold(w)_1+dots+c_N bold(w)_N
 = F(bold(0)_V)
-= bold(0)_W.$$
+= bold(0)_W.
+$
 よって、$bold(w)_1, dots, bold(w)_N$が線形独立なので、$c_1 = dots = c_N = 0$であり、$bold(u)_1, dots, bold(u)_N$も線形独立である。
 従って$dim V >= N$なので、$dim V = oo$となり定理の式を満たす。
 
-$\\Img F$が有限次元の時、$N = \\dim \\Img F$として$\\Img F$の基底$bold(w)_1, dots, bold(w)_N$を取ってくる。
+$Img F$が有限次元の時、$N = dim Img F$として$Img F$の基底$bold(w)_1, dots, bold(w)_N$を取ってくる。
 さらに先ほどと同様にして$F bold(u)_i = bold(w)_i$となる$bold(u)_1, dots, bold(u)_N in V$を取ってくるとこれは線形独立している。
 よってこれらは$V$の線形部分空間$U = lr(angle.l bold(u)_1, dots, bold(u)_N angle.r)$の基底になっている。
-この時、$F$は$U$から$\\Img F$の線形同型写像になっているので、$U tilde.equiv \\Img F$である。
-あとは$U sect \\Ker F = O_V$と$U+\\Ker F = V$を示せばよい。
-まず$bold(v) in U sect \\Ker F$とすると、
-$$bold(v) = c_1bold(u)_1+dots+c_Nbold(u)_N$$
-とでき$F$で移すと $$F(c_1bold(u)_1+dots+c_Nbold(u)_N)
+この時、$F$は$U$から$Img F$の線形同型写像になっているので、$U tilde.equiv Img F$である。
+あとは$U sect Ker F = O_V$と$U+Ker F = V$を示せばよい。
+まず$bold(v) in U sect Ker F$とすると、
+$
+bold(v) = c_1 bold(u)_1+dots+c_N bold(u)_N
+$
+とでき$F$で移すと
+$
+F(c_1 bold(u)_1+dots+c_N bold(u)_N)
 = c_1 F bold(u)_1+dots+c_N F bold(u)_N
-= c_1bold(w)_1+dots+c_Nbold(w)_N
+= c_1 bold(w)_1+dots+c_N bold(w)_N
 = F(bold(v))
-= bold(0)_W$$
+= bold(0)_W
+$
 よって$c_1 = dots = c_N = 0$で$bold(v) = bold(0)_V$である。
-次に$bold(v) in V$に対して、$F bold(v) in \\Img F$より$F bold(v) = c_1bold(w)_1+dots+c_N bold(w)_N$とでき、
-$$F(bold(v)-c_1bold(u)_1-dots-c_Nbold(u)_N)
+次に$bold(v) in V$に対して、$F bold(v) in Img F$より$F bold(v) = c_1 bold(w)_1+dots+c_N bold(w)_N$とでき、
+$
+F(bold(v)-c_1 bold(u)_1-dots-c_N bold(u)_N)
 = F bold(v)-c_1 F bold(u)_1-dots-c_N F bold(u)_N
-= F bold(v)-c_1bold(w)_1-dots-c_Nbold(w)_N
-= bold(0)_W.$$
-よって、$bold(v)-c_1bold(u)_1-dots-c_N bold(u)_N in \\Ker F$である。
-以上より$U plus.circle \\Ker F = V$なので、
-$$\\dim V = \\dim U+\\dim \\Ker F = \\rank F+\\dim \\Ker F$$
+= F bold(v)-c_1 bold(w)_1-dots-c_N bold(w)_N
+= bold(0)_W.
+$
+よって、$bold(v)-c_1 bold(u)_1-dots-c_N bold(u)_N in Ker F$である。
+以上より$U xor Ker F = V$なので、
+$
+dim V = dim U+dim Ker F = rank F+dim Ker F
+$
 が成り立つ。
-
 ]
+
 == 数ベクトル空間
 <数ベクトル空間>
 ここまで抽象的に議論していた線形空間であるが、有限次元であれば数ベクトル空間と同一視でき、線形写像も行列に帰着できる。
