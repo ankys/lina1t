@@ -137,7 +137,7 @@ $
 #example[
 $RR$の部分集合
 $
-QQ[sqrt{2}] = { a+b sqrt{2} mid(|) a, b in QQ }
+QQ[sqrt(2)] = { a+b sqrt(2) mid(|) a, b in QQ }
 $
 は有理数体$QQ$上の線形空間としての$RR$の線形部分空間である。
 ]
@@ -358,8 +358,8 @@ $V$を生成しないとすると、補題より$N+1$個の線形独立なベク
 
 #proof([命題の証明])[
 有限次元なので$V$の次元を$N$、$W$の次元を$M$として、$W$の基底$bold(w)_1, dots, bold(w)_M$を取る。
-ここで補題を$N-M$回繰り返すことで線形独立な$bold(w)_1, dots, bold(w)_M, bold(u)_{M+1}, dots, bold(u)_N in V$を作ることができ（次元の関係で補題の仮定を満たし続ける）、次元の関係でこれは$V$の基底になる。
-あとは$U = lr(angle.l bold(u)_{M+1}, dots, bold(u)_N angle.r)$とすればよい。
+ここで補題を$N-M$回繰り返すことで線形独立な$bold(w)_1, dots, bold(w)_M, bold(u)_(M+1), dots, bold(u)_N in V$を作ることができ（次元の関係で補題の仮定を満たし続ける）、次元の関係でこれは$V$の基底になる。
+あとは$U = lr(angle.l bold(u)_(M+1), dots, bold(u)_N angle.r)$とすればよい。
 ]
 
 和空間の次元について次が成り立つ。
