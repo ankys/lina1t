@@ -576,73 +576,87 @@ $
 ]
 
 == 数ベクトル空間
-<数ベクトル空間>
+
 ここまで抽象的に議論していた線形空間であるが、有限次元であれば数ベクトル空間と同一視でき、線形写像も行列に帰着できる。
 まず、数ベクトル空間の次元について述べる。
 
-#block[
+#proposition[
 $N = 0, 1, 2, 3, dots$とする。
-$K$上の$N$次元数ベクトル空間$K^N$は有限次元で$dim K^N = N$であり、$N$個のベクトル
-$$bold(e)_1 = (1, 0, dots, 0),
-\\quad dots,
-\\quad bold(e)_N = (0, dots, 0, 1)$$ が$K^N$の基底である。
-
+この時、$K$上の$N$次元数ベクトル空間$K^N$は有限次元で$dim K^N = N$であり、
+$N$個のベクトル
+$
+bold(e)_1 = (1, 0, dots, 0),
+quad dots,
+quad bold(e)_N = (0, dots, 0, 1)
+$
+が$K^N$の基底である。
 ]
-#block[
 
+#proof[
 $bold(e)_1, dots, bold(e)_N$が線形独立かつ$K^N$を線形生成ことを示せばよい。
 線形結合はスカラー$c_1, dots, c_N in K$に対して
-$$c_1bold(e)_1+dots+c_Nbold(e)_N = (c_1, dots, c_N)$$
+$
+c_1 bold(e)_1+dots+c_N bold(e)_N = (c_1, dots, c_N)
+$
 なので、
 これが零ベクトル$(0, dots, 0)$となるのは$c_1 = dots = c_N = 0$であり、
-任意の$K^N$の元は上記の形に書ける。 よって証明できる。
-
+任意の$K^N$の元は上記の形に書ける。
+よって証明できる。
 ]
+
 この時の基底$bold(e)_1, dots, bold(e)_N$を数ベクトル空間$K^N$の_標準基底_という。
 
-#block[
+#proposition[
 $V$を$K$上の有限次元線形空間として次元を$N$とおくと、$V$は$K^N$と線形同型である。
-
 ]
-#block[
 
+#proof[
 $V$の基底$bold(v)_1, dots, bold(v)_N$を取ってきて、$K^N$から$V$への線形写像$F$を
-$$F(c_1, dots, c_N) = c_1bold(v)_1+dots+c_Nbold(v)_N$$
+$
+F(c_1, dots, c_N) = c_1 bold(v)_1+dots+c_N bold(v)_N
+$
 で定義する。
 このとき、$bold(v)_1, dots, bold(v)_N$が$V$を線形生成することから$F$は全射で、
-線形独立であることから$\\Ker F = O_{K^N}$つまり$F$は単射である。
+線形独立であることから$Ker F = O_(K^N)$つまり$F$は単射である。
 以上より$F$は線形同型写像であるので、$V tilde.equiv K^N$である。
-
 ]
+
 $M, N = 1, 2, 3, dots$として$A$を$K$上の$M times N$型の行列とする。
-ここで$K^N$から$K^M$への写像 $$F_A(bold(v)) = Abold(v)$$
+ここで$K^N$から$K^M$への写像
+$
+F_A (bold(v)) = A bold(v)
+$
 で定めるとこれは線形写像であり、行列$A$が定める線形写像という。
 
 これとは逆に線形写像が与えられたら対応する行列が取れる。
 
-#block[
+#definition([表現行列])[
 $V$と$W$を$K$上の有限次元線形空間として、次元をそれぞれ$N$と$M$とする。
 $F$を$V$から$W$への線形写像として$V$の基底$bold(v)_1, dots, bold(v)_N$と$W$の基底$bold(w)_1, dots, bold(w)_M$について、各$j = 1, dots, N$に対して
-$$F(bold(v)_j) = a_{j 1}bold(w)_1+dots+a_{j M}bold(w)_M$$
+$
+F(bold(v)_j) = a_(j 1) bold(w)_1+dots+a_(j M) bold(w)_M
+$
 となる$a_(j 1), dots, a_(j M) in K$が一意に存在して定義される$K$上の$M times N$型の行列
-$ mat(delim: "(", a_(1 1), dots, a_(N 1); dots.v, dots.down, dots.v; a_(1 M), dots, a_(N M);) $
+$
+mat(a_(1 1), dots.c, a_(N 1); dots.v, dots.down, dots.v; a_(1 M), dots.c, a_(N M);)
+$
 を線形写像$F$の$V$の基底$bold(v)_1, dots, bold(v)_N$と$W$の基底$bold(w)_1, dots, bold(w)_M$に関する_表現行列_という。
-
 ]
+
 表現行列は基底の取り方によって変わってしまうことに注意する。
 $K$上の$M times N$型の行列$A$が定める$K^N$から$K^M$への線形変換$F_A$の$K^N$と$K^M$の標準基底に関する表現行列は$A$である。
 
 == 線形変換
-<線形変換>
+
 線形写像の中でも定義域の空間と行き先の空間が同じ時、線形変換といい正方行列と同様の扱いができる。
 
-#block[
+#definition([線形変換])[
 $K$上の線形空間$V$からそこへの線形写像$T$を特に_線形変換_という。
-
 ]
-#block[
-$K$上の有限次元線形空間$V$について、$N = dim V$として$V$の基底$bold(v)_1, dots, bold(v)_N$と$bold(v)\'_1, dots, bold(v)\'_N$について
+
+#definition([基底の変換])[
+$K$上の有限次元線形空間$V$について、$N = dim V$として$V$の基底$bold(v)_1, dots, bold(v)_N$と$bold(v)'_1, dots, bold(v)'_N$について
 TODO
-
 ]
+
 $K$上の線形空間$V$の元$bold(v)$を$bold(v)$に移す線形変換を特に_恒等変換_といい、$Id_V$あるいは単に$Id$と表す。
