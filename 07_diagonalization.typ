@@ -235,94 +235,124 @@ $
 正規化を各ベクトルに実施することにより直交基底から正規直交基底を作ることができる。
 
 == 随伴行列
-<随伴行列>
-標準内積の入った数ベクトル空間$K^N$を考える。 $N$次正方行列$A$に対して、
-\$\$braket(bold(u), Abold(v)} = braket(A^\*bold(u), bold(v)}\$\$
-が任意の\$bold(u), bold(v) in K^N\$に対して成り立つような$N$次正方行列$A^(\*)$のことを$A$の_随伴行列_という。
+
+標準内積の入った数ベクトル空間$K^N$を考える。
+$N$次正方行列$A$に対して、
+$
+braket(A^\* bold(u), bold(v)) = braket(bold(u), A bold(v))
+$
+が任意の$bold(u), bold(v) in K^N$に対して成り立つような$N$次正方行列$A^\*$のことを$A$の_随伴行列_という。
 すぐ後でわかる通り随伴行列は$A$の共役転置行列で実現される。
 $M times N$型の行列$A$の_共役転置行列_は
-\$\$overline(A}^T = \\mqty(overline(a_{1 1}} & dots & overline(a_{M 1}} \\\\ \\vdots & \\ddots & \\vdots \\\\ overline(a_{1 N}} & dots & overline(a_{M N}})\$\$
+$
+overline(A)^T
+= mat(overline(a_(1 1)), dots.c, overline(a_(M 1)); dots.v, dots.down, dots.v; overline(a_(1 N)), dots.c, overline(a_(M N)))
+$
 として定義される。
 
-#block[
-$N$次正方行列$A$の随伴行列は$A^(\*) = overline(A)^T$で与えられる。
-
+#proposition([随伴行列])[
+$N$次正方行列$A$の随伴行列は$A^\* = overline(A)^T$で与えられる。
 ]
-#block[
+
+#proof[
 標準内積を行列の積で書くことにより、
-\$\$braket(bold(u), Abold(v)}
-= overline(bold(u)}^T Abold(v)
-= overline(overline(A}^T bold(u)}^T bold(v)
-= braket(overline(A}^T bold(u), bold(v)}.\$\$
-よって、$A^(\*) = overline(A)^T$である。
-
+$
+braket(bold(u), A bold(v))
+= overline(bold(u))^T A bold(v)
+= overline(overline(A)^T bold(u))^T bold(v)
+= braket(overline(A)^T bold(u), bold(v)).
+$
+よって、$A^\* = overline(A)^T$である。
 ]
+
 ここからいくつかの行列の種類を導入する。
 
-#block[
-$N$次正方行列$A$が $ A^(\*) = A $
+#definition([エルミート行列])[
+$N$次正方行列$A$が
+$
+A^\* = A
+$
 を満たす時、$A$は_エルミート行列_という。
-
 ]
-#block[
-$N$次正方行列$A$が $ A^(\*) A = A A^(\*) $
+
+#definition([ユニタリ行列])[
+$N$次正方行列$A$が
+$
+A^\* A = A A^\*
+$
 であってそれらが正則な対角行列である時、$A$は_直交行列_という。
-さらに $ A^(\*) A = A A^(\*) = I_N $
+さらに
+$
+A^\* A = A A^\* = I_N
+$
 を満たす時、$A$は_正規直交行列_または_ユニタリ行列_という。
-
 ]
-#block[
-\$A = \\begin{pmatrix}\\vb\*{a}_1 & dots & \\vb\*{a}_N\\end{pmatrix}\$と分割すると、
-$A$が直交行列であることと\$\\vb\*{a}_1, dots, \\vb\*{a}_N\$が直交基底であることは同値であり、
-$A$が正規直交行列であることと\$\\vb\*{a}_1, dots, \\vb\*{a}_N\$が正規直交基底であることは同値であり、
 
+#remark[
+$A = mat(bold(a)_1, dots.c, bold(a)_N)$と区分けすると、
+$A$が直交行列であることと$bold(a)_1, dots, bold(a)_N$が直交基底であることは同値であり、
+$A$が正規直交行列であることと$bold(a)_1, dots, bold(a)_N$が正規直交基底であることは同値であり、
+TODO
 ]
+
 一般的な用語としては直交行列は実数上のユニタリ行列のことを指すが、本テキストでは直交基底という用語との兼ね合いでこのように定義する。
 
 直交行列と正規直交行列の違いは正規化されているかどうかだが、
-正規直交行列$A$の逆行列は計算するまでもなく直ちに随伴$A^(\*)$であることがわかる。
+正規直交行列$A$の逆行列は計算するまでもなく直ちに随伴$A^\*$であることがわかる。
 
-#block[
-$N$次正方行列$A$が $ A^(\*) A = A A^(\*) $
+#definition([正規行列])[
+$N$次正方行列$A$が
+$
+A^\* A = A A^\*
+$
 を満たす時、$A$は_正規行列_という。
-
 ]
-#block[
+
+#remark[
 エルミート行列やユニタリ行列は正規行列であり、正規行列は非常に広い行列の種類である。
-
 ]
+
 == 正規行列の対角化
-<正規行列の対角化>
+
 対角化の結果に行く前に内積空間において三角化の結果を精密化する。
 
-#block[
+#lemma([直交行列での三角化])[
 数ベクトル空間$K^N$が内積空間になっているとする。
-$N$次正方行列$A$に対して、固有多項式が#link(<e:eigenfactor>)[\[e:eigenfactor\]_と因数分解されたとすると、$A$は直交行列$P$を使って#link(<e:tri>)[\[e:tri\]_と三角化される。
+$N$次正方行列$A$に対して、固有多項式が@e_eigenfactor と因数分解されたとすると、$A$は直交行列$P$を使って@e_tri と三角化される。
 さらに$K$が正規化可能な場合は$P$は正規直交行列として取れる。
-
 ]
-#block[
-_Proof.]
-定理@t:triより正則行列$P$を使って#link(<e:tri>)[\[e:tri\]_と三角化される。
-\$P = \\mqty(bold(v)_1 & dots & bold(v)_N)\$と区分けすると\$bold(v)_1, dots, bold(v)_N\$は$K^N$の基底になっており、
-この基底をシュミットの直交化して直交基底\$bold(u)_1, dots, bold(u)_N\$を得ると、
-直交行列\$\\bar{P} = \\mqty(bold(u)_1 & dots & bold(u)_N)\$により、
-\$\$A = \\bar{P}\\mqty(1 & dots & \* \\\\ & \\ddots & \\vdots \\\\ & & 1)\\mqty(c_1 & dots & \* \\\\ & \\ddots & \\vdots \\\\ & & c_N)\\mqty(1 & dots & \* \\\\ & \\ddots & \\vdots \\\\ & & 1)^{-1}\\bar{P}^{-1}\$\$
-となる。 よって、右上三角行列の積は右上三角行列であることに注意して、
-\$\$A = \\bar{P}\\mqty(c_1 & dots & \* \\\\ & \\ddots & \\vdots \\\\ & & c_N)\\bar{P}^{-1}\$\$
-とできる。 さらに正規化して正規直交行列 \$\$\\tilde{P}
-= \\mqty(\\norm{bold(u)_1}^{-1}bold(u)_1 & dots & \\norm{bold(u)_N}^{-1}bold(u)_N)
-= \\bar{P}\\mqty(\\dmat{\\norm{bold(u)_1}^{-1}, \\ddots, \\norm{bold(u)_N}^{-1}})\$\$
-を定めると、 \$\$A
-= \\tilde{P}\\mqty(\\dmat{\\norm{bold(u)_1}, \\ddots, \\norm{bold(u)_N}})\\mqty(c_1 & dots & \* \\\\ & \\ddots & \\vdots \\\\ & & c_N)\\mqty(\\dmat{\\norm{bold(u)_1}^{-1}, \\ddots, \\norm{bold(u)_N}^{-1}})\\tilde{P}^{-1}
-= \\tilde{P}\\mqty(c_1 & dots & \* \\\\ & \\ddots & \\vdots \\\\ & & c_N)\\tilde{P}^{-1}\$\$
+
+#proof[
+@t_tri より正則行列$P$を使って@e_tri と三角化される。
+$P = mat(bold(v)_1, dots.c, bold(v)_N)$と区分けすると$bold(v)_1, dots, bold(v)_N$は$K^N$の基底になっており、
+この基底をシュミットの直交化して直交基底$bold(u)_1, dots, bold(u)_N$を得ると、
+直交行列$macron(P) = mat(bold(u)_1, dots.c, bold(u)_N)$により、
+$
+A = macron(P) mat(1, dots.c, \*; , dots.down, dots.v; , , 1) mat(c_1, dots.c, \*; , dots.down, dots.v; , , c_N) mat(1, dots.c, \*; , dots.down, dots.v; , , 1)^(-1) macron(P)^(-1)
+$
+となる。
+よって、右上三角行列の積は右上三角行列であることに注意して、
+$
+A = macron(P) mat(c_1, dots.c, \*; , dots.down, dots.v; , , c_N) macron(P)^(-1)
+$
 とできる。
-
+さらに正規化して正規直交行列
+$
+tilde(P)
+= mat(norm(bold(u)_1)^(-1) bold(u)_1, dots.c, norm(bold(u)_N)^(-1) bold(u)_N)
+= macron(P) mat(norm(bold(u)_1)^(-1), , ; , dots.down, ; , , norm(bold(u)_N)^(-1))
+$
+を定めると、
+$A
+= tilde(P) mat(norm(bold(u)_1), , ; , dots.down, ; , , norm(bold(u)_N)) mat(c_1, dots.c, \*; , dots.down, dots.v; , , c_N) mat(norm(bold(u)_1)^(-1), , ; , dots.down, ; , , norm(bold(u)_N)^(-1)) tilde(P)^(-1)
+= tilde(P) mat(c_1, dots.c, \*; , dots.down, dots.v; , , c_N) tilde(P)^(-1)$
+とできる。
 ]
+
 #block[
 体$K$を非退化とする。
-$N$次正規行列$A$に対して、固有多項式が#link(<e:eigenfactor>)[\[e:eigenfactor\]_と因数分解されたとすると、$A$は直交行列$P$を使って
-\$\$A = P\\mqty(\\dmat{c_1, \\ddots, c_N})P^{-1}\$\$ と対角化される。
+$N$次正規行列$A$に対して、固有多項式が@e:eigenfactor>)[\[e:eigenfactor\]_と因数分解されたとすると、$A$は直交行列$P$を使って
+\$\$A = Pmat(\\dmat{c_1, \\ddots, c_N})P^{-1}\$\$ と対角化される。
 さらに$K$が正規化可能な場合は$P$は正規直交行列として取れる。
 
 ]
@@ -332,11 +362,11 @@ $A$が正規直交行列（ユニタリ行列）で三角化していたらこ�
 
 #block[
 _Proof.]
-$A$は直交行列\$P = \\mqty(bold(v)_1 & dots & bold(v)_N)\$と三角行列$T = (c_(i j))_(j = 1, dots, N)^(i = 1, dots, N)$を使って$A = P T P^(- 1)$と表されて、このとき$T$は対角行列であることを示す。
+$A$は直交行列\$P = mat(bold(v)_1, dots.c, bold(v)_N)\$と三角行列$T = (c_(i j))_(j = 1, dots, N)^(i = 1, dots, N)$を使って$A = P T P^(- 1)$と表されて、このとき$T$は対角行列であることを示す。
 ここで、$A^(\*) A = (P^(- 1))^(\*) T^(\*) P^(\*) P T P^(- 1)$と$A A^(\*) = P T P^(- 1) (P^(- 1))^(\*) T^(\*) P^(\*)$で$A$は正規なのでこの二つが等しいので、
 $ T^(\*) P^(\*) P T (P^(\*) P)^(- 1) = P^(\*) P T (P^(\*) P)^(- 1) T^(\*) . $
 ここで、$P$は直交行列より$P^(\*) P$は対角行列
-\$\$D = P^\* P = \\mqty(\\dmat{braket(bold(v)_1, bold(v)_1}, \\ddots, braket(bold(v)_N, bold(v)_N}})\$\$
+\$\$D = P^\* P = mat(\\dmat{braket(bold(v)_1, bold(v)_1}, \\ddots, braket(bold(v)_N, bold(v)_N}})\$\$
 なので対角成分を$d_1, dots, d_N$とおくと、
 $ D T D^(- 1) = (d_i c_(i j) d_j^(- 1)) $ である。
 よって、$T^(\*) D T D^(- 1) = D T D^(- 1) T^(\*)$から、各$i, j = 1, dots, N$に対して
