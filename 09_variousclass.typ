@@ -1,35 +1,52 @@
+
 = 種々の行列
-<種々の行列>
+
 == ベクトルのテンソル積
-<ベクトルのテンソル積>
-\$\\vb\*{a}\$と\$\\vb\*{b}\$をそれぞれ$M$次と$N$次のベクトルとする時、
-\$\\vb\*{a}\$を$M$次の縦ベクトル、\$\\vb\*{b}^T\$を$N$次の横ベクトルとみなして行列の積\$\\vb\*{a}\\vb\*{b}^T\$は$M times N$型の行列であり、ベクトル\$\\vb\*{a}\$と\$\\vb\*{b}\$の#emph[テンソル積];と呼ばれ\$\\vb\*{a}\\otimes\\vb\*{b}\$とも書かれる。
-成分を使って書けば \$\$\\vb\*{a}\\otimes\\vb\*{b}
-= \\vb\*{a}\\vb\*{b}^T
-= \\begin{pmatrix}a\_1 \\\\ \\vdots \\\\ a\_M\\end{pmatrix}\\begin{pmatrix}b\_1 & \\cdots & b\_N\\end{pmatrix}
-=
-\\begin{pmatrix}
-a\_1 b\_1 & \\cdots & a\_1 b\_N \\\\
-\\vdots  & \\ddots & \\vdots  \\\\
-a\_M b\_1 & \\cdots & a\_M b\_N \\\\
-\\end{pmatrix}\$\$ である。
 
-また、\$\\vb\*{a}\$と\$\\vb\*{b}\$を$N$次のベクトルとする時、
-\$\\vb\*{a}^T\$を横ベクトル、\$\\vb\*{b}\$を縦ベクトルとみなして行列の積\$\\vb\*{a}^T\\vb\*{b}\$はスカラーであり、ベクトル\$\\vb\*{a}\$と\$\\vb\*{b}\$の#emph[スカラー積];と呼ばれ\$\\vb\*{a}\\cdot\\vb\*{b}\$とも書かれる。
-成分を使って書けば \$\$\\vb\*{a}\\cdot\\vb\*{b}
-= \\vb\*{a}^T\\vb\*{b}
-= \\begin{pmatrix}a\_1 & \\cdots & a\_N\\end{pmatrix}\\begin{pmatrix}b\_1 \\\\ \\vdots \\\\ b\_N\\end{pmatrix}
-= a\_1 b\_1+\\cdots+a\_N b\_N\$\$ である。
+
+$bold(a)$と$bold(b)$をそれぞれ$M$次と$N$次のベクトルとする時、
+$bold(a)$を$M$次の縦ベクトル、$bold(b)^T$を$N$次の横ベクトルとみなして行列の積$bold(a)bold(b)^T$は$M times N$型の行列であり、ベクトル$bold(a)$と$bold(b)$の_テンソル積_と呼ばれ$bold(a) times.circle bold(b)$とも書かれる。
+成分を使って書けば
+$
+bold(a) times.circle bold(b)
+= bold(a)bold(b)^T
+= mat(a_1; dots.v; a_M) mat(b_1, dots.c, b_N)
+= mat(a_1 b_1, dots.c, a_1 b_N; dots.v, dots.down, dots.v; a_M b_1, dots.c, a_M b_N)
+$
+である。
+
+また、$bold(a)$と$bold(b)$を$N$次のベクトルとする時、
+$bold(a)^T$を横ベクトル、$bold(b)$を縦ベクトルとみなして行列の積$bold(a)^T bold(b)$はスカラーであり、ベクトル$bold(a)$と$bold(b)$の_スカラー積_と呼ばれ$bold(a) dot bold(b)$とも書かれる。
+成分を使って書けば
+$
+bold(a) dot bold(b)
+= bold(a)^T bold(b)
+= mat(a_1, dots.c, a_N) mat(b_1; dots.v; b_N)
+= a_1 b_1+dots+a_N b_N
+$
+である。
 行列の積には交換法則は一般には成り立たないが、スカラー積に対しては交換法則が成り立つことに注意する。
-つまり、任意の$N$次のベクトル\$\\vb\*{a}\$と\$\\vb\*{b}\$に対して、
-\$\$\\vb\*{a}\\cdot\\vb\*{b} = \\vb\*{b}\\cdot\\vb\*{a}\$\$ が成り立つ。
+つまり、任意の$N$次のベクトル$bold(a)$と$bold(b)$に対して、
+$
+bold(a) dot bold(b) = bold(b) dot bold(a)
+$
+が成り立つ。
 
-ここで、\$\\vb\*{a}\$と\$\\vb\*{b}\$を$N$次ベクトルとする時のテンソル積である$N$次の正方行列\$A = \\vb\*{a}\\otimes\\vb\*{b}\$の$n$乗を考える。
+ここで、$bold(a)$と$bold(b)$を$N$次ベクトルとする時のテンソル積である$N$次の正方行列$A = bold(a) times.circle bold(b)$の$n$乗を考える。
 $2$乗を計算すると、
-\$\$A^2 = (\\vb\*{a}\\vb\*{b}^T)(\\vb\*{a}\\vb\*{b}^T) = \\vb\*{a}(\\vb\*{b}^T\\vb\*{a})\\vb\*{b}^T = (\\vb\*{b}\\cdot\\vb\*{a})A = (\\vb\*{a}\\cdot\\vb\*{b})A\$\$
-とスカラー積倍になる。 よってこれを繰り返し用いることで、
-\$\$A^n = (\\vb\*{a}\\cdot\\vb\*{b})^{n-1}A
-\\quad (n = 1, 2, 3, \\cdots)\$\$ を得る。
+$
+A^2
+= (bold(a)bold(b)^T)(bold(a)bold(b)^T)
+= bold(a)(bold(b)^T bold(a))bold(b)^T
+= (bold(b) dot bold(a))A
+= (bold(a) dot bold(b))A
+$
+とスカラー積倍になる。
+よってこれを繰り返し用いることで、
+$
+A^n = (bold(a) dot bold(b))^(n-1) A
+quad (n = 1, 2, 3, dots)
+$
+を得る。
 
 == 巡回行列
-<巡回行列>
