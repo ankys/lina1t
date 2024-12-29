@@ -1,6 +1,9 @@
 
 = 対角化
 
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
+
 #import "@preview/physica:0.9.4": braket
 
 == 共役と内積
@@ -221,7 +224,7 @@ $
 ]
 
 #proposition([正規化])[
-正規化可能な体_K_上の数ベクトル$bold(v)$に対して、$braket(bold(v), bold(v)}$は$K_+$の元である。
+正規化可能な体_K_上の数ベクトル$bold(v)$に対して、$braket(bold(v), bold(v))$は$K_+$の元である。
 さらにその正の平方根を$norm(bold(v)) = sqrt(braket(bold(v), bold(v))) in K_+$とおく。
 ここで、$bold(v) eq.not bold(0)$に対して
 $
@@ -349,55 +352,86 @@ $A
 とできる。
 ]
 
-#block[
+#theorem([正規行列の対角化])[
 体$K$を非退化とする。
-$N$次正規行列$A$に対して、固有多項式が@e:eigenfactor>)[\[e:eigenfactor\]_と因数分解されたとすると、$A$は直交行列$P$を使って
-\$\$A = Pmat(\\dmat{c_1, \\ddots, c_N})P^{-1}\$\$ と対角化される。
+$N$次正規行列$A$に対して、固有多項式が@e_eigenfactor と因数分解されたとすると、$A$は直交行列$P$を使って
+$
+A = P mat(c_1, , ; , dots.down, ; , , c_N) P^(-1)
+$
+と対角化される。
 さらに$K$が正規化可能な場合は$P$は正規直交行列として取れる。
-
 ]
+
 証明の流れは上の補題で$A$を三角行列$T$に三角化したとすると、
 $A$の正規性を継承して$T$も正規になり、正規な三角行列は対角行列しかないことを示す。
 $A$が正規直交行列（ユニタリ行列）で三角化していたらこれでいいが、今回は少し違うので修正が必要である。
 
-#block[
-_Proof.]
-$A$は直交行列\$P = mat(bold(v)_1, dots.c, bold(v)_N)\$と三角行列$T = (c_(i j))_(j = 1, dots, N)^(i = 1, dots, N)$を使って$A = P T P^(- 1)$と表されて、このとき$T$は対角行列であることを示す。
-ここで、$A^(\*) A = (P^(- 1))^(\*) T^(\*) P^(\*) P T P^(- 1)$と$A A^(\*) = P T P^(- 1) (P^(- 1))^(\*) T^(\*) P^(\*)$で$A$は正規なのでこの二つが等しいので、
-$ T^(\*) P^(\*) P T (P^(\*) P)^(- 1) = P^(\*) P T (P^(\*) P)^(- 1) T^(\*) . $
-ここで、$P$は直交行列より$P^(\*) P$は対角行列
-\$\$D = P^\* P = mat(\\dmat{braket(bold(v)_1, bold(v)_1}, \\ddots, braket(bold(v)_N, bold(v)_N}})\$\$
+#proof[
+$A$は直交行列$P = mat(bold(v)_1, dots.c, bold(v)_N)$と三角行列$T = (c_(i j))^(i = 1, dots, N)_(j = 1, dots, N)$を使って$A = P T P^(-1)$と表されて、このとき$T$は対角行列であることを示す。
+ここで、$A^\* A = (P^(-1))^\* T^\* P^\* P T P^(-1)$と$A A^\* = P T P^(-1) (P^(-1))^\* T^\* P^\*$で$A$は正規なのでこの二つが等しいので、
+$
+T^\* P^\* P T (P^\* P)^(-1) = P^\* P T (P^\* P)^(-1) T^\*.
+$
+ここで、$P$は直交行列より$P^\* P$は対角行列
+$
+D = P^\* P = mat(braket(bold(v)_1, bold(v)_1), , ; , dots.down, ; , , braket(bold(v)_N, bold(v)_N))
+$
 なので対角成分を$d_1, dots, d_N$とおくと、
-$ D T D^(- 1) = (d_i c_(i j) d_j^(- 1)) $ である。
-よって、$T^(\*) D T D^(- 1) = D T D^(- 1) T^(\*)$から、各$i, j = 1, dots, N$に対して
-$ sum_(k = 1)^N overline(c_(k i)) d_k c_(k j) d_j^(- 1) = sum_(k = 1)^N d_i c_(i k) d_k^(- 1) overline(c_(j k)) . $
+$
+D T D^(-1) = (d_i c_(i j) d_j^(-1))
+$ である。
+よって、$T^\* D T D^(-1) = D T D^(-1) T^\*$から、各$i, j = 1, dots, N$に対して
+$
+sum_(k = 1)^N overline(c_(k i)) d_k c_(k j) d_j^(-1)
+= sum_(k = 1)^N d_i c_(i k) d_k^(-1) overline(c_(j k)).
+$
 これを対角成分で$i = j$が大きい方から考えると、$T$は三角行列であることに注意して$i = j = N$の時、
-$ overline(c_(1 N)) d_1 c_(1 N) d_N^(- 1)+dots+overline(c_(N N)) d_N c_(N N) d_N^(- 1) = d_N c_(N N) d_N^(- 1) overline(c_(N N)) . $
+$
+overline(c_(1 N)) d_1 c_(1 N) d_N^(-1)+dots+overline(c_(N N)) d_N c_(N N) d_N^(-1)
+= d_N c_(N N) d_N^(-1) overline(c_(N N)).
+$
 つまり
-$ overline(c_(1 N)) c_(1 N) d_1+dots+overline(c_(N-1 N)) c_(N-1 N) d_(N-1) = 0 $
+$
+overline(c_(1 N)) c_(1 N) d_1+dots+overline(c_(N-1 N)) c_(N-1 N) d_(N-1) = 0
+$
 で、$K$が非退化である条件が使える状況になっていて、$c_(1 N) = dots = c_(N-1 N)$がわかる。
 これを繰り返していけば$T$は対角行列にならざるを得ないことがわかり、定理の証明が完成する。
-
 ]
+
 == 実対称行列の対角化
-<実対称行列の対角化>
+
 まず、エルミート行列の固有値について調べる。
 
-#block[
-エルミート行列$A$の全ての固有値$c$は $ overline(c) = c $ を満たす。
-
+#theorem([エルミート行列の固有値])[
+エルミート行列$A$の全ての固有値$c$は
+$
+overline(c) = c
+$
+を満たす。
 ]
-#block[
-_Proof.]
-固有ベクトルの一つを\$bold(v) \\ne bold(0)\$とおくと\$Abold(v) = cbold(v)\$なので、
+
+#proof[
+固有ベクトルの一つを$bold(v) eq.not bold(0)$とおくと$A bold(v) = c bold(v)$なので、
 標準内積について
-\$\$braket(bold(v), Abold(v)} = braket(bold(v), cbold(v)} = cbraket(bold(v), bold(v)}.\$\$
-また、$A$はエルミート行列より随伴行列$A^(\*)$は$A$自身なので、
-\$\$braket(bold(v), Abold(v)} = braket(Abold(v), bold(v)} = braket(cbold(v), bold(v)} = overline(c}braket(bold(v), bold(v)}.\$\$
-以上のことと\$bold(v) \\ne bold(0)\$より$overline(c) = c$である。
-
+$
+braket(bold(v), A bold(v))
+= braket(bold(v), c bold(v))
+= c braket(bold(v), bold(v)).
+$
+また、$A$はエルミート行列より随伴行列$A^\*$は$A$自身なので、
+$
+braket(bold(v), A bold(v))
+= braket(A bold(v), bold(v))
+= braket(c bold(v), bold(v))
+= overline(c) braket(bold(v), bold(v)).
+$
+以上のことと$bold(v) eq.not bold(0)$より$overline(c) = c$である。
 ]
-この定理で出てくるスカラーの範囲を考える。 非退化な体$K$に対して
-\$\$\\mathrm{R}(K) = \\lrset{ a in K \\mid overline(a} = a }\$\$
+
+この定理で出てくるスカラーの範囲を考える。
+非退化な体$K$に対して
+$
+RR(K) = { a in K mid(|) overline(a) = a }
+$
 とおき、$K$の_実部_と呼ぶ。
-$upright(R) (K)$は$K$の加法と乗法で閉じていて、$K$のいわゆる部分体になっている。
+$RR(K)$は$K$の加法と乗法で閉じていて、$K$のいわゆる部分体になっている。
