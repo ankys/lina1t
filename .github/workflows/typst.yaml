@@ -1,0 +1,28 @@
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git repository
+        uses: actions/checkout@v4
+      # Compile main.typ
+      - name: Setup fonts
+        run: sudo apt update && sudo apt install -y fontconfig fonts-noto-cjk
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v3
+      - name: Compile Typst file
+        run: typst compile main.typ ${{github.event.repository.name}}-${{github.ref_name}}.pdf
+      # Create Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          name: ${{github.ref_name}}
+          files: ${{github.event.repository.name}}-${{github.ref_name}}.pdf
