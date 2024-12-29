@@ -170,7 +170,7 @@ $U$を$K$上の線形空間として、$V, W$を$U$の部分空間とする。
 - 交空間が$V sect W = O_U$を満たす時、和空間$V+W$は$V xor W$と書かれ、$V$と$W$の_直和空間_と呼ばれる。
 ]
 
-#block[
+#remark[
 和空間は和集合$V union W$とは違うことに注意する。
 和集合$V union W$は一般に線形空間ではない。
 ]
@@ -334,7 +334,7 @@ $K$上の線形空間$V$のいくつかのベクトル$bold(v)_1, dots, bold(v)_
 任意の$bold(w) in V\\Span(bold(v)_1, dots, bold(v)_N)$に対して$bold(v)_1, dots, bold(v)_N, bold(w)$は線形独立である。
 ]
 
-#block[
+#proof[
 スカラー$c_1, dots, c_N, d in K$を使って$c_1 bold(v)_1+dots+c_N bold(v)_N+d bold(w) = bold(0)_V$となったとする。
 ここで$d eq.not 0$とすると
 $
@@ -442,13 +442,15 @@ $RR$を$RR$上の線形空間と考えて関数$f: RR -> RR$を考える。
 
 線形写像の合成は線形写像である。
 
-#block[
+#proposition([合成線形写像])[
 $U, V, W$を$K$上の線形空間として、$F$を$U$から$V$への線形写像とし$G$を$V$から$W$への線形写像とする。
-この時、合成写像$G F = G circle.stroked.tiny F : U -> W$を
-$$G F bold(v) = G(F(bold(v)))$$
+この時、合成写像$G F = G circle F : U -> W$を
+$
+G F bold(v) = G(F(bold(v)))
+$
 で定義する時、$G F$は$U$から$W$への線形写像である。
-
 ]
+
 線形写像による線形部分空間の像や逆像は線形部分空間である。
 
 #proposition([合成線形写像])[
@@ -490,7 +492,7 @@ $V, W$を$K$上の線形空間として、$F$を$V$から$W$への線形写像�
 ここで$F$を全単射つまり可逆とする時、逆写像$F^(-1)$も線形写像である。
 ]
 
-#block[
+#proof[
 $c, d in K$と$bold(v), bold(w) in W$を取る。
 示すべきことは
 $
