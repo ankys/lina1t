@@ -1,8 +1,10 @@
 
 = 種々の行列
 
-== ベクトルのテンソル積
+#import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
+#show: thmrules.with()
 
+== ベクトルのテンソル積
 
 $bold(a)$と$bold(b)$をそれぞれ$M$次と$N$次のベクトルとする時、
 $bold(a)$を$M$次の縦ベクトル、$bold(b)^T$を$N$次の横ベクトルとみなして行列の積$bold(a)bold(b)^T$は$M times N$型の行列であり、ベクトル$bold(a)$と$bold(b)$の_テンソル積_と呼ばれ$bold(a) times.circle bold(b)$とも書かれる。
