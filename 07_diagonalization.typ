@@ -5,6 +5,8 @@
 #show: thmrules.with()
 
 #import "@preview/physica:0.9.4": braket
+#let Span = $op("Span")$
+#let Re = $op("Re")$
 
 == 共役と内積
 
@@ -127,7 +129,7 @@ $
 よって$c_i = 0$なので、$bold(v)_1, dots, bold(v)_N$は線形独立である。
 ]
 
-この命題とその証明から内積空間$V$の直交系$bold(v)_1, dots, bold(v)_N$が与えられるとそれは線形独立で$V$の線形部分空間$W = braket(bold(v)_1, dots, bold(v)_N)$が得られる。
+この命題とその証明から内積空間$V$の直交系$bold(v)_1, dots, bold(v)_N$が与えられるとそれは線形独立で$V$の線形部分空間$W = Span(bold(v)_1, dots, bold(v)_N)$が得られる。
 そのベクトル$bold(v) = c_1 bold(v)_1+dots+c_N bold(v)_N in W$と$i = 1, dots, N$に対して、$bold(v)_i$との内積を取ると$braket(bold(v)_i, bold(v)) = c_i braket(bold(v)_i, bold(v)_i)$でありこのスカラー値$c_i$のことを$bold(v)$の$bold(v)_i$_成分_と呼ぶ。
 
 逆に線形独立なベクトルが与えられたときに成分を引くことで直交系を構成するというのがシュミットの直交化である。
@@ -145,7 +147,7 @@ bold(u)_3 = bold(v)_3-braket(bold(u)_1, bold(v)_3)/braket(bold(u)_1, bold(u)_1) 
 quad
 bold(u)_N = bold(v)_N-braket(bold(u)_1, bold(v)_N)/braket(bold(u)_1, bold(u)_1) bold(u)_1-dots-braket(bold(u)_(N-1), bold(v)_N)/braket(bold(u)_(N-1), bold(u)_(N-1)) bold(u)_(N-1).
 $
-このとき$bold(u)_1, dots, bold(u)_N$は$V$の直交系であり、$braket(bold(u)_1, dots, bold(u)_N) = braket(bold(v)_1, dots, bold(v)_N)$が成り立つ。
+このとき$bold(u)_1, dots, bold(u)_N$は$V$の直交系であり、$Span(bold(u)_1, dots, bold(u)_N) = Span(bold(v)_1, dots, bold(v)_N)$が成り立つ。
 ]
 
 #proof[
@@ -164,8 +166,8 @@ $
 $
 bold(v)_(N+1)
 = braket(bold(u)_1, bold(v)_(N+1))/braket(bold(u)_1, bold(u)_1) bold(u)_1+dots+braket(bold(u)_N, bold(v)_(N+1))/braket(bold(u)_N, bold(u)_N) bold(u)_N
-in braket(bold(u)_1, dots, bold(u)_N)
-= braket(bold(v)_1, dots, bold(v)_N)
+in Span(bold(u)_1, dots, bold(u)_N)
+= Span(bold(v)_1, dots, bold(v)_N)
 $
 となるが、これは$bold(v)_1, dots, bold(v)_N, bold(v)_{N+1}$が線形独立であるという仮定に反する。
 よって、$bold(u)_1, dots, bold(u)_N, bold(u)_{N+1}$は$V$の直交系である。
@@ -346,9 +348,11 @@ tilde(P)
 = macron(P) mat(norm(bold(u)_1)^(-1), , ; , dots.down, ; , , norm(bold(u)_N)^(-1))
 $
 を定めると、
-$A
+$
+A
 = tilde(P) mat(norm(bold(u)_1), , ; , dots.down, ; , , norm(bold(u)_N)) mat(c_1, dots.c, \*; , dots.down, dots.v; , , c_N) mat(norm(bold(u)_1)^(-1), , ; , dots.down, ; , , norm(bold(u)_N)^(-1)) tilde(P)^(-1)
-= tilde(P) mat(c_1, dots.c, \*; , dots.down, dots.v; , , c_N) tilde(P)^(-1)$
+= tilde(P) mat(c_1, dots.c, \*; , dots.down, dots.v; , , c_N) tilde(P)^(-1)
+$
 とできる。
 ]
 
@@ -431,7 +435,7 @@ $
 この定理で出てくるスカラーの範囲を考える。
 非退化な体$K$に対して
 $
-RR(K) = { a in K mid(|) overline(a) = a }
+Re(K) = { a in K mid(|) overline(a) = a }
 $
 とおき、$K$の_実部_と呼ぶ。
-$RR(K)$は$K$の加法と乗法で閉じていて、$K$のいわゆる部分体になっている。
+$Re(K)$は$K$の加法と乗法で閉じていて、$K$のいわゆる部分体になっている。

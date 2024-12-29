@@ -4,6 +4,7 @@
 #import "deps/theorem.typ": thmrules, theorem, lemma, proposition, corollary, definition, example, remark, proof
 #show: thmrules.with()
 
+#let Span = $op("Span")$
 #let rank = $op("rank")$
 #let Img = $op("Img")$
 #let Ker = $op("Ker")$
@@ -153,7 +154,7 @@ $
 と表される$V$の元（ベクトル）を$bold(v)_1, dots, bold(v)_N$の_線形結合_という。
 また、$bold(v)_1, dots, bold(v)_N$の線形結合全体からなる集合
 $
-lr(angle.l bold(v)_1, dots, bold(v)_N angle.r) = { c_1 bold(v)_1+dots+c_N bold(v)_N mid(|) c_1, dots, c_N in K }
+Span(bold(v)_1, dots, bold(v)_N) = { c_1 bold(v)_1+dots+c_N bold(v)_N mid(|) c_1, dots, c_N in K }
 $
 は$V$の線形部分空間であり、$bold(v)_1, dots, bold(v)_N$が_張る_または_線形生成する_線形部分空間と呼ばれる。
 また、$N = 0$の時は線形結合は零ベクトルとして、張る線形部分空間は自明な$O$と考える。
@@ -189,7 +190,7 @@ $V$を$K$上の線形空間として、$W$を$V$の線形部分空間とする�
 $V$を線形空間とする。
 いくつかのベクトル$bold(v)_1, dots, bold(v)_N$ ($N = 0, 1, 2, 3, dots$)が存在して
 $
-lr(angle.l bold(v)_1, dots, bold(v)_N angle.r) = V,
+Span(bold(v)_1, dots, bold(v)_N) = V,
 $
 つまり$bold(v)_1, dots, bold(v)_N$が$V$を線形生成するとする時、$V$は_有限次元_であるという。
 有限次元でない線形空間は_無限次元_であるという。
@@ -217,7 +218,7 @@ $N$個のベクトル$bold(v)_1, dots, bold(v)_N in V$が$V$を線形生成す�
 $V$を有限次元線形空間として$N$をその次元とする。
 ここで$N$個のベクトル$bold(v)_1, dots, bold(v)_N in V$であって
 $
-lr(angle.l bold(v)_1, dots, bold(v)_N angle.r) = V
+Span(bold(v)_1, dots, bold(v)_N) = V
 $
 を満たすものを$V$の_基底_という。
 ]
@@ -330,7 +331,7 @@ $V$を$K$上の有限次元線形空間とする。
 
 #lemma[
 $K$上の線形空間$V$のいくつかのベクトル$bold(v)_1, dots, bold(v)_N in V$が線形独立で$V$を生成しないとき、
-任意の$bold(w) in V\\lr(angle.l bold(v)_1, dots, bold(v)_N angle.r)$に対して$bold(v)_1, dots, bold(v)_N, bold(w)$は線形独立である。
+任意の$bold(w) in V\\Span(bold(v)_1, dots, bold(v)_N)$に対して$bold(v)_1, dots, bold(v)_N, bold(w)$は線形独立である。
 ]
 
 #block[
@@ -359,7 +360,7 @@ $V$を生成しないとすると、補題より$N+1$個の線形独立なベク
 #proof([命題の証明])[
 有限次元なので$V$の次元を$N$、$W$の次元を$M$として、$W$の基底$bold(w)_1, dots, bold(w)_M$を取る。
 ここで補題を$N-M$回繰り返すことで線形独立な$bold(w)_1, dots, bold(w)_M, bold(u)_(M+1), dots, bold(u)_N in V$を作ることができ（次元の関係で補題の仮定を満たし続ける）、次元の関係でこれは$V$の基底になる。
-あとは$U = lr(angle.l bold(u)_(M+1), dots, bold(u)_N angle.r)$とすればよい。
+あとは$U = Span(bold(u)_(M+1), dots, bold(u)_N)$とすればよい。
 ]
 
 和空間の次元について次が成り立つ。
@@ -544,7 +545,7 @@ $
 
 $Img F$が有限次元の時、$N = dim Img F$として$Img F$の基底$bold(w)_1, dots, bold(w)_N$を取ってくる。
 さらに先ほどと同様にして$F bold(u)_i = bold(w)_i$となる$bold(u)_1, dots, bold(u)_N in V$を取ってくるとこれは線形独立している。
-よってこれらは$V$の線形部分空間$U = lr(angle.l bold(u)_1, dots, bold(u)_N angle.r)$の基底になっている。
+よってこれらは$V$の線形部分空間$U = Span(bold(u)_1, dots, bold(u)_N)$の基底になっている。
 この時、$F$は$U$から$Img F$の線形同型写像になっているので、$U tilde.equiv Img F$である。
 あとは$U sect Ker F = O_V$と$U+Ker F = V$を示せばよい。
 まず$bold(v) in U sect Ker F$とすると、
