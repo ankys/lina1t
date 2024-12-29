@@ -34,7 +34,7 @@
 #include "05_linearspace.typ"
 #include "06_eigenproblem.typ"
 #include "07_diagonalization.typ"
-// #include "08_triangularization.typ"
+#include "08_triangularization.typ"
 // #include "09_variousclass.typ"
 // #include "10_quadratic.typ"
 
