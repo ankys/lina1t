@@ -1,8 +1,8 @@
 
 #let title = [線形代数学１]
 #let author = [中安淳]
-#let date = datetime.today().display()
-// #let date = [2024年12月22日]
+// #let date = datetime.today().display()
+#let date = [2024年12月30日]
 
 #import "deps/jbook.typ": jbook, maketitle
 #show: jbook.with()
