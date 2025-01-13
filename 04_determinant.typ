@@ -774,3 +774,42 @@ mat(delim: "|",
 $
 よって、主張が示された。
 ]
+
+== コーシー・ビネの定理
+
+@t_proddet では$N$次正方行列の積の行列式を考えたが、
+この公式を$M times N$型の行列$A, B$に拡張することを考える。
+ただ、このままでは行列の積も行列式も定義されない。
+そこでスカラー積の要領で積の行列式$det A^T B$を考える。
+この行列式は$M = N$の時には$det A det B$に一致し、$M < N$の時には零となるので、問題になるのは$M > N$の場合である。
+
+$N$次の置換が${ 1, dots, N }$から${ 1, dots, N }$への可逆写像だったことを拡張して、
+$k$を${ 1, dots, N }$から${ 1, dots, M }$への単射、つまり任意の$i eq.not j$に対して$k(i) eq.not k(j)$を満たす写像としてそれら全体の集合を$S_(N, M)$と表すことにする。
+さらに$k in S_(N, M)$の中で単調増加になっているもの全体を$macron(S)_(N, M)$と書く。
+すなわち$t in macron(S)_(N, M)$は
+$
+1 <= t(1) < dots < t(N) <= M
+$
+を満たす。
+この時、$k in S_(N, M)$に対して、並べ替えを行うことで、$k = t s$と$t in macron(S)_(N, M)$, $s in S_N$と一意に表すことができることに注意する。
+
+ここで$M times N$型の行列$A$と$t in macron(S)_(N, M)$に対して、$N$次の正方行列$A_T$を$A$から$t$で出現する添字だけ取り出して得られる行列とする。
+正確には$A = mat(bold(a)_1; dots.v; bold(a)_M) = mat(a_(1 1), dots.c, a_(1 N); dots.v, dots.down, dots.v; a_(M 1), dots.c, a_(M N))$に対して
+$
+A_t = mat(bold(a)_(t(1)); dots.v; bold(a)_(t(N)))
+$
+であり、
+$
+det A_t = sum_(s in S_N) sgn(s) a_(t(1) s(1)) dots a_(t(N) s(N))
+$
+であることに注意する。
+
+#theorem([コーシー・ビネの定理])[
+$A$と$B$を$K$上の$M times N$型の行列とする。
+この時、
+$
+det (A^T B) = sum_(t in macron(S)_(N, M)) det A_t det B_t
+$
+が成り立つ。
+ただし、$M < N$の場合は右辺は零とする。
+]
