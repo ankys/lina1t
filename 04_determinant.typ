@@ -847,3 +847,38 @@ sum_(t in macron(S)_(N, M)) sum_(s in S_N) sgn(s) a_(t(1) s(1)) dots a_(t(N) s(N
 $
 である。
 ]
+
+コーシー・ビネの定理で$N$次の縦ベクトル$bold(a) = mat(a_1; dots.v; a_N), bold(b) = mat(b_1; dots.v; b_N), bold(c) = mat(c_1; dots.v; c_N), bold(d) = mat(d_1; dots.v; d_N)$を使って$N times 2$型の行列$A = mat(bold(a), bold(b))$, $B = mat(bold(c), bold(d))$に対して適用する。
+この時、
+$
+det(A^T B)
+= det mat(bold(a)^T; bold(b)^T) mat(bold(c), bold(d))
+= det mat(bold(a)^T bold(c), bold(a)^T bold(d); bold(b)^T bold(c), bold(b)^T bold(d))
+= (bold(a) dot bold(c))(bold(b) dot bold(d))-(bold(a) dot bold(d))(bold(b) dot bold(c)),
+$
+$
+sum_(t in macron(S)_(2, N)) det A_t det B_t
+= sum_(i < j) mat(delim: "|", a_i, b_i; a_j, b_j) mat(delim: "|", c_i, d_i; c_j, d_j)
+= sum_(i < j) (a_i b_j-a_j b_i)(c_i d_j-c_j d_i)
+$
+なので、
+等式
+$
+(sum_i a_i c_i)(sum_i b_i d_i)-(sum_i a_i d_i)(sum_i b_i c_i)
+= sum_(i < j) (a_i b_j-a_j b_i)(c_i d_j-c_j d_i)
+$
+を得る。
+この式をビネ・コーシーの恒等式という。
+
+さらに$bold(a) = bold(c)$, $bold(b) = bold(d)$の時には
+$
+(sum_i a_i^2)(sum_i b_i^2)-(sum_i a_i b_i)^2
+= sum_(i < j) (a_i b_j-a_j b_i)^2
+$
+となり、ラグランジュの恒等式と呼ばれる。
+土台が実数体$RR$の場合には右辺が非負であることから、コーシー・シュワルツの不等式
+$
+(sum_(i = 1)^N a_i b_i)^2
+<= (sum_(i = 1)^N a_i^2)(sum_(i = 1)^N b_i^2)
+$
+を導く。
