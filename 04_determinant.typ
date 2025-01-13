@@ -813,3 +813,37 @@ $
 が成り立つ。
 ただし、$M < N$の場合は右辺は零とする。
 ]
+
+#proof[
+まず、積$A B$は成分を使って以下のように書くことができる。
+$
+A^T B =
+mat(a_(1 1), dots.c, a_(M 1); dots.v, dots.down, dots.v; a_(1 N), dots.c, a_(M N))
+mat(bold(b)_1; dots.v; bold(b)_M)
+= mat(a_(1 1) bold(b)_1+dots+a_(M 1) bold(b)_1; dots.v; a_(1 N) bold(b)_1+dots+a_(M N) bold(b)_M)
+$
+よって多重線形性と交代性より、
+$
+det(A^T B) =
+sum_(i_1 = 1)^M dots sum_(i_N = 1)^M a_(i_1 1) dots a_(i_N N) mat(delim: "|", bold(b)_(i_1); dots.v; bold(b)_(i_N))
+= sum_(k in S_(N, M)) a_(k(1) 1) dots a_(k(N) N) mat(delim: "|", bold(b)_(k(1)); dots.v; bold(b)_(k(N)))
+= sum_(t in macron(S)_(N, M)) sum_(s in S_N) a_(t(s(1)) 1) dots a_(t(s(N)) N) mat(delim: "|", bold(b)_(t(s(1))); dots.v; bold(b)_(t(s(N)))).
+$
+行を並べ替えて、
+$
+det(A^T B) =
+sum_(t in macron(S)_(N, M)) sum_(s in S_N) a_(t(s(1)) 1) dots a_(t(s(N)) N) sgn(s) mat(delim: "|", bold(b)_(t(1)); dots.v; bold(b)_(t(N))).
+$
+一番後ろの行列式は$det B_t$である。
+ここでスカラーの積を並べ替えて
+$
+a_(t(s(1)) 1) dots a_(t(s(N)) N) = a_(t(1) s^(-1) (1)) dots a_(t(N) s^(-1) (N))
+$
+なので、
+$
+det(A^T B) =
+sum_(t in macron(S)_(N, M)) sum_(s in S_N) sgn(s) a_(t(1) s(1)) dots a_(t(N) s(N)) det B_t
+= sum_(t in macron(S)_(N, M)) det A_t det B_t
+$
+である。
+]
